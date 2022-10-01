@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://cg4l27nslohl0"]
+[gd_scene load_steps=5 format=3 uid="uid://cg4l27nslohl0"]
 
 [ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_70jyx"]
-[ext_resource type="PackedScene" uid="uid://by08roj0yra1a" path="res://Scenes/Game.tscn" id="2_645k7"]
 [ext_resource type="AudioStream" uid="uid://50qxmla8lk6c" path="res://Sound/Music/main_menu.wav" id="3_tgp82"]
 [ext_resource type="AudioStream" uid="uid://xq4b2ogv23jv" path="res://Sound/SFX/hover_button_in_menu.wav" id="4_1olkx"]
 [ext_resource type="AudioStream" uid="uid://c1j50sfogrwgf" path="res://Sound/SFX/on_select_in_menu.wav" id="5_eritw"]
@@ -14,15 +13,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_70jyx")
-nextScene = ExtResource("2_645k7")
-
-[node name="Background" type="ColorRect" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.243137, 0.607843, 0.517647, 1)
 
 [node name="Buttons" type="VBoxContainer" parent="."]
 anchors_preset = 8

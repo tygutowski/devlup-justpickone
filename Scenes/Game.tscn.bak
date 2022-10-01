@@ -1,9 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://bb2ofnqf0hxvu"]
-
 [ext_resource type="Texture2D" uid="uid://bu570sksm34w1" path="res://Sprites/tilemap.png" id="1_qon0y"]
 [ext_resource type="PackedScene" uid="uid://dld6cm7dvh155" path="res://Scenes/Player.tscn" id="2_gfv0v"]
-[ext_resource type="PackedScene" uid="uid://b7gx0lxdr0ald" path="res://Scenes/ChaserEnemy.tscn" id="4_60gli"]
-[ext_resource type="PackedScene" uid="uid://dyrdcrq6jv6hi" path="res://Scenes/Pickup.tscn" id="4_572cu"]
+[ext_resource type="PackedScene" uid="uid://droc256pxd3ib" path="res://Scenes/Upgrade.tscn" id="3_vwyqw"]
+[ext_resource type="PackedScene" uid="uid://bj8fq6bgncmfq" path="res://Scenes/ChaserEnemy.tscn" id="4_60gli"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bm6ho"]
 texture = ExtResource("1_qon0y")
@@ -121,12 +119,28 @@ layer_0/tile_data = PackedInt32Array(131079, 65536, 0, 131080, 65536, 0, 131081,
 [node name="Player" parent="." instance=ExtResource("2_gfv0v")]
 position = Vector2(118, 78)
 
+[node name="Pickup" parent="." instance=ExtResource("3_vwyqw")]
+position = Vector2(145, 74)
+
+[node name="Pickup2" parent="." instance=ExtResource("3_vwyqw")]
+position = Vector2(172, 74)
+
+[node name="Pickup3" parent="." instance=ExtResource("3_vwyqw")]
+position = Vector2(198, 74)
+
+[node name="Pickup4" parent="." instance=ExtResource("3_vwyqw")]
+position = Vector2(223, 74)
+
+[node name="Pickup5" parent="." instance=ExtResource("3_vwyqw")]
+position = Vector2(248, 74)
+z_index = 1
+
+[node name="Area2d" parent="." instance=ExtResource("3_vwyqw")]
+position = Vector2(297, 85)
+
 [node name="NavigationRegion2d" type="NavigationRegion2D" parent="."]
 navpoly = SubResource("NavigationPolygon_ecr7g")
 
 [node name="Enemy" parent="NavigationRegion2d" instance=ExtResource("4_60gli")]
 position = Vector2(98, 119)
 health = 50
-
-[node name="Pickup" parent="." instance=ExtResource("4_572cu")]
-position = Vector2(316, 115)

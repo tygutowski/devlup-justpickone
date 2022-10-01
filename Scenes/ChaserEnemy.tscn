@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bj8fq6bgncmfq"]
+[gd_scene load_steps=9 format=3 uid="uid://b7gx0lxdr0ald"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_ot23h"]
-[ext_resource type="AudioStream" uid="uid://bred01x2lenhb" path="res://Sound/soundfx/hurt1.wav" id="2_4exn3"]
-[ext_resource type="AudioStream" uid="uid://cfkw4frr5p040" path="res://Sound/soundfx/died2.wav" id="2_x26kr"]
+[ext_resource type="AudioStream" uid="uid://bred01x2lenhb" path="res://Sound/SFX/hurt1.wav" id="2_4exn3"]
+[ext_resource type="AudioStream" uid="uid://cfkw4frr5p040" path="res://Sound/SFX/died2.wav" id="2_x26kr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhelc"]
 
