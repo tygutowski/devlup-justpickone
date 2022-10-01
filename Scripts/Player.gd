@@ -145,7 +145,8 @@ func shoot():
 			var expl = load("res://Scenes/Explosion.tscn").instantiate()
 			expl.global_position = ray.get_node("RayCast2d").get_collision_point()
 			game.add_child(expl)
-	
+		if u.ricochet_bullets:
+			raycast.get_collision_point()
 func upgrade():
 	in_menu = true
 	var upgrade_menu = load("res://Scenes/UpgradeScreen.tscn").instantiate()
