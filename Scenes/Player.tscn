@@ -1,7 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://dld6cm7dvh155"]
+[gd_scene load_steps=26 format=3 uid="uid://dld6cm7dvh155"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_6icgm"]
 [ext_resource type="Texture2D" uid="uid://cys86rdms2uef" path="res://Sprites/character.png" id="1_dxjkm"]
+[ext_resource type="PackedScene" uid="uid://ch4sodhjvtqn7" path="res://Scenes/ShakeCamera2D.tscn" id="3_r2bnf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0rya"]
 size = Vector2(12, 14)
@@ -226,7 +227,7 @@ nodes/walking_up/node = SubResource("AnimationNodeAnimation_f4tpm")
 nodes/walking_up/position = Vector2(-200, 220)
 node_connections = [&"output", 0, &"idle_or_walking", &"direction_idle", 0, &"idle_up", &"direction_idle", 1, &"idle_down", &"direction_idle", 2, &"idle_left", &"direction_idle", 3, &"idle_right", &"direction_walking", 0, &"walking_up", &"direction_walking", 1, &"walking_down", &"direction_walking", 2, &"walking_left", &"direction_walking", 3, &"walking_right", &"idle_or_walking", 0, &"direction_idle", &"idle_or_walking", 1, &"direction_walking"]
 
-[node name="CharacterBody2d" type="CharacterBody2D" groups=["player"]]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 script = ExtResource("1_6icgm")
 
@@ -251,3 +252,6 @@ active = true
 parameters/direction_idle/current = 1
 parameters/direction_walking/current = 1
 parameters/idle_or_walking/current = 0
+
+[node name="ShakeCamera2D" parent="." instance=ExtResource("3_r2bnf")]
+current = true

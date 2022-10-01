@@ -6,7 +6,7 @@ var shot = preload("res://Scenes/Shot.tscn")
 var walking_direction = Vector2.ZERO
 var facing_direction = Vector2.ZERO
 
-@onready var game = get_tree().get_nodes_in_group("game")[0]
+@onready var game = get_tree().get_first_node_in_group("game")
 
 func _ready():
 	set_animation("idle_or_walking", 0)
@@ -22,7 +22,7 @@ func _physics_process(_delta):
 	if walking_direction != Vector2.ZERO:
 		facing_direction = walking_direction
 		
-	print(walking_direction)
+	#print(walking_direction)
 	### SCUFFED
 	if walking_direction == Vector2.ZERO:
 		set_animation("idle_or_walking", 0)
@@ -61,3 +61,7 @@ func shoot():
 
 func upgrade():
 	pass
+
+
+func _on_test_timer_timeout():
+	$ShakeCamera2D.small_shake()
