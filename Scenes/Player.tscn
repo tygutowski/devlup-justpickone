@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cys86rdms2uef" path="res://Sprites/character.png" id="1_dxjkm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0rya"]
+size = Vector2(12, 14)
 
 [sub_resource type="Animation" id="Animation_3vhl5"]
 resource_name = "idle_down"

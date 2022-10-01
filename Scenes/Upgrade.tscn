@@ -4,13 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://c82fdaispcl06" path="res://Sprites/upgrade.png" id="1_x0adu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xyppb"]
-size = Vector2(20, 15)
+size = Vector2(16, 12)
 
 [node name="Area2d" type="Area2D"]
 script = ExtResource("1_8iq4f")
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_xyppb")
 
 [node name="Sprite2d" type="Sprite2D" parent="."]
