@@ -1,6 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://clhrr63l8li21"]
-
-[ext_resource type="Texture2D" uid="uid://cm3xuurqxu8h0" path="res://icon.svg" id="1_a1gam"]
+[gd_scene format=3 uid="uid://clhrr63l8li21"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -9,22 +7,6 @@ offset_right = 392.0
 offset_bottom = 128.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
 offset_right = 392.0
 offset_bottom = 128.0
-
-[node name="TextureButton" type="TextureButton" parent="MarginContainer/HBoxContainer"]
-offset_right = 128.0
-offset_bottom = 128.0
-texture_normal = ExtResource("1_a1gam")
-
-[node name="TextureButton2" type="TextureButton" parent="MarginContainer/HBoxContainer"]
-offset_left = 132.0
-offset_right = 260.0
-offset_bottom = 128.0
-texture_normal = ExtResource("1_a1gam")
-
-[node name="TextureButton3" type="TextureButton" parent="MarginContainer/HBoxContainer"]
-offset_left = 264.0
-offset_right = 392.0
-offset_bottom = 128.0
-texture_normal = ExtResource("1_a1gam")
