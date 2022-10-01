@@ -116,4 +116,4 @@ layer_0/tile_data = PackedInt32Array(131079, 65536, 0, 131080, 65536, 0, 131081,
 position = Vector2(118, 78)
 
 [node name="Pickup" parent="." instance=ExtResource("3_vwyqw")]
-position = Vector2(297, 85)
+position = Vector2(145, 74)

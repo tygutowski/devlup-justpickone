@@ -86,24 +86,48 @@ func drop():
 
 func get_sprite():
 	if speed_up:
-		return load("res://Sprites/Icons/speed_up.png")
+		return ("res://Sprites/Icons/speed_up.png")
 	elif reload_up:
-		return load("res://Sprites/Icons/reload_up.png")
+		return ("res://Sprites/Icons/reload_up.png")
 	elif richochet_twice:
-		return load("res://Sprites/Icons/richochet_twice.png")
+		return ("res://Sprites/Icons/ricochet_twice.png")
 	elif double_shot:
-		return load("res://Sprites/Icons/double_shot.png")
+		return ("res://Sprites/Icons/double_shot.png")
 	elif explosive_shot:
-		return load("res://Sprites/Icons/explosive_shot.png")
+		return ("res://Sprites/Icons/explosive_shot.png")
 	elif exploding_kills:
-		return load("res://Sprites/Icons/exploding_kills.png")
+		return ("res://Sprites/Icons/exploding_kills.png")
 	elif reload_halved:
-		return load("res://Sprites/Icons/reload_halved.png")
+		return ("res://Sprites/Icons/reload_halved.png")
 	elif shot_speed_up:
-		return load("res://Sprites/Icons/shot_speed_up.png")
+		return ("res://Sprites/Icons/shot_speed_up.png")
 	elif ammo_up_three:
-		return load("res://Sprites/Icons/ammo_up_three.png")
+		return ("res://Sprites/Icons/ammo_up_three.png")
 	elif higher_damage:
-		return load("res://Sprites/Icons/higher_damage.png")
+		return ("res://Sprites/Icons/higher_damage.png")
 	elif piercing_once:
-		return load("res://Sprites/Icons/piercing_once.png")
+		return ("res://Sprites/Icons/piercing_once.png")
+
+func get_name():
+	if speed_up:
+		return "Speed up"
+	elif reload_up:
+		return "Shorter reload speed"
+	elif richochet_twice:
+		return "Bullets ricochet twice"
+	elif double_shot:
+		return "Shoot two projectiles at once"
+	elif explosive_shot:
+		return "Bullets explode upon impact"
+	elif exploding_kills:
+		return "Enemies explode upon death"
+	elif reload_halved:
+		return "Reload time halved"
+	elif shot_speed_up:
+		return "Shorter time between shots"
+	elif ammo_up_three:
+		return "Increase max ammo by three"
+	elif higher_damage:
+		return "Increase damage"
+	elif piercing_once:
+		return "Bullets pierce one additional enemy"
