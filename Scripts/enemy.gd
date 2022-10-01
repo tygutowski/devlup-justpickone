@@ -43,7 +43,11 @@ func _on_hitbox_body_entered(body):
 		return
 	
 	body.takeDamage(contact_damage)
-
+	
+	# Disabling enemy movement momenetarily, so they don't pile up on player.
+	is_chasing_player = false
+	await get_tree().create_timer(0.6).timeout
+	is_chasing_player = true
 
 func _update_pathfinding():
 	if player == null:

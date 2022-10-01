@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 
@@ -7,6 +8,8 @@ extends CharacterBody2D
 var shot = preload("res://Scenes/Shot.tscn")
 var walking_direction = Vector2.ZERO
 var facing_direction = Vector2.ZERO
+
+var vulnerable := true # Whether Player cana take damage or not.
 
 @onready var game = get_tree().get_first_node_in_group("game")
 
@@ -69,6 +72,9 @@ func shoot() -> void:
 		hitNode.takeDamage(25)
 
 func takeDamage(damage_amount : int):
+	if vulnerable == false:
+		return
+	
 	health -= damage_amount
 	print("Player health: ", health)
 	if health <= 0:
@@ -76,7 +82,10 @@ func takeDamage(damage_amount : int):
 		$AnimationPlayer.play("died")
 		return
 	
+	vulnerable = false
 	$AnimationPlayer.play("hurt")
+	await $AnimationPlayer.animation_finished
+	vulnerable = true
 
 func _on_hurtbox_body_entered(body):
 	if body is Enemy == false:
