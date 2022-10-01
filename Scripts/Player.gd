@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-
+var damage = 10
 var speed = 100.0
 var shot = preload("res://Scenes/Shot.tscn")
 var walking_direction = Vector2.ZERO
@@ -14,7 +14,7 @@ var ammo = ammo_max
 
 var currently_reloading = false
 
-var shot_timer = 2
+var shot_timer = 6
 var shot_time = shot_timer
 
 var in_menu = false
@@ -53,6 +53,8 @@ func generate_upgrades():
 			11:
 				upgr.piercing_once = true
 		upgrades.append(upgr)
+		upgr.player = self
+		upgr.pickup()
 
 func _ready():
 	generate_upgrades()
