@@ -12,6 +12,8 @@ func _on_body_entered_explosion_radius(body):
 	if body is Player == null:
 		return
 	
+	is_chasing_player = false # So it stops walking
+	
 	_target_in_range = true
 	$ExplosionTimer.start()
 	await $ExplosionTimer.timeout
