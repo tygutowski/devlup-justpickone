@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbqt3rdte1bhw"]
+
+[ext_resource type="Script" path="res://Shot.gd" id="1_ij44r"]
+
+[node name="Node2d" type="Node2D"]
+z_index = -1
+script = ExtResource("1_ij44r")
+
+[node name="RayCast2d" type="RayCast2D" parent="."]
+
+[node name="Line2d" type="Line2D" parent="."]
+width = 3.0

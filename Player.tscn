@@ -1,0 +1,100 @@
+[gd_scene load_steps=16 format=3 uid="uid://d0w81aea081eu"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_6icgm"]
+[ext_resource type="Texture2D" uid="uid://cys86rdms2uef" path="res://character.png" id="1_dxjkm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n0rya"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_hfrla"]
+enabled_inputs = 4
+input_0/name = "up"
+input_0/auto_advance = false
+input_1/name = "down"
+input_1/auto_advance = false
+input_2/name = "left"
+input_2/auto_advance = false
+input_3/name = "right"
+input_3/auto_advance = false
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_alqpb"]
+enabled_inputs = 4
+input_0/name = "up"
+input_0/auto_advance = false
+input_1/name = "down"
+input_1/auto_advance = false
+input_2/name = "left"
+input_2/auto_advance = false
+input_3/name = "right"
+input_3/auto_advance = false
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g3jg7"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8k5k5"]
+
+[sub_resource type="AnimationNodeTransition" id="AnimationNodeTransition_4e07n"]
+enabled_inputs = 2
+input_0/name = "idle"
+input_0/auto_advance = false
+input_1/name = "walking"
+input_1/auto_advance = false
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jpi16"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a2jr6"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_icw7i"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ywa72"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_88ir1"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f4tpm"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_wiy31"]
+graph_offset = Vector2(-765.909, -299.621)
+nodes/direction_idle/node = SubResource("AnimationNodeTransition_hfrla")
+nodes/direction_idle/position = Vector2(40, -60)
+nodes/direction_walking/node = SubResource("AnimationNodeTransition_alqpb")
+nodes/direction_walking/position = Vector2(40, 160)
+nodes/idle_down/node = SubResource("AnimationNodeAnimation_g3jg7")
+nodes/idle_down/position = Vector2(-200, -100)
+nodes/idle_left/node = SubResource("AnimationNodeAnimation_8k5k5")
+nodes/idle_left/position = Vector2(-200, 0)
+nodes/idle_or_walking/node = SubResource("AnimationNodeTransition_4e07n")
+nodes/idle_or_walking/position = Vector2(380, 100)
+nodes/idle_right/node = SubResource("AnimationNodeAnimation_jpi16")
+nodes/idle_right/position = Vector2(-200, 100)
+nodes/idle_up/node = SubResource("AnimationNodeAnimation_a2jr6")
+nodes/idle_up/position = Vector2(-200, -200)
+nodes/output/position = Vector2(660, 140)
+nodes/walking_down/node = SubResource("AnimationNodeAnimation_icw7i")
+nodes/walking_down/position = Vector2(-200, 320)
+nodes/walking_left/node = SubResource("AnimationNodeAnimation_ywa72")
+nodes/walking_left/position = Vector2(-200, 420)
+nodes/walking_right/node = SubResource("AnimationNodeAnimation_88ir1")
+nodes/walking_right/position = Vector2(-200, 520)
+nodes/walking_up/node = SubResource("AnimationNodeAnimation_f4tpm")
+nodes/walking_up/position = Vector2(-200, 220)
+node_connections = [&"output", 0, &"idle_or_walking", &"direction_idle", 0, &"idle_up", &"direction_idle", 1, &"idle_down", &"direction_idle", 2, &"idle_left", &"direction_idle", 3, &"idle_right", &"direction_walking", 0, &"walking_up", &"direction_walking", 1, &"walking_down", &"direction_walking", 2, &"walking_left", &"direction_walking", 3, &"walking_right", &"idle_or_walking", 0, &"direction_idle", &"idle_or_walking", 1, &"direction_walking"]
+
+[node name="CharacterBody2d" type="CharacterBody2D" groups=["player"]]
+z_index = 1
+script = ExtResource("1_6icgm")
+
+[node name="Sprite2d" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_dxjkm")
+hframes = 3
+vframes = 4
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_n0rya")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeBlendTree_wiy31")
+anim_player = NodePath("../AnimationPlayer")
+parameters/direction_idle/current = 0
+parameters/direction_walking/current = 0
+parameters/idle_or_walking/current = 0

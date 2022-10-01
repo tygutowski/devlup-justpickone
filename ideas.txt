@@ -1,0 +1,4 @@
+double shot
+ricochet shot
+more ammo
+faster reload
