@@ -49,6 +49,10 @@ window/size/viewport_height=270
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
 
+[dotnet]
+
+project/assembly_name="gamejam-justpickone"
+
 [input]
 
 up={

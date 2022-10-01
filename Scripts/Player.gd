@@ -2,11 +2,16 @@ class_name Player
 extends CharacterBody2D
 
 
-var damage = 10
+@export var damage := 10
 var speed = 100.0
 
 
-@export var health = 100
+@export var health := 100 : set = update_health
+func update_health(value: int):
+	health = value
+	($HUD/UI/ProgressBar as ProgressBar).value = health
+
+@onready var max_health = health
 @export var SPEED = 100.0
 
 var shot = preload("res://Scenes/Shot.tscn")
@@ -23,7 +28,10 @@ var vulnerable := true # Whether Player cana take damage or not.
 
 
 var ammo_max = 6
-var ammo = ammo_max
+var ammo = ammo_max : set = update_ammo
+func update_ammo(value : int):
+	ammo = value
+	$HUD/UI/MagSize.text = "%s/%s" % [ammo, ammo_max]
 
 var currently_reloading = false
 
@@ -68,6 +76,9 @@ func generate_upgrades():
 		upgr.pickup()
 
 func _ready():
+	$HUD/UI/MagSize.text = "%s/%s" % [ammo, ammo_max]
+	$HUD/UI/ProgressBar.value = health
+	
 	#generate_upgrades()
 	set_animation("idle_or_walking", 0)
 	set_animation("direction", 1)
@@ -138,7 +149,7 @@ func shoot():
 	
 	var hitNode = raycast.get_collider()
 	if hitNode is Enemy:
-		hitNode.takeDamage(25)
+		hitNode.takeDamage(damage)
 	
 	for u in upgrades:
 		if u.explosive_shot:
