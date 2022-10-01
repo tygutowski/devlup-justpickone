@@ -1,25 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://d0w81aea081eu"]
+[gd_scene load_steps=25 format=3 uid="uid://dld6cm7dvh155"]
 
-[ext_resource type="Script" path="res://Player.gd" id="1_6icgm"]
-[ext_resource type="Texture2D" uid="uid://cys86rdms2uef" path="res://character.png" id="1_dxjkm"]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_6icgm"]
+[ext_resource type="Texture2D" uid="uid://cys86rdms2uef" path="res://Sprites/character.png" id="1_dxjkm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0rya"]
-
-[sub_resource type="Animation" id="Animation_se43d"]
-resource_name = "idle_up"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2d:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
 
 [sub_resource type="Animation" id="Animation_3vhl5"]
 resource_name = "idle_down"
@@ -69,8 +53,8 @@ tracks/0/keys = {
 "values": [9]
 }
 
-[sub_resource type="Animation" id="Animation_0hn50"]
-resource_name = "walking_up"
+[sub_resource type="Animation" id="Animation_se43d"]
+resource_name = "idle_up"
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -79,10 +63,10 @@ tracks/0/path = NodePath("Sprite2d:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [4, 5]
+"values": [3]
 }
 
 [sub_resource type="Animation" id="Animation_w88jt"]
@@ -131,6 +115,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_0hn50"]
+resource_name = "walking_up"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2d:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 5]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wpr77"]
@@ -199,7 +199,7 @@ animation = &"walking_right"
 animation = &"walking_up"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_wiy31"]
-graph_offset = Vector2(-379.866, -119.386)
+graph_offset = Vector2(-538.196, 161.828)
 nodes/direction_idle/node = SubResource("AnimationNodeTransition_hfrla")
 nodes/direction_idle/position = Vector2(40, -60)
 nodes/direction_walking/node = SubResource("AnimationNodeTransition_alqpb")

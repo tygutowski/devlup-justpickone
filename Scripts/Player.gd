@@ -2,11 +2,15 @@ extends CharacterBody2D
 
 
 const SPEED = 100.0
-var shot = preload("res://Shot.tscn")
+var shot = preload("res://Scenes/Shot.tscn")
 var walking_direction = Vector2.ZERO
 var facing_direction = Vector2.ZERO
 
 @onready var game = get_tree().get_nodes_in_group("game")[0]
+
+func _ready():
+	set_animation("idle_or_walking", 0)
+	set_animation("direction", 1)
 
 func _physics_process(_delta):
 	walking_direction = Vector2.ZERO
@@ -15,27 +19,33 @@ func _physics_process(_delta):
 	walking_direction = walking_direction.normalized()
 	velocity = walking_direction * SPEED
 	move_and_slide()
-	facing_direction = walking_direction
-	if facing_direction == Vector2.ZERO:
-		get_node("AnimationTree").set("params/idle_or_walking", 0) # Idle
+	if walking_direction != Vector2.ZERO:
+		facing_direction = walking_direction
+		
+	print(walking_direction)
+	### SCUFFED
+	if walking_direction == Vector2.ZERO:
+		set_animation("idle_or_walking", 0)
 	else:
-		get_node("AnimationTree").set("params/idle_or_walking", 1) # Walking
-		if facing_direction.x > 0: # Right
-			get_node("AnimationTree").set("params/direction_walking", 2)
-			get_node("AnimationTree").set("params/direction_idle", 2)
-		elif facing_direction.x < 0: # Left
-			get_node("AnimationTree").set("params/direction_walking", 3)
-			get_node("AnimationTree").set("params/direction_idle", 3)
+		set_animation("idle_or_walking", 1)
+		if facing_direction.x < 0: # Left
+			set_animation("direction", 2)
+		elif facing_direction.x > 0: # Right
+			set_animation("direction", 3)
 		elif facing_direction.y > 0: # Down
-			get_node("AnimationTree").set("params/direction_walking", 1)
-			get_node("AnimationTree").set("params/direction_idle", 1)
+			set_animation("direction", 1)
 		elif facing_direction.y < 0: # Up
-			get_node("AnimationTree").set("params/direction_walking", 0)
-			get_node("AnimationTree").set("params/direction_idle", 0)
+			set_animation("direction", 0)
 		
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
 
+func set_animation(animation_name, value):
+	if animation_name == "direction":
+		get_node("AnimationTree").set("parameters/direction_walking/current", value)
+		get_node("AnimationTree").set("parameters/direction_idle/current", value)
+	else:
+		get_node("AnimationTree").set("parameters/" + animation_name + "/current", value)
 func shoot():
 	# make a new shot
 	var ray = shot.instantiate()

@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://be4auafumdh2q"]
+[gd_scene load_steps=6 format=3 uid="uid://0td1omf042df"]
 
-[ext_resource type="Texture2D" uid="uid://bu570sksm34w1" path="res://tilemap.png" id="1_cqnqo"]
-[ext_resource type="PackedScene" uid="uid://d0w81aea081eu" path="res://Player.tscn" id="2_luq7d"]
-[ext_resource type="PackedScene" uid="uid://vptfpl2po7yf" path="res://Upgrade.tscn" id="3_iyjks"]
+[ext_resource type="Texture2D" uid="uid://bu570sksm34w1" path="res://Sprites/tilemap.png" id="1_cqnqo"]
+[ext_resource type="PackedScene" uid="uid://cwjh8fgnfs42d" path="res://Scenes/Player.tscn" id="2_luq7d"]
+[ext_resource type="PackedScene" path="res://Scenes/Upgrade.tscn" id="3_iyjks"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bm6ho"]
 texture = ExtResource("1_cqnqo")
