@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://craaavom3m76y"
-path="res://.godot/imported/robot_died.wav-0692f1885d1bb17e4d051120b2a8afde.sample"
+path="res://.godot/imported/robot_died.wav-48f7007bba4f9f23b929828d1bda490d.sample"
 
 [deps]
 
-source_file="res://Sound/soundfx/robot_died.wav"
-dest_files=["res://.godot/imported/robot_died.wav-0692f1885d1bb17e4d051120b2a8afde.sample"]
+source_file="res://Sound/SFX/robot_died.wav"
+dest_files=["res://.godot/imported/robot_died.wav-48f7007bba4f9f23b929828d1bda490d.sample"]
 
 [params]
 

@@ -2,8 +2,6 @@ extends Control
 
 @export var nextScene: PackedScene
 
-
-
 func _on_play_pressed():
 	($FX/ClickedFX as AudioStreamPlayer).play()
 	await $FX/ClickedFX.finished
@@ -12,10 +10,8 @@ func _on_play_pressed():
 func _on_quit_pressed():
 	get_tree().quit()
 
-
 func _on_play_mouse_entered():
 	$FX/HoverOverButtonFX.play()
-
 
 func _on_quit_mouse_entered():
 	$FX/HoverOverButtonFX.play()

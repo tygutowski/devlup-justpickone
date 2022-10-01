@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://bgjfrow253212"
-path="res://.godot/imported/died.wav-312dcdd2842889bf70867db6289cb39a.sample"
+uid="uid://cfkw4frr5p040"
+path="res://.godot/imported/died2.wav-d3049e0e2c3241d3df14b091f1014923.sample"
 
 [deps]
 
-source_file="res://Sound/soundfx/died.wav"
-dest_files=["res://.godot/imported/died.wav-312dcdd2842889bf70867db6289cb39a.sample"]
+source_file="res://Sound/SFX/died2.wav"
+dest_files=["res://.godot/imported/died2.wav-d3049e0e2c3241d3df14b091f1014923.sample"]
 
 [params]
 

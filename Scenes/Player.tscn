@@ -1,7 +1,9 @@
 [gd_scene load_steps=25 format=3 uid="uid://dld6cm7dvh155"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_6icgm"]
-[ext_resource type="Texture2D" uid="uid://cys86rdms2uef" path="res://Sprites/character.png" id="1_dxjkm"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_t1mgi"]
+load_path = "res://.godot/imported/character.png-ee4932e4e8db66cf4fc01fdf2d78d81e.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0rya"]
 
@@ -232,7 +234,7 @@ upgrades = []
 
 [node name="Sprite2d" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("1_dxjkm")
+texture = SubResource("CompressedTexture2D_t1mgi")
 hframes = 3
 vframes = 4
 

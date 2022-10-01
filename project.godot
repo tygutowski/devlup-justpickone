@@ -12,7 +12,7 @@ _global_script_classes=[{
 "base": "Camera2D",
 "class": &"ShakeCamera2D",
 "language": &"GDScript",
-"path": "res://Scenes/ShakeCamera2D.gd"
+"path": "res://Scripts/ShakeCamera2D.gd"
 }]
 _global_script_class_icons={
 "ShakeCamera2D": ""

@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://r6crlof8ny75"
-path="res://.godot/imported/game_over.wav-872f10b4b734937e0046283f6989e8ac.sample"
+uid="uid://dbdhq1sl8nf7p"
+path="res://.godot/imported/laser.wav-84687f7f1de0eb2d3697e843b28df03f.sample"
 
 [deps]
 
-source_file="res://Sound/Music/game_over.wav"
-dest_files=["res://.godot/imported/game_over.wav-872f10b4b734937e0046283f6989e8ac.sample"]
+source_file="res://Sound/SFX/laser.wav"
+dest_files=["res://.godot/imported/laser.wav-84687f7f1de0eb2d3697e843b28df03f.sample"]
 
 [params]
 
