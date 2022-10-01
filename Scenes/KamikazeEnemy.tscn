@@ -1,0 +1,143 @@
+[gd_scene load_steps=11 format=3 uid="uid://d15ryebynytue"]
+
+[ext_resource type="Script" path="res://Scripts/KamikazeEnemy.gd" id="1_57fow"]
+[ext_resource type="AudioStream" uid="uid://bred01x2lenhb" path="res://Sound/soundfx/hurt1.wav" id="2_4exn3"]
+[ext_resource type="AudioStream" uid="uid://cfkw4frr5p040" path="res://Sound/soundfx/died2.wav" id="2_x26kr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hhelc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_721xa"]
+
+[sub_resource type="Animation" id="Animation_chwq6"]
+resource_name = "died"
+length = 0.4
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FX/DiedFX:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_e4d8t"]
+resource_name = "hurt"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FX/HurtFX")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_pah47"]
+resource_name = "exploded"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Polygon2d:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.996078, 0, 0, 1), Color(1, 1, 1, 1), Color(0.996078, 0, 0, 1), Color(1, 1, 1, 1), Color(0.996078, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Polygon2d:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 0.5),
+"update": 0,
+"values": [Vector2(5, 5), Vector2(12, 12)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5tgyh"]
+_data = {
+"died": SubResource("Animation_chwq6"),
+"exploded": SubResource("Animation_pah47"),
+"hurt": SubResource("Animation_e4d8t")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p7grp"]
+radius = 34.0588
+
+[node name="KamizekazeEnemy" type="CharacterBody2D"]
+script = ExtResource("1_57fow")
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hhelc")
+
+[node name="Polygon2d" type="Polygon2D" parent="."]
+position = Vector2(-4.76837e-07, 10)
+scale = Vector2(5, 5)
+color = Color(0.917647, 0.215686, 0.0862745, 1)
+polygon = PackedVector2Array(-2, 0, -2, -4, 2, -4, 2, 0)
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_721xa")
+
+[node name="NavigationAgent2d" type="NavigationAgent2D" parent="."]
+
+[node name="FindPlayerTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5tgyh")
+}
+
+[node name="FX" type="Node2D" parent="."]
+
+[node name="HurtFX" type="AudioStreamPlayer2D" parent="FX"]
+stream = ExtResource("2_4exn3")
+
+[node name="DiedFX" type="AudioStreamPlayer2D" parent="FX"]
+stream = ExtResource("2_x26kr")
+
+[node name="ExplosionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="ExplosionArea"]
+shape = SubResource("CircleShape2D_p7grp")
+
+[node name="ExplosionTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="timeout" from="FindPlayerTimer" to="." method="_update_pathfinding"]
+[connection signal="body_entered" from="ExplosionArea" to="." method="_on_body_entered_explosion_radius"]
+[connection signal="body_exited" from="ExplosionArea" to="." method="_on_explosion_area_body_exited"]

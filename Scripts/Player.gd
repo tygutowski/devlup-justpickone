@@ -1,13 +1,27 @@
+class_name Player
 extends CharacterBody2D
 
+<<<<<<< HEAD
 var damage = 10
 var speed = 100.0
+=======
+
+@export var health = 100
+@export var SPEED = 100.0
+# How far away will enemeis be launched upon damaging the player, if they are caught in the [RepulsionArea]
+>>>>>>> origin/enemies
 var shot = preload("res://Scenes/Shot.tscn")
 var walking_direction = Vector2.ZERO
 var facing_direction = Vector2.ZERO
 
+<<<<<<< HEAD
 var reload_timer = 60
 var reload_time = 0
+=======
+var vulnerable := true # Whether Player cana take damage or not.
+
+@onready var game = get_tree().get_first_node_in_group("game")
+>>>>>>> origin/enemies
 
 var ammo_max = 6
 var ammo = ammo_max
@@ -112,10 +126,12 @@ func set_animation(animation_name, value):
 func shoot():
 	# make a new shot
 	var ray = shot.instantiate()
+	var raycast: RayCast2D = ray.get_node("RayCast2d")
 	game.add_child(ray)
 	# set position to player
 	ray.get_node("RayCast2d").global_position = global_position
 	# set target to mouse
+<<<<<<< HEAD
 	ray.get_node("RayCast2d").target_position = get_local_mouse_position().normalized() * 100000
 	ray.get_node("RayCast2d").enabled = true
 	ray.get_node("RayCast2d").force_raycast_update()
@@ -136,3 +152,37 @@ func upgrade():
 func exit_menu():
 	in_menu = false
 	shot_time = 0
+=======
+	raycast.target_position = get_local_mouse_position().normalized() * 100000
+	raycast.enabled = true
+	raycast.force_raycast_update()
+	ray.get_node("Line2d").add_point(raycast.global_position)
+	ray.get_node("Line2d").add_point(raycast.get_collision_point())
+	$FX/ShootFX.play()
+	
+	var hitNode = raycast.get_collider()
+	if hitNode is Enemy:
+		hitNode.takeDamage(25)
+
+func takeDamage(damage_amount : int):
+	if vulnerable == false:
+		return
+	
+	health -= damage_amount
+	print("Player health: ", health)
+	if health <= 0:
+		health = 0
+		$AnimationPlayer.play("died")
+		return
+	
+	vulnerable = false
+	$AnimationPlayer.play("hurt")
+	await $AnimationPlayer.animation_finished
+	vulnerable = true
+
+func _on_hurtbox_body_entered(body):
+	if body is Enemy == false:
+		return
+	
+	$FX/HurtFX.play()
+>>>>>>> origin/enemies

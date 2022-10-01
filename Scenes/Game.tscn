@@ -1,8 +1,17 @@
+<<<<<<< HEAD
 [gd_scene load_steps=6 format=3 uid="uid://by08roj0yra1a"]
 
 [ext_resource type="Texture2D" uid="uid://bu570sksm34w1" path="res://Sprites/tilemap.png" id="1_qon0y"]
 [ext_resource type="PackedScene" uid="uid://dld6cm7dvh155" path="res://Scenes/Player.tscn" id="2_gfv0v"]
 [ext_resource type="PackedScene" uid="uid://dyrdcrq6jv6hi" path="res://Scenes/Pickup.tscn" id="3_vwyqw"]
+=======
+[gd_scene load_steps=8 format=3 uid="uid://c354yxguykgv0"]
+
+[ext_resource type="Texture2D" uid="uid://bu570sksm34w1" path="res://Sprites/tilemap.png" id="1_qon0y"]
+[ext_resource type="PackedScene" uid="uid://dld6cm7dvh155" path="res://Scenes/Player.tscn" id="2_gfv0v"]
+[ext_resource type="PackedScene" uid="uid://droc256pxd3ib" path="res://Scenes/Upgrade.tscn" id="3_vwyqw"]
+[ext_resource type="PackedScene" uid="uid://bj8fq6bgncmfq" path="res://Scenes/ChaserEnemy.tscn" id="4_60gli"]
+>>>>>>> origin/enemies
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bm6ho"]
 texture = ExtResource("1_qon0y")
@@ -103,6 +112,11 @@ texture = ExtResource("1_qon0y")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_bm6ho")
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ecr7g"]
+vertices = PackedVector2Array(396, 52, 397, 156, 244, 155, 243, 93, 82, 50, 155, 93, 82, 158, 156, 157)
+polygons = [PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 4, 5, 7)]
+outlines = [PackedVector2Array(82, 158, 82, 50, 396, 52, 397, 156, 244, 155, 243, 93, 155, 93, 156, 157)]
+
 [node name="Game" type="Node2D" groups=["game"]]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -115,6 +129,7 @@ layer_0/tile_data = PackedInt32Array(131079, 65536, 0, 131080, 65536, 0, 131081,
 [node name="Player" parent="." instance=ExtResource("2_gfv0v")]
 position = Vector2(118, 78)
 
+<<<<<<< HEAD
 [node name="Pickup" parent="." instance=ExtResource("3_vwyqw")]
 position = Vector2(145, 74)
 
@@ -130,3 +145,14 @@ position = Vector2(223, 74)
 [node name="Pickup5" parent="." instance=ExtResource("3_vwyqw")]
 position = Vector2(248, 74)
 z_index = 1
+=======
+[node name="Area2d" parent="." instance=ExtResource("3_vwyqw")]
+position = Vector2(297, 85)
+
+[node name="NavigationRegion2d" type="NavigationRegion2D" parent="."]
+navpoly = SubResource("NavigationPolygon_ecr7g")
+
+[node name="Enemy" parent="NavigationRegion2d" instance=ExtResource("4_60gli")]
+position = Vector2(98, 119)
+health = 50
+>>>>>>> origin/enemies
