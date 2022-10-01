@@ -1,10 +1,21 @@
 extends CharacterBody2D
 
 
-const SPEED = 100.0
+var speed = 100.0
 var shot = preload("res://Scenes/Shot.tscn")
 var walking_direction = Vector2.ZERO
 var facing_direction = Vector2.ZERO
+
+var reload_timer = 60
+var reload_time = 0
+
+var ammo_max = 6
+var ammo = ammo_max
+
+var currently_reloading = false
+
+var shot_timer = 10
+var shot_time = shot_timer
 
 @onready var game = get_tree().get_nodes_in_group("game")[0]
 
@@ -13,32 +24,44 @@ func _ready():
 	set_animation("direction", 1)
 
 func _physics_process(_delta):
-	walking_direction = Vector2.ZERO
-	walking_direction.x = Input.get_axis("left", "right")
-	walking_direction.y = Input.get_axis("up", "down")
-	walking_direction = walking_direction.normalized()
-	velocity = walking_direction * SPEED
-	move_and_slide()
-	if walking_direction != Vector2.ZERO:
-		facing_direction = walking_direction
-		
-	print(walking_direction)
-	### SCUFFED
-	if walking_direction == Vector2.ZERO:
-		set_animation("idle_or_walking", 0)
+	if currently_reloading:
+		if(reload_time > reload_timer):
+			currently_reloading = false
+			reload_time = 0
+			ammo = ammo_max
+		reload_time += 1
 	else:
-		set_animation("idle_or_walking", 1)
-		if facing_direction.x < 0: # Left
-			set_animation("direction", 2)
-		elif facing_direction.x > 0: # Right
-			set_animation("direction", 3)
-		elif facing_direction.y > 0: # Down
-			set_animation("direction", 1)
-		elif facing_direction.y < 0: # Up
-			set_animation("direction", 0)
+		walking_direction = Vector2.ZERO
+		walking_direction.x = Input.get_axis("left", "right")
+		walking_direction.y = Input.get_axis("up", "down")
+		walking_direction = walking_direction.normalized()
+		velocity = walking_direction * speed
+		move_and_slide()
+		if walking_direction != Vector2.ZERO:
+			facing_direction = walking_direction
+		if walking_direction == Vector2.ZERO:
+			set_animation("idle_or_walking", 0)
+		else:
+			set_animation("idle_or_walking", 1)
+			if facing_direction.x < 0: # Left
+				set_animation("direction", 2)
+			elif facing_direction.x > 0: # Right
+				set_animation("direction", 3)
+			elif facing_direction.y > 0: # Down
+				set_animation("direction", 1)
+			elif facing_direction.y < 0: # Up
+				set_animation("direction", 0)
 		
-	if Input.is_action_just_pressed("shoot"):
-		shoot()
+		
+		if Input.is_action_just_pressed("shoot") && ammo > 0 && shot_time >= shot_timer:
+			shoot()
+			shot_time = 0
+			ammo -= 1
+		
+		if Input.is_action_just_pressed("reload") && ammo != ammo_max:
+			currently_reloading = true
+		
+		shot_time += 1
 
 func set_animation(animation_name, value):
 	if animation_name == "direction":
