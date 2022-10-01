@@ -1,28 +1,28 @@
-[gd_scene load_steps=2 format=3 uid="uid://bj8fq6bgncmfq"]
+[gd_scene load_steps=4 format=3 uid="uid://bj8fq6bgncmfq"]
 
 [ext_resource type="Script" path="res://Scripts/chaser_enemy.gd" id="1_ot23h"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hhelc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_721xa"]
+
 [node name="ChaserEnemy" type="CharacterBody2D"]
 script = ExtResource("1_ot23h")
-contact_damage = null
-health = null
-walk_speed = null
+health = 10
+walk_speed = 10
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="."]
-
-[node name="Hurtbox" type="Area2D" parent="."]
-
-[node name="CollisionShape2d" type="CollisionShape2D" parent="Hurtbox"]
-
-[node name="Sprite2d" type="Sprite2D" parent="."]
+shape = SubResource("RectangleShape2D_hhelc")
 
 [node name="Polygon2d" type="Polygon2D" parent="."]
-position = Vector2(0, 2)
+position = Vector2(-4.76837e-07, 10)
+scale = Vector2(5, 5)
 polygon = PackedVector2Array(-2, 0, -2, -4, 2, -4, 2, 0)
 
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_721xa")
 
 [node name="NavigationAgent2d" type="NavigationAgent2D" parent="."]
 

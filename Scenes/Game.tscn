@@ -129,3 +129,6 @@ navpoly = SubResource("NavigationPolygon_ecr7g")
 
 [node name="ChaserEnemy" parent="NavigationRegion2d" instance=ExtResource("4_60gli")]
 position = Vector2(98, 119)
+contact_damage = 25
+health = 3
+walk_speed = 3

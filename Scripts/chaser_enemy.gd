@@ -25,12 +25,15 @@ func _physics_process(delta):
 	var steering: Vector2 = (desired_velocity - velocity) * delta * 4.0
 	velocity = steering * current_speed
 	
-	$Polygon2d.rotation = velocity.angle()
+	self.rotation = velocity.angle()
 	
 	move_and_slide()
 
 
 func _on_hitbox_body_entered(body):
+	if body.is_in_group("player") == false or body.has_method("takeDamage") == false:
+		return
+	
 	body.takeDamage()
 
 

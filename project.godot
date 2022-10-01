@@ -35,6 +35,7 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=480
 window/size/viewport_height=270
+mouse_cursor/custom_image="res://Sprites/crosshair.png"
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
 
