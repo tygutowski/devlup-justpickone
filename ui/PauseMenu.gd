@@ -5,7 +5,7 @@ extends CanvasLayer
 func _ready():
 	visible = false
 
-func _unhandled_input(event):
+func _unhandled_input(_event):
 	if Input.is_action_just_pressed("escape"):
 		get_tree().paused = !get_tree().paused
 		visible = !visible

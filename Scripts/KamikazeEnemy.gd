@@ -28,15 +28,16 @@ func _on_body_entered_explosion_radius(body):
 	$ExplosionArea.monitoring = false # Disabling the [ExplosionArea] so player doesn't trigger explosion twice.
 	$Explosion.visible = true
 	$Sprite2d.visible = false
-	($Explosion as AnimatedSprite2D).play("explode") # Actual explosion animation
+	($Explosion as AnimatedSprite2D).play("exploded") # first half of explosion
 	
 	if is_target_in_range:
 		(body as Player).takeDamage(explosion_damage)
 	await $Explosion.animation_finished
-	$Explosion.visible = false
+	
+	$Explosion.visible = false # second part of explosion, dusty part, deals no damage
 	$ExplosionArea/CollisionShape2d.disabled = true
 	$Explosion2.visible = true
-	($Explosion2 as AnimatedSprite2D).play("explode")
+	($Explosion2 as AnimatedSprite2D).play("exploded")
 	await $Explosion2.animation_finished
 	queue_free()
 
