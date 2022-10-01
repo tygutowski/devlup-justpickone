@@ -1,0 +1,81 @@
+[gd_scene load_steps=6 format=3 uid="uid://dt7toim30lteh"]
+
+[ext_resource type="Script" path="res://Scenes/ui/main_menu.gd" id="1_70jyx"]
+[ext_resource type="PackedScene" uid="uid://0td1omf042df" path="res://Scenes/Game.tscn" id="2_645k7"]
+[ext_resource type="AudioStream" uid="uid://50qxmla8lk6c" path="res://Sound/music/main_menu.wav" id="3_tgp82"]
+[ext_resource type="AudioStream" uid="uid://xq4b2ogv23jv" path="res://Sound/soundfx/hover_button_in_menu.wav" id="4_1olkx"]
+[ext_resource type="AudioStream" uid="uid://c1j50sfogrwgf" path="res://Sound/soundfx/on_select_in_menu.wav" id="5_eritw"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_70jyx")
+nextScene = ExtResource("2_645k7")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.243137, 0.607843, 0.517647, 1)
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.5
+offset_top = -46.0
+offset_right = 48.5
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Play" type="Button" parent="Buttons"]
+layout_mode = 2
+offset_right = 97.0
+offset_bottom = 31.0
+text = "PLAY"
+
+[node name="Quit" type="Button" parent="Buttons"]
+layout_mode = 2
+offset_top = 35.0
+offset_right = 97.0
+offset_bottom = 66.0
+text = "QUIT"
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -47.0
+offset_right = 47.0
+offset_bottom = 26.0
+grow_horizontal = 2
+text = "DevLUP Jam"
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_tgp82")
+autoplay = true
+
+[node name="FX" type="Node" parent="."]
+
+[node name="HoverOverButtonFX" type="AudioStreamPlayer" parent="FX"]
+stream = ExtResource("4_1olkx")
+
+[node name="ClickedFX" type="AudioStreamPlayer" parent="FX"]
+stream = ExtResource("5_eritw")
+
+[connection signal="mouse_entered" from="Buttons/Play" to="." method="_on_play_mouse_entered"]
+[connection signal="pressed" from="Buttons/Play" to="." method="_on_play_pressed"]
+[connection signal="mouse_entered" from="Buttons/Quit" to="." method="_on_quit_mouse_entered"]
+[connection signal="pressed" from="Buttons/Quit" to="." method="_on_quit_pressed"]

@@ -117,3 +117,15 @@ position = Vector2(118, 78)
 
 [node name="Pickup" parent="." instance=ExtResource("3_vwyqw")]
 position = Vector2(145, 74)
+
+[node name="Pickup2" parent="." instance=ExtResource("3_vwyqw")]
+position = Vector2(172, 74)
+
+[node name="Pickup3" parent="." instance=ExtResource("3_vwyqw")]
+position = Vector2(198, 74)
+
+[node name="Pickup4" parent="." instance=ExtResource("3_vwyqw")]
+position = Vector2(223, 74)
+
+[node name="Pickup5" parent="." instance=ExtResource("3_vwyqw")]
+position = Vector2(248, 74)
