@@ -11,6 +11,7 @@ var is_target_in_range := false # Using this to track whether player has escaped
 func _ready() -> void:
 	$ExplosionTimer.wait_time = delay_before_explosion
 	$Explosion.visible = false
+	$Explosion2.visible = false
 
 func _on_body_entered_explosion_radius(body):
 	if body is Player == false:
@@ -26,13 +27,17 @@ func _on_body_entered_explosion_radius(body):
 	# Enemy has now exploded.
 	$ExplosionArea.monitoring = false # Disabling the [ExplosionArea] so player doesn't trigger explosion twice.
 	$Explosion.visible = true
-	$Polygon2d.visible = false
+	$Sprite2d.visible = false
 	($Explosion as AnimatedSprite2D).play("explode") # Actual explosion animation
 	
 	if is_target_in_range:
 		(body as Player).takeDamage(explosion_damage)
-	
 	await $Explosion.animation_finished
+	$Explosion.visible = false
+	$ExplosionArea/CollisionShape2d.disabled = true
+	$Explosion2.visible = true
+	($Explosion2 as AnimatedSprite2D).play("explode")
+	await $Explosion2.animation_finished
 	queue_free()
 
 
