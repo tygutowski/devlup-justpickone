@@ -349,6 +349,7 @@ animations = [{
 
 [node name="KamizekazeEnemy" type="CharacterBody2D"]
 script = ExtResource("1_57fow")
+walk_speed = 0
 
 [node name="Sprite2d" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -357,11 +358,13 @@ hframes = 2
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_hhelc")
+disabled = true
 
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_721xa")
+disabled = true
 
 [node name="NavigationAgent2d" type="NavigationAgent2D" parent="."]
 

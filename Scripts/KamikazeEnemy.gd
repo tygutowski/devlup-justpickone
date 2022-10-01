@@ -8,6 +8,9 @@ var is_target_in_range := false # Using this to track whether player has escaped
 
 
 func _ready() -> void:
+	walk_speed = 40
+	$CollisionShape2d.disabled = false
+	$Hitbox/CollisionShape2d.disabled = false
 	$ExplosionTimer.wait_time = delay_before_explosion
 	$Explosion.visible = false
 	$Explosion2.visible = false

@@ -13,6 +13,9 @@ extends CharacterBody2D
 var is_chasing_player := true
 
 func _ready():
+	walk_speed = 40
+	$CollisionShape2d.disabled = false
+	$Hitbox/CollisionShape2d.disabled = false
 	_update_pathfinding()
 
 func _physics_process(delta):

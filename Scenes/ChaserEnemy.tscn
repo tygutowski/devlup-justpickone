@@ -102,6 +102,7 @@ _data = {
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_ot23h")
 health = 10
+walk_speed = 0
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_hhelc")
@@ -110,12 +111,6 @@ disabled = true
 [node name="Sprite2d" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("2_xmss7")
-
-[node name="Polygon2d" type="Polygon2D" parent="."]
-visible = false
-position = Vector2(-4.76837e-07, 10)
-scale = Vector2(5, 5)
-polygon = PackedVector2Array(-2, 0, -2, -4, 2, -4, 2, 0)
 
 [node name="Hitbox" type="Area2D" parent="."]
 
