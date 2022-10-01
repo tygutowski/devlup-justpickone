@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://b7gx0lxdr0ald"]
+[gd_scene load_steps=10 format=3 uid="uid://b7gx0lxdr0ald"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_ot23h"]
 [ext_resource type="AudioStream" uid="uid://bred01x2lenhb" path="res://Sound/SFX/hurt1.wav" id="2_4exn3"]
 [ext_resource type="AudioStream" uid="uid://cfkw4frr5p040" path="res://Sound/SFX/died2.wav" id="2_x26kr"]
+[ext_resource type="Texture2D" uid="uid://boqnqb00nd2bn" path="res://Sprites/enemy.png" id="2_xmss7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhelc"]
 size = Vector2(18, 18)
@@ -69,7 +70,12 @@ health = 10
 [node name="CollisionShape2d" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_hhelc")
 
+[node name="Sprite2d" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_xmss7")
+
 [node name="Polygon2d" type="Polygon2D" parent="."]
+visible = false
 position = Vector2(-4.76837e-07, 10)
 scale = Vector2(5, 5)
 polygon = PackedVector2Array(-2, 0, -2, -4, 2, -4, 2, 0)

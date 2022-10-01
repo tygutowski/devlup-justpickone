@@ -24,7 +24,6 @@ func _physics_process(delta):
 	var direction := global_position.direction_to(nav_agent.get_next_location())
 	var desired_velocity := direction * 40.0
 	velocity = (desired_velocity - velocity) * delta * current_speed
-	self.rotation = velocity.angle()
 	
 	move_and_slide()
  

@@ -114,7 +114,7 @@ func _physics_process(_delta):
 			
 			shot_time += 1
 
-func set_animation(animation_name, value):
+func set_animation(animation_name: String, value: int):
 	if animation_name == "direction":
 		get_node("AnimationTree").set("parameters/direction_walking/current", value)
 		get_node("AnimationTree").set("parameters/direction_idle/current", value)
@@ -145,8 +145,6 @@ func shoot():
 			var expl = load("res://Scenes/Explosion.tscn").instantiate()
 			expl.global_position = ray.get_node("RayCast2d").get_collision_point()
 			game.add_child(expl)
-		if u.ricochet_bullets:
-			raycast.get_collision_point()
 func upgrade():
 	in_menu = true
 	var upgrade_menu = load("res://Scenes/UpgradeScreen.tscn").instantiate()
@@ -165,6 +163,7 @@ func takeDamage(damage_amount : int):
 	if health <= 0:
 		health = 0
 		$AnimationPlayer.play("died")
+		get_tree().reload_current_scene()
 		return
 	
 	vulnerable = false
