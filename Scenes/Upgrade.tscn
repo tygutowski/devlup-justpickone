@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://droc256pxd3ib"]
 
 [ext_resource type="Script" path="res://Scripts/Upgrade.gd" id="1_8iq4f"]
-[ext_resource type="Texture2D" path="res://Sprites/upgrade.png" id="1_x0adu"]
+[ext_resource type="Texture2D" uid="uid://c82fdaispcl06" path="res://Sprites/upgrade.png" id="1_x0adu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xyppb"]
 size = Vector2(22, 18)
@@ -17,5 +17,4 @@ texture_filter = 1
 position = Vector2(0, -2)
 texture = ExtResource("1_x0adu")
 
-[connection signal="area_entered" from="." to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_area_2d_body_entered"]
