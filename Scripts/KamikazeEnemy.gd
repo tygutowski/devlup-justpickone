@@ -1,31 +1,42 @@
 extends Enemy
 
+# $ExplosionTimer is how long it takes the enemy to explode.
+
 @export var explosion_damage := 75
 @export var delay_before_explosion := 0.6
 
-var _target_in_range := false
+var is_target_in_range := false # Using this to track whether player has escaped the AoE
+
 
 func _ready() -> void:
 	$ExplosionTimer.wait_time = delay_before_explosion
+	$Explosion.visible = false
 
 func _on_body_entered_explosion_radius(body):
-	if body is Player == null:
+	if body is Player == false:
 		return
 	
+	is_target_in_range = true
 	is_chasing_player = false # So it stops walking
 	
-	_target_in_range = true
+	$AnimationPlayer.play("exploded") # Warn player it's about to explode.
+	
 	$ExplosionTimer.start()
 	await $ExplosionTimer.timeout
-	if !_target_in_range:
-		return
+	# Enemy has now exploded.
+	$ExplosionArea.monitoring = false # Disabling the [ExplosionArea] so player doesn't trigger explosion twice.
+	$Explosion.visible = true
+	$Polygon2d.visible = false
+	($Explosion as AnimatedSprite2D).play("explode") # Actual explosion animation
 	
-	(body as Player).takeDamage(explosion_damage)
+	if is_target_in_range:
+		(body as Player).takeDamage(explosion_damage)
 	
-	$AnimationPlayer.play("exploded") # The animation calls queue_free()
+	await $Explosion.animation_finished
+	queue_free()
 
 
 
 func _on_explosion_area_body_exited(body):
 	if body is Player:
-		_target_in_range = false
+		is_target_in_range = false

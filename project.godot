@@ -40,8 +40,13 @@ config/features=PackedStringArray("4.0", "Vulkan Clustered")
 
 window/size/viewport_width=480
 window/size/viewport_height=270
+mouse_cursor/custom_image="res://Sprites/crosshair.png"
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
+
+[dotnet]
+
+project/assembly_name="gamejam-justpickone"
 
 [input]
 
