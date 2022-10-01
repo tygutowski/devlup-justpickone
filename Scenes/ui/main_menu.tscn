@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=3 uid="uid://dt7toim30lteh"]
+
+[ext_resource type="Script" path="res://Scenes/ui/main_menu.gd" id="1_70jyx"]
+[ext_resource type="PackedScene" uid="uid://0td1omf042df" path="res://Scenes/Game.tscn" id="2_645k7"]
+[ext_resource type="AudioStream" uid="uid://bqdxq6uiwnfqr" path="res://Sound/music/song1.wav" id="3_fqpcr"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_70jyx")
+nextScene = ExtResource("2_645k7")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.243137, 0.607843, 0.517647, 1)
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.5
+offset_top = -46.0
+offset_right = 48.5
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Play" type="Button" parent="Buttons"]
+layout_mode = 2
+offset_right = 97.0
+offset_bottom = 31.0
+text = "PLAY"
+
+[node name="Quit" type="Button" parent="Buttons"]
+layout_mode = 2
+offset_top = 35.0
+offset_right = 97.0
+offset_bottom = 66.0
+text = "QUIT"
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -47.0
+offset_right = 47.0
+offset_bottom = 26.0
+grow_horizontal = 2
+text = "DevLUP Jam"
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_fqpcr")
+autoplay = true
+
+[connection signal="focus_entered" from="Buttons/Play" to="." method="_on_play_focus_entered"]
+[connection signal="pressed" from="Buttons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Buttons/Quit" to="." method="_on_quit_pressed"]
