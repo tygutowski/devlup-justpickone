@@ -8,10 +8,46 @@ var b4mi = false
 
 @onready var upgrades = get_tree().get_nodes_in_group("player")[0].upgrades
 
-var new_item
+var upgr
+
+func generate_new_item():
+	var random_number = randi_range(0,11)
+	var dir = load("res://Resources/Upgrade.tres")
+	upgr = dir.duplicate()
+	match random_number:
+		1:
+			upgr.reload_up = true
+		2:
+			upgr.speed_up = true
+		3:
+			upgr.richochet_twice = true
+		4:
+			upgr.double_shot = true
+		5:
+			upgr.explosive_shot = true
+		6:
+			upgr.exploding_kills = true
+		7:
+			upgr.reload_halved = true
+		8:
+			upgr.shot_speed_up = true
+		9:
+			upgr.ammo_up_three = true
+		10:
+			upgr.higher_damage = true
+		11:
+			upgr.piercing_once = true
+	upgrades.append(upgr)
+	upgr.player = get_tree().get_nodes_in_group("player")[0]
+
+func _ready():
+	generate_new_item()
+	#update_sprites()
 
 func delete(item_slot):
-	upgrades[item_slot] = new_item
+	upgr.pickup()
+	upgrades[item_slot].drop()
+	upgrades[item_slot] = upgr
 	get_tree().get_nodes_in_group("game")[0].set_physics_process(true)
 	get_tree().get_nodes_in_group("player")[0].exit_menu()
 	queue_free()

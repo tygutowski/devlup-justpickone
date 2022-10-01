@@ -26,7 +26,7 @@ var in_menu = false
 
 func generate_upgrades():
 	for i in range(4):
-		var random_number = randi_range(0,11)
+		var random_number = randi_range(1,11)
 		var dir = load("res://Resources/Upgrade.tres")
 		var upgr = dir.duplicate()
 		match random_number:
@@ -121,7 +121,13 @@ func shoot():
 	ray.get_node("RayCast2d").force_raycast_update()
 	ray.get_node("Line2d").add_point(ray.get_node("RayCast2d").global_position)
 	ray.get_node("Line2d").add_point(ray.get_node("RayCast2d").get_collision_point())
-
+	
+	for upgrade in upgrades:
+		if upgrade.explosive_shot:
+			var expl = load("res://Scenes/Explosion.tscn").instantiate()
+			expl.global_position = ray.get_node("RayCast2d").get_collision_point()
+			game.add_child(expl)
+	
 func upgrade():
 	in_menu = true
 	var upgrade_menu = load("res://Scenes/UpgradeScreen.tscn").instantiate()

@@ -16,7 +16,7 @@ var player
 func pickup():
 	if speed_up:
 		print("picking up: speed up")
-		player.speed *= .25
+		player.speed *= 1.25
 	elif reload_up:
 		print("picking up: reload up")
 		player.reload_timer -= 20
@@ -40,7 +40,8 @@ func pickup():
 		player.shot_timer -= 2
 	elif ammo_up_three:
 		print("picking up: ammo up")
-		player.max_ammo += 3
+		player.ammo_max += 3
+		player.ammo += 3
 	elif higher_damage:
 		print("picking up: damage up")
 		player.damage += 5
@@ -51,7 +52,7 @@ func pickup():
 func drop():
 	if speed_up:
 		print("dropping: speed up")
-		player.speed /= .25
+		player.speed /= 1.25
 	elif reload_up:
 		print("dropping: reload up")
 		player.reload_timer += 20
@@ -75,7 +76,7 @@ func drop():
 		player.shot_timer += 2
 	elif ammo_up_three:
 		print("dropping: ammo up")
-		player.max_ammo -= 3
+		player.ammo_max -= 3
 	elif higher_damage:
 		print("dropping: damage up")
 		player.damage -= 5
