@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://0td1omf042df"]
+[gd_scene load_steps=8 format=3 uid="uid://c354yxguykgv0"]
 
 [ext_resource type="Texture2D" uid="uid://bu570sksm34w1" path="res://Sprites/tilemap.png" id="1_qon0y"]
 [ext_resource type="PackedScene" uid="uid://dld6cm7dvh155" path="res://Scenes/Player.tscn" id="2_gfv0v"]
 [ext_resource type="PackedScene" uid="uid://droc256pxd3ib" path="res://Scenes/Upgrade.tscn" id="3_vwyqw"]
-[ext_resource type="PackedScene" uid="uid://bj8fq6bgncmfq" path="res://Scenes/chaser_enemy.tscn" id="4_60gli"]
+[ext_resource type="PackedScene" uid="uid://bj8fq6bgncmfq" path="res://Scenes/ChaserEnemy.tscn" id="4_60gli"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bm6ho"]
 texture = ExtResource("1_qon0y")
@@ -127,8 +127,6 @@ position = Vector2(297, 85)
 [node name="NavigationRegion2d" type="NavigationRegion2D" parent="."]
 navpoly = SubResource("NavigationPolygon_ecr7g")
 
-[node name="ChaserEnemy" parent="NavigationRegion2d" instance=ExtResource("4_60gli")]
+[node name="Enemy" parent="NavigationRegion2d" instance=ExtResource("4_60gli")]
 position = Vector2(98, 119)
-contact_damage = 25
-health = 3
-walk_speed = 3
+health = 50

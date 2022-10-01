@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
 
-const SPEED = 100.0
+@export var health = 100
+@export var SPEED = 100.0
+# How far away will enemeis be launched upon damaging the player, if they are caught in the [RepulsionArea]
 var shot = preload("res://Scenes/Shot.tscn")
 var walking_direction = Vector2.ZERO
 var facing_direction = Vector2.ZERO
@@ -50,22 +52,34 @@ func set_animation(animation_name, value) -> void:
 func shoot() -> void:
 	# make a new shot
 	var ray = shot.instantiate()
+	var raycast: RayCast2D = ray.get_node("RayCast2d")
 	game.add_child(ray)
 	# set position to player
 	ray.get_node("RayCast2d").global_position = global_position
 	# set target to mouse
-	ray.get_node("RayCast2d").target_position = get_local_mouse_position().normalized() * 100000
-	ray.get_node("RayCast2d").enabled = true
-	ray.get_node("RayCast2d").force_raycast_update()
-	ray.get_node("Line2d").add_point(ray.get_node("RayCast2d").global_position)
-	ray.get_node("Line2d").add_point(ray.get_node("RayCast2d").get_collision_point())
-	
+	raycast.target_position = get_local_mouse_position().normalized() * 100000
+	raycast.enabled = true
+	raycast.force_raycast_update()
+	ray.get_node("Line2d").add_point(raycast.global_position)
+	ray.get_node("Line2d").add_point(raycast.get_collision_point())
 	$FX/ShootFX.play()
+	
+	var hitNode = raycast.get_collider()
+	if hitNode is Enemy:
+		hitNode.takeDamage(25)
 
-func upgrade():
-	pass
- 
-
+func takeDamage(damage_amount : int):
+	health -= damage_amount
+	print("Player health: ", health)
+	if health <= 0:
+		health = 0
+		$AnimationPlayer.play("died")
+		return
+	
+	$AnimationPlayer.play("hurt")
 
 func _on_hurtbox_body_entered(body):
+	if body is Enemy == false:
+		return
+	
 	$FX/HurtFX.play()
