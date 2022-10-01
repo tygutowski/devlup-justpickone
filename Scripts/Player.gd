@@ -12,6 +12,7 @@ func update_health(value: int):
 	($HUD/UI/ProgressBar as ProgressBar).value = health
 
 @onready var max_health = health
+
 @export var SPEED = 100.0
 
 var shot = preload("res://Scenes/Shot.tscn")
@@ -41,7 +42,6 @@ var shot_time = shot_timer
 var in_menu = false
 
 @export var upgrades:Array = []
-
 
 func generate_upgrades():
 	for i in range(4):
@@ -76,13 +76,11 @@ func generate_upgrades():
 		upgr.pickup()
 
 func _ready():
-	$HUD/UI/MagSize.text = "%s/%s" % [ammo, ammo_max]
-	$HUD/UI/ProgressBar.value = health
-	
 	#generate_upgrades()
 	set_animation("idle_or_walking", 0)
 	set_animation("direction", 1)
-
+	$HUD/UI/MagSize.text = "%s/%s" % [ammo, ammo_max]
+	$HUD/UI/ProgressBar.value = health
 
 func _physics_process(_delta):
 	if !in_menu:
