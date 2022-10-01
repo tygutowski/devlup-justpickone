@@ -1,8 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://dld6cm7dvh155"]
+[gd_scene load_steps=30 format=3 uid="uid://dld6cm7dvh155"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_6icgm"]
 [ext_resource type="Texture2D" uid="uid://cys86rdms2uef" path="res://Sprites/character.png" id="1_dxjkm"]
 [ext_resource type="PackedScene" uid="uid://ch4sodhjvtqn7" path="res://Scenes/ShakeCamera2D.tscn" id="3_r2bnf"]
+[ext_resource type="AudioStream" uid="uid://cfkw4frr5p040" path="res://Sound/soundfx/died2.wav" id="4_in4ti"]
+[ext_resource type="AudioStream" uid="uid://dbdhq1sl8nf7p" path="res://Sound/soundfx/laser.wav" id="5_gjwsq"]
+[ext_resource type="AudioStream" uid="uid://bgjfrow253212" path="res://Sound/soundfx/died.wav" id="6_3dipc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n0rya"]
 size = Vector2(12, 14)
@@ -227,6 +230,9 @@ nodes/walking_up/node = SubResource("AnimationNodeAnimation_f4tpm")
 nodes/walking_up/position = Vector2(-200, 220)
 node_connections = [&"output", 0, &"idle_or_walking", &"direction_idle", 0, &"idle_up", &"direction_idle", 1, &"idle_down", &"direction_idle", 2, &"idle_left", &"direction_idle", 3, &"idle_right", &"direction_walking", 0, &"walking_up", &"direction_walking", 1, &"walking_down", &"direction_walking", 2, &"walking_left", &"direction_walking", 3, &"walking_right", &"idle_or_walking", 0, &"direction_idle", &"idle_or_walking", 1, &"direction_walking"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_weh2j"]
+size = Vector2(6, 13)
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 script = ExtResource("1_6icgm")
@@ -238,6 +244,7 @@ hframes = 3
 vframes = 4
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_n0rya")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -255,3 +262,23 @@ parameters/idle_or_walking/current = 0
 
 [node name="ShakeCamera2D" parent="." instance=ExtResource("3_r2bnf")]
 current = true
+
+[node name="FX" type="Node2D" parent="."]
+
+[node name="HurtFX" type="AudioStreamPlayer" parent="FX"]
+stream = ExtResource("4_in4ti")
+
+[node name="ShootFX" type="AudioStreamPlayer" parent="FX"]
+stream = ExtResource("5_gjwsq")
+
+[node name="DieFX" type="AudioStreamPlayer" parent="FX"]
+stream = ExtResource("6_3dipc")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="Hurtbox"]
+self_modulate = Color(0.8, 0.764706, 0, 1)
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_weh2j")
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

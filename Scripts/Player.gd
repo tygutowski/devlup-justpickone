@@ -8,11 +8,11 @@ var facing_direction = Vector2.ZERO
 
 @onready var game = get_tree().get_first_node_in_group("game")
 
-func _ready():
+func _ready() -> void:
 	set_animation("idle_or_walking", 0)
 	set_animation("direction", 1)
 
-func _physics_process(_delta):
+func _physics_process(_delta: float) -> void:
 	walking_direction = Vector2.ZERO
 	walking_direction.x = Input.get_axis("left", "right")
 	walking_direction.y = Input.get_axis("up", "down")
@@ -40,13 +40,14 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
 
-func set_animation(animation_name, value):
+func set_animation(animation_name, value) -> void:
 	if animation_name == "direction":
 		get_node("AnimationTree").set("parameters/direction_walking/current", value)
 		get_node("AnimationTree").set("parameters/direction_idle/current", value)
 	else:
 		get_node("AnimationTree").set("parameters/" + animation_name + "/current", value)
-func shoot():
+
+func shoot() -> void:
 	# make a new shot
 	var ray = shot.instantiate()
 	game.add_child(ray)
@@ -58,10 +59,13 @@ func shoot():
 	ray.get_node("RayCast2d").force_raycast_update()
 	ray.get_node("Line2d").add_point(ray.get_node("RayCast2d").global_position)
 	ray.get_node("Line2d").add_point(ray.get_node("RayCast2d").get_collision_point())
+	
+	$FX/ShootFX.play()
 
 func upgrade():
 	pass
+ 
 
 
-func _on_test_timer_timeout():
-	$ShakeCamera2D.small_shake()
+func _on_hurtbox_body_entered(body):
+	$FX/HurtFX.play()

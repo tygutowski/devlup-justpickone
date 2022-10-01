@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dt7toim30lteh"]
+[gd_scene load_steps=6 format=3 uid="uid://dt7toim30lteh"]
 
 [ext_resource type="Script" path="res://Scenes/ui/main_menu.gd" id="1_70jyx"]
 [ext_resource type="PackedScene" uid="uid://0td1omf042df" path="res://Scenes/Game.tscn" id="2_645k7"]
 [ext_resource type="AudioStream" uid="uid://bqdxq6uiwnfqr" path="res://Sound/music/song1.wav" id="3_fqpcr"]
+[ext_resource type="AudioStream" uid="uid://xq4b2ogv23jv" path="res://Sound/soundfx/hover_button_in_menu.wav" id="4_1olkx"]
+[ext_resource type="AudioStream" uid="uid://c1j50sfogrwgf" path="res://Sound/soundfx/on_select_in_menu.wav" id="5_eritw"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -60,6 +62,15 @@ text = "DevLUP Jam"
 stream = ExtResource("3_fqpcr")
 autoplay = true
 
-[connection signal="focus_entered" from="Buttons/Play" to="." method="_on_play_focus_entered"]
+[node name="FX" type="Node" parent="."]
+
+[node name="HoverOverButtonFX" type="AudioStreamPlayer" parent="FX"]
+stream = ExtResource("4_1olkx")
+
+[node name="ClickedFX" type="AudioStreamPlayer" parent="FX"]
+stream = ExtResource("5_eritw")
+
+[connection signal="mouse_entered" from="Buttons/Play" to="." method="_on_play_mouse_entered"]
 [connection signal="pressed" from="Buttons/Play" to="." method="_on_play_pressed"]
+[connection signal="mouse_entered" from="Buttons/Quit" to="." method="_on_quit_mouse_entered"]
 [connection signal="pressed" from="Buttons/Quit" to="." method="_on_quit_pressed"]
