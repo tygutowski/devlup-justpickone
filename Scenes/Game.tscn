@@ -129,3 +129,4 @@ position = Vector2(223, 74)
 
 [node name="Pickup5" parent="." instance=ExtResource("3_vwyqw")]
 position = Vector2(248, 74)
+z_index = 1
