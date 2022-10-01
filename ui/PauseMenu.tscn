@@ -17,7 +17,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="UI"]
-layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -29,7 +28,6 @@ grow_horizontal = 2
 text = "COOL GAME"
 
 [node name="Buttons" type="VBoxContainer" parent="UI"]
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -43,13 +41,11 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Resume" type="Button" parent="UI/Buttons"]
-layout_mode = 2
 offset_right = 196.0
 offset_bottom = 31.0
 text = "RESUME"
 
 [node name="Main Menu" type="Button" parent="UI/Buttons"]
-layout_mode = 2
 offset_top = 35.0
 offset_right = 196.0
 offset_bottom = 66.0

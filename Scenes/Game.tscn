@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bb2ofnqf0hxvu"]
+[gd_scene load_steps=9 format=3 uid="uid://bb2ofnqf0hxvu"]
 
 [ext_resource type="Texture2D" uid="uid://bu570sksm34w1" path="res://Sprites/tilemap.png" id="1_qon0y"]
 [ext_resource type="PackedScene" uid="uid://dld6cm7dvh155" path="res://Scenes/Player.tscn" id="2_gfv0v"]
 [ext_resource type="PackedScene" uid="uid://b7gx0lxdr0ald" path="res://Scenes/ChaserEnemy.tscn" id="4_60gli"]
 [ext_resource type="PackedScene" uid="uid://dyrdcrq6jv6hi" path="res://Scenes/Pickup.tscn" id="4_572cu"]
+[ext_resource type="PackedScene" uid="uid://d15ryebynytue" path="res://Scenes/KamikazeEnemy.tscn" id="5_3xlj5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bm6ho"]
 texture = ExtResource("1_qon0y")
@@ -130,3 +131,6 @@ health = 50
 
 [node name="Pickup" parent="." instance=ExtResource("4_572cu")]
 position = Vector2(316, 115)
+
+[node name="KamizekazeEnemy" parent="." instance=ExtResource("5_3xlj5")]
+position = Vector2(253, 74)

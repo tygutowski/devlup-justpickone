@@ -49,6 +49,7 @@ window/size/viewport_height=600
 window/stretch/mode="viewport"
 window/stretch/aspect="ignore"
 window/stretch/scale=2.0
+<<<<<<<HEADwindow/size/viewport_width=600
 
 [input]
 
