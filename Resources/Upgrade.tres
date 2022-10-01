@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://xhq83r8kopmw"]
+
+[ext_resource type="Script" path="res://Scripts/Upgrade.gd" id="1_tiilu"]
+
+[resource]
+script = ExtResource("1_tiilu")
+speed_up = false
+reload_up = false

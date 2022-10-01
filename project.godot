@@ -13,7 +13,6 @@ config_version=5
 config/name="gamejam-justpickone"
 run/main_scene="res://Scenes/Game.tscn"
 config/features=PackedStringArray("4.0", "Vulkan Clustered")
-config/icon="res://icon.svg"
 
 [display]
 

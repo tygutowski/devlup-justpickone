@@ -1,12 +1,230 @@
-[gd_scene format=3 uid="uid://clhrr63l8li21"]
+[gd_scene load_steps=6 format=3 uid="uid://dd4hvtvnsxvl0"]
+
+[ext_resource type="Script" path="res://Scripts/UpgradeScreen.gd" id="1_jj3vp"]
+[ext_resource type="Texture2D" uid="uid://c82fdaispcl06" path="res://Sprites/upgrade.png" id="1_um126"]
+[ext_resource type="FontFile" uid="uid://cskt8i7smjrse" path="res://Resources/RobotoMono-Light.ttf" id="2_r0jbo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0abal"]
+bg_color = Color(0.0313726, 0.0509804, 0.172549, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_48kwd"]
+bg_color = Color(0.32549, 0.509804, 0.788235, 1)
 
 [node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_jj3vp")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-offset_right = 392.0
-offset_bottom = 128.0
+[node name="PanelContainer" type="PanelContainer" parent="."]
+offset_left = 48.0
+offset_top = 14.0
+offset_right = 438.0
+offset_bottom = 251.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0abal")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-offset_right = 392.0
-offset_bottom = 128.0
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+offset_right = 390.0
+offset_bottom = 237.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 385.0
+offset_bottom = 232.0
+
+[node name="PanelContainer3" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+offset_right = 380.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_48kwd")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer3"]
+offset_right = 380.0
+offset_bottom = 27.0
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/HBoxContainer"]
+offset_left = 119.0
+offset_right = 260.0
+offset_bottom = 27.0
+theme_override_colors/font_color = Color(0.647059, 0.8, 0.937255, 1)
+theme_override_fonts/font = ExtResource("2_r0jbo")
+theme_override_font_sizes/font_size = 18
+text = "item unlocked"
+
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+offset_top = 31.0
+offset_right = 380.0
+offset_bottom = 61.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_48kwd")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer2"]
+offset_right = 380.0
+offset_bottom = 30.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer2/HBoxContainer2"]
+offset_right = 30.0
+offset_bottom = 30.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer2/HBoxContainer2/MarginContainer"]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 25.0
+offset_bottom = 25.0
+texture = ExtResource("1_um126")
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer2/HBoxContainer2"]
+offset_left = 34.0
+offset_top = 1.0
+offset_right = 142.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(0.647059, 0.8, 0.937255, 1)
+theme_override_fonts/font = ExtResource("2_r0jbo")
+theme_override_font_sizes/font_size = 18
+text = "new unlock"
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
+offset_top = 65.0
+offset_right = 380.0
+offset_bottom = 197.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_48kwd")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]
+offset_right = 380.0
+offset_bottom = 132.0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+offset_right = 380.0
+offset_bottom = 30.0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3"]
+offset_right = 30.0
+offset_bottom = 30.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3/MarginContainer"]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 25.0
+offset_bottom = 25.0
+texture = ExtResource("1_um126")
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3"]
+offset_left = 34.0
+offset_top = 1.0
+offset_right = 121.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(0.647059, 0.8, 0.937255, 1)
+theme_override_fonts/font = ExtResource("2_r0jbo")
+theme_override_font_sizes/font_size = 18
+text = "old item"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+offset_top = 34.0
+offset_right = 380.0
+offset_bottom = 64.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer4"]
+offset_right = 30.0
+offset_bottom = 30.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer4/MarginContainer2"]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 25.0
+offset_bottom = 25.0
+texture = ExtResource("1_um126")
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer4"]
+offset_left = 34.0
+offset_top = 1.0
+offset_right = 132.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(0.647059, 0.8, 0.937255, 1)
+theme_override_fonts/font = ExtResource("2_r0jbo")
+theme_override_font_sizes/font_size = 18
+text = "old items
+"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+offset_top = 68.0
+offset_right = 380.0
+offset_bottom = 98.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer5"]
+offset_right = 30.0
+offset_bottom = 30.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer5/MarginContainer2"]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 25.0
+offset_bottom = 25.0
+texture = ExtResource("1_um126")
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer5"]
+offset_left = 34.0
+offset_top = 1.0
+offset_right = 132.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(0.647059, 0.8, 0.937255, 1)
+theme_override_fonts/font = ExtResource("2_r0jbo")
+theme_override_font_sizes/font_size = 18
+text = "old items
+"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+offset_top = 102.0
+offset_right = 380.0
+offset_bottom = 132.0
+
+[node name="MarginContainer4" type="MarginContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer6"]
+offset_right = 30.0
+offset_bottom = 30.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer6/MarginContainer4"]
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 25.0
+offset_bottom = 25.0
+texture = ExtResource("1_um126")
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer6"]
+offset_left = 34.0
+offset_top = 1.0
+offset_right = 132.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(0.647059, 0.8, 0.937255, 1)
+theme_override_fonts/font = ExtResource("2_r0jbo")
+theme_override_font_sizes/font_size = 18
+text = "old items
+"
+
+[connection signal="mouse_entered" from="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3" to="." method="_on_h_box_container_3_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3" to="." method="_on_h_box_container_3_mouse_exited"]
+[connection signal="mouse_entered" from="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer4" to="." method="_on_h_box_container_4_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer4" to="." method="_on_h_box_container_4_mouse_exited"]
+[connection signal="mouse_entered" from="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer5" to="." method="_on_h_box_container_5_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer5" to="." method="_on_h_box_container_5_mouse_exited"]
+[connection signal="mouse_entered" from="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer6" to="." method="_on_h_box_container_6_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer6" to="." method="_on_h_box_container_6_mouse_exited"]

@@ -225,9 +225,10 @@ nodes/walking_up/node = SubResource("AnimationNodeAnimation_f4tpm")
 nodes/walking_up/position = Vector2(-200, 220)
 node_connections = [&"output", 0, &"idle_or_walking", &"direction_idle", 0, &"idle_up", &"direction_idle", 1, &"idle_down", &"direction_idle", 2, &"idle_left", &"direction_idle", 3, &"idle_right", &"direction_walking", 0, &"walking_up", &"direction_walking", 1, &"walking_down", &"direction_walking", 2, &"walking_left", &"direction_walking", 3, &"walking_right", &"idle_or_walking", 0, &"direction_idle", &"idle_or_walking", 1, &"direction_walking"]
 
-[node name="CharacterBody2d" type="CharacterBody2D" groups=["player"]]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 script = ExtResource("1_6icgm")
+upgrades = []
 
 [node name="Sprite2d" type="Sprite2D" parent="."]
 texture_filter = 1
