@@ -4,6 +4,7 @@ var lifespan = 36
 var lifetime = 0
 
 func _ready():
+	rotation = randf_range(0,2)
 	frame = 0
 	playing = true
 	speed_scale = 10

@@ -83,3 +83,27 @@ func drop():
 	elif piercing_once:
 		print("dropping: piercing")
 		pass
+
+func get_sprite():
+	if speed_up:
+		return load("res://Sprites/Icons/speed_up.png")
+	elif reload_up:
+		return load("res://Sprites/Icons/reload_up.png")
+	elif richochet_twice:
+		return load("res://Sprites/Icons/richochet_twice.png")
+	elif double_shot:
+		return load("res://Sprites/Icons/double_shot.png")
+	elif explosive_shot:
+		return load("res://Sprites/Icons/explosive_shot.png")
+	elif exploding_kills:
+		return load("res://Sprites/Icons/exploding_kills.png")
+	elif reload_halved:
+		return load("res://Sprites/Icons/reload_halved.png")
+	elif shot_speed_up:
+		return load("res://Sprites/Icons/shot_speed_up.png")
+	elif ammo_up_three:
+		return load("res://Sprites/Icons/ammo_up_three.png")
+	elif higher_damage:
+		return load("res://Sprites/Icons/higher_damage.png")
+	elif piercing_once:
+		return load("res://Sprites/Icons/piercing_once.png")
