@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://dh2h1prdhxbco"]
+
+[ext_resource type="Script" path="res://ui/hud.gd" id="1_lmhvp"]
+
+[node name="HUD" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_lmhvp")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="UI"]
+modulate = Color(0.694118, 0.788235, 0.933333, 1)
+anchors_preset = -1
+anchor_right = 0.479
+anchor_bottom = 0.163
+offset_right = -19.92
+offset_bottom = -13.01
+grow_horizontal = 2
+step = 1.0
+value = 40.0
+show_percentage = false
+
+[node name="MagSize" type="Label" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "12/12"

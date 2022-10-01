@@ -19,32 +19,34 @@ func _on_body_entered_explosion_radius(body):
 	if body is Player == false:
 		return
 	
+	is_chasing_player = false # Stopping enemy from moving.
 	is_target_in_range = true
-	is_chasing_player = false # So it stops walking
 	
-	$AnimationPlayer.play("exploded") # Warn player it's about to explode.
+	$AnimationPlayer.play("about_to_explode")
+	await $AnimationPlayer.animation_finished
 	
-	$ExplosionTimer.start()
-	await $ExplosionTimer.timeout
-	# Enemy has now exploded.
-	$ExplosionArea.monitoring = false # Disabling the [ExplosionArea] so player doesn't trigger explosion twice.
+	# Enemy is exploding now.
 	$Explosion.visible = true
-	$Sprite2d.visible = false
-	($Explosion as AnimatedSprite2D).play("exploded") # first half of explosion
-	
+	$Explosion.play("exploded")
+	$Sprite2d.hide()
+	print(is_target_in_range)
 	if is_target_in_range:
 		(body as Player).takeDamage(explosion_damage)
-	await $Explosion.animation_finished
+	$ExplosionArea.monitoring = false # So player doesn't retrigger the explosion
+	$CollisionShape2d.disabled = true # So player doesn't walk into it after the explosion.
 	
-	$Explosion.visible = false # second part of explosion, dusty part, deals no damage
-	$ExplosionArea/CollisionShape2d.disabled = true
+	await $Explosion.animation_finished
+	# Smoke
 	$Explosion2.visible = true
-	($Explosion2 as AnimatedSprite2D).play("exploded")
+	$Explosion2.play("exploded")
 	await $Explosion2.animation_finished
 	queue_free()
-
-
+	
+	
+	
+	
 
 func _on_explosion_area_body_exited(body):
-	if body is Player:
+	print("EXITED")
+	if body is Player and body.is_in_group("player"):
 		is_target_in_range = false

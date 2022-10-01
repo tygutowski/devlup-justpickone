@@ -6,11 +6,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y56i1"]
 
 [node name="Projectile" type="CharacterBody2D"]
+scale = Vector2(0.3, 0.3)
 script = ExtResource("1_5egkc")
 
-[node name="CollisionShape2d" type="CollisionShape2D" parent="."]
-scale = Vector2(0.3, 0.3)
-shape = SubResource("RectangleShape2D_y56i1")
-
-[node name="Sprite2d" type="Sprite2D" parent="CollisionShape2d"]
+[node name="Sprite2d" type="Sprite2D" parent="."]
 texture = ExtResource("1_204wo")
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_y56i1")
