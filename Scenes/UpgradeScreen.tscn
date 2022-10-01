@@ -43,27 +43,29 @@ offset_bottom = 232.0
 
 [node name="PanelContainer3" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
 offset_right = 380.0
-offset_bottom = 27.0
+offset_bottom = 54.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_48kwd")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer3"]
 offset_right = 380.0
-offset_bottom = 27.0
+offset_bottom = 54.0
 alignment = 1
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer3/HBoxContainer"]
-offset_left = 103.0
-offset_right = 276.0
-offset_bottom = 27.0
+offset_left = 38.0
+offset_right = 341.0
+offset_bottom = 54.0
 theme_override_colors/font_color = Color(0.647059, 0.8, 0.937255, 1)
 theme_override_fonts/font = ExtResource("2_r0jbo")
 theme_override_font_sizes/font_size = 18
-text = "Pick an upgrade!"
+text = "You found an upgrade module.
+Just pick one!"
+horizontal_alignment = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/MarginContainer/VBoxContainer"]
-offset_top = 31.0
+offset_top = 58.0
 offset_right = 380.0
-offset_bottom = 114.0
+offset_bottom = 141.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_48kwd")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer/PanelContainer"]

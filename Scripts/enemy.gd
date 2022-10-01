@@ -7,8 +7,6 @@ extends CharacterBody2D
 @export var health := 50  
 @export var walk_speed := 40
 
-@onready var current_speed = walk_speed # Separating the two since the player has a "slow enemies on hit ability"
-
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 @onready var nav_agent: NavigationAgent2D = $NavigationAgent2d
 
@@ -23,7 +21,7 @@ func _physics_process(delta):
 	
 	var direction := global_position.direction_to(nav_agent.get_next_location())
 	var desired_velocity := direction * 40.0
-	velocity = (desired_velocity - velocity) * delta * current_speed
+	velocity = (desired_velocity - velocity) * delta * walk_speed
 	
 	move_and_slide()
  

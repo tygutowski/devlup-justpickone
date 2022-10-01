@@ -4,7 +4,6 @@ extends Enemy
 
 @export var explosion_damage := 75
 @export var delay_before_explosion := 0.6
-
 var is_target_in_range := false # Using this to track whether player has escaped the AoE
 
 
