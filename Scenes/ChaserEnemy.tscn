@@ -5,6 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://cfkw4frr5p040" path="res://Sound/SFX/died2.wav" id="2_x26kr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhelc"]
+size = Vector2(18, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_721xa"]
 
