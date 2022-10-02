@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dld6cm7dvh155"]
+[gd_scene load_steps=37 format=3 uid="uid://dld6cm7dvh155"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_6icgm"]
 [ext_resource type="AudioStream" uid="uid://dbdhq1sl8nf7p" path="res://Sound/SFX/laser.wav" id="2_enfm4"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dh2h1prdhxbco" path="res://ui/hud.tscn" id="6_rv4p1"]
 [ext_resource type="PackedScene" uid="uid://ch4sodhjvtqn7" path="res://Scenes/ShakeCamera2D.tscn" id="8_mcbuy"]
 [ext_resource type="AudioStream" uid="uid://cpe5t4osip453" path="res://Sound/music/level_theme.wav" id="10_82uko"]
+[ext_resource type="AudioStream" uid="uid://btsb32v5ap8ms" path="res://Sound/music/boss_theme.wav" id="11_w6eel"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_t1mgi"]
 load_path = "res://.godot/imported/character.png-ee4932e4e8db66cf4fc01fdf2d78d81e.ctex"
@@ -349,5 +350,10 @@ current = true
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_82uko")
+volume_db = -10.0
+autoplay = true
+
+[node name="BossMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_w6eel")
 volume_db = -10.0
 autoplay = true

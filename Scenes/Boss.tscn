@@ -1,0 +1,152 @@
+[gd_scene load_steps=10 format=3 uid="uid://bug575311qm5v"]
+
+[ext_resource type="Script" path="res://Scripts/Boss.gd" id="1_grstm"]
+[ext_resource type="AudioStream" uid="uid://bred01x2lenhb" path="res://Sound/SFX/hurt1.wav" id="2_4exn3"]
+[ext_resource type="AudioStream" uid="uid://cfkw4frr5p040" path="res://Sound/SFX/died2.wav" id="2_x26kr"]
+[ext_resource type="Texture2D" uid="uid://boqnqb00nd2bn" path="res://Sprites/enemy.png" id="2_xmss7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hhelc"]
+size = Vector2(18, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_721xa"]
+
+[sub_resource type="Animation" id="Animation_chwq6"]
+resource_name = "died"
+length = 0.4
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FX/DiedFX:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:walk_speed")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox/CollisionShape2d:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CollisionShape2d:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_e4d8t"]
+resource_name = "hurt"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FX/HurtFX")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5tgyh"]
+_data = {
+"died": SubResource("Animation_chwq6"),
+"hurt": SubResource("Animation_e4d8t")
+}
+
+[node name="Boss" type="CharacterBody2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_grstm")
+health = 400
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hhelc")
+disabled = true
+
+[node name="Sprite2d" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0.780392, 0.486275, 1)
+texture_filter = 1
+texture = ExtResource("2_xmss7")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_721xa")
+disabled = true
+
+[node name="NavigationAgent2d" type="NavigationAgent2D" parent="."]
+
+[node name="FindPlayerTimer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5tgyh")
+}
+
+[node name="FX" type="Node2D" parent="."]
+
+[node name="HurtFX" type="AudioStreamPlayer2D" parent="FX"]
+stream = ExtResource("2_4exn3")
+
+[node name="DiedFX" type="AudioStreamPlayer2D" parent="FX"]
+stream = ExtResource("2_x26kr")
+
+[node name="Abilities" type="Node2D" parent="."]
+
+[node name="UseAbilityTimer" type="Timer" parent="."]
+wait_time = 4.0
+
+[node name="WhatNextTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="timeout" from="FindPlayerTimer" to="." method="_update_pathfinding"]
+[connection signal="timeout" from="UseAbilityTimer" to="." method="_on_use_ability_timer_timeout"]
+[connection signal="timeout" from="WhatNextTimer" to="." method="_on_what_next_timer_timeout"]
