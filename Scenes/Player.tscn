@@ -345,3 +345,5 @@ stream = ExtResource("2_i4twg")
 
 [node name="ShakeCamera2D" parent="." instance=ExtResource("8_mcbuy")]
 current = true
+smoothing_enabled = true
+smoothing_speed = 8.0
