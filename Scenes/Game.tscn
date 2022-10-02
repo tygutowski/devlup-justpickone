@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://on0yrbon6kd5"]
+[gd_scene load_steps=20 format=3 uid="uid://on0yrbon6kd5"]
 
 [ext_resource type="Texture2D" uid="uid://bu570sksm34w1" path="res://Sprites/tilemap.png" id="1_qon0y"]
 [ext_resource type="Script" path="res://Scripts/Game.gd" id="1_xrjd3"]
@@ -20,16 +20,42 @@ tile_data = PackedInt32Array(0, 327680, 3, 65536, 196608, 1, 131072, 196608, 1, 
 [sub_resource type="TileMapPattern" id="TileMapPattern_iekp1"]
 tile_data = PackedInt32Array(0, 327680, 3, 65536, 327680, 2, 1, 262144, 3, 65537, 262144, 2)
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_jmtc2"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_vq4cd"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ulo31"]
+vertices = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+polygons = [PackedInt32Array(0, 1, 2, 3)]
+outlines = [PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_uxf6o"]
+vertices = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+polygons = [PackedInt32Array(0, 1, 2, 3)]
+outlines = [PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_tglh2"]
+vertices = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+polygons = [PackedInt32Array(0, 1, 2, 3)]
+outlines = [PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_t6hrx"]
+vertices = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+polygons = [PackedInt32Array(0, 1, 2, 3)]
+outlines = [PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)]
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bm6ho"]
 texture = ExtResource("1_qon0y")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_jmtc2")
 1:0/0 = 0
 1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/0/physics_layer_0/angular_velocity = 0.0
 1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_vq4cd")
 2:0/0 = 0
 2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:0/0/physics_layer_0/angular_velocity = 0.0
@@ -42,12 +68,15 @@ texture = ExtResource("1_qon0y")
 0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:1/0/physics_layer_0/angular_velocity = 0.0
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_jmtc2")
 1:1/0 = 0
 1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_ulo31")
 2:1/0 = 0
 2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_tglh2")
 3:1/0 = 0
 3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:1/0/physics_layer_0/angular_velocity = 0.0
@@ -59,9 +88,11 @@ texture = ExtResource("1_qon0y")
 1:2/0 = 0
 1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_uxf6o")
 2:2/0 = 0
 2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 2:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_t6hrx")
 3:2/0 = 0
 3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 3:2/0/physics_layer_0/angular_velocity = 0.0
@@ -120,6 +151,7 @@ texture = ExtResource("1_qon0y")
 
 [sub_resource type="TileSet" id="TileSet_ifjeh"]
 physics_layer_0/collision_layer = 1
+navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_bm6ho")
 pattern_0 = SubResource("TileMapPattern_asobr")
 pattern_1 = SubResource("TileMapPattern_kt8y7")
@@ -127,10 +159,13 @@ pattern_2 = SubResource("TileMapPattern_qi6u3")
 pattern_3 = SubResource("TileMapPattern_iox1c")
 pattern_4 = SubResource("TileMapPattern_iekp1")
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_ecr7g"]
-vertices = PackedVector2Array(58, 533, 56, 54, 549, 63, 547, 533)
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_581tb"]
+vertices = PackedVector2Array(859, 30, 860, 860, 30, 859, 31, 28)
 polygons = [PackedInt32Array(0, 1, 2, 3)]
-outlines = [PackedVector2Array(58, 533, 56, 54, 549, 63, 547, 533)]
+outlines = [PackedVector2Array(31, 28, 30, 859, 860, 860, 859, 30)]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jf2un"]
+size = Vector2(832, 827)
 
 [node name="Game" type="Node2D" groups=["game"]]
 script = ExtResource("1_xrjd3")
@@ -142,10 +177,16 @@ tile_set = SubResource("TileSet_ifjeh")
 format = 2
 
 [node name="NavigationRegion2d" type="NavigationRegion2D" parent="."]
-navpoly = SubResource("NavigationPolygon_ecr7g")
+navpoly = SubResource("NavigationPolygon_581tb")
 
 [node name="Pickup" parent="." instance=ExtResource("4_572cu")]
 position = Vector2(162, 340)
 
 [node name="Player" parent="." instance=ExtResource("2_gfv0v")]
-position = Vector2(182, 313)
+position = Vector2(96, 108)
+
+[node name="GenerationArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="GenerationArea"]
+position = Vector2(445, 444.5)
+shape = SubResource("RectangleShape2D_jf2un")

@@ -19,19 +19,48 @@ func _ready():
 	stretch()
 	auto_tile()
 	spawn_enemies()
+	spawn_upgrade()
 	spawn_player()
 
 func spawn_boss():
-	print("Boss spawning!")
+	var rand_x = randi_range(25, 850)
+	var rand_y = randi_range(25, 850)
+	var boss_instance = boss_scene.instantiate()
+	boss_instance.global_position = Vector2(rand_x, rand_y)
+	add_child(boss_instance)
 
 func spawn_upgrade():
-	pass
-
+	for i in range(1):
+		var rand_x = randi_range(25, 850)
+		var rand_y = randi_range(25, 850)
+		var upgrade_instance = upgrade_scene.instantiate()
+		upgrade_instance.global_position = Vector2(rand_x, rand_y)
+		add_child(upgrade_instance)
 func spawn_enemies():
-	pass
+	for i in range(3 * randi_range(1, 2 * LevelGenerator.level)):
+		var enemy_spawn = randi_range(0,2)
+		var rand_x = randi_range(25, 850)
+		var rand_y = randi_range(25, 850)
+		if enemy_spawn == 0:
+			var chaser_instance = chaser_scene.instantiate()
+			chaser_instance.global_position = Vector2(rand_x, rand_y)
+			add_child(chaser_instance)
+		if enemy_spawn == 1:
+			var boomer_instance = boomer_scene.instantiate()
+			boomer_instance.global_position = Vector2(rand_x, rand_y)
+			add_child(boomer_instance)
+		if enemy_spawn == 2:
+			var spawner_instance = spawner_scene.instantiate()
+			spawner_instance.global_position = Vector2(rand_x, rand_y)
+			add_child(spawner_instance)
 
 func spawn_player():
-	pass
+	var rand_x = randi_range(25, 850)
+	var rand_y = randi_range(25, 850)
+	var upgrade_instance = upgrade_scene.instantiate()
+
+	upgrade_instance.global_position = Vector2(rand_x, rand_y)
+	add_child(upgrade_instance)
 
 func check_any_enemies(): # ignored last enemy that hasnt freed yet
 	print("Checking if there's any enemies left!")
