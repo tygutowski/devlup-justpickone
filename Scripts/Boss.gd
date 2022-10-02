@@ -15,7 +15,6 @@ enum Actions {
 }
 
 @onready var projectile = preload("res://Scenes/Projectile.tscn")
-
 var currentState := States.Idle
 
 var abilities : Array
@@ -24,6 +23,7 @@ var bullet_bounces : int = 1
 func _ready():
 	super._ready()
 	abilities = $Abilities.get_children()
+	#activate_boss()
 
 func _physics_process(delta):
 	if currentState == States.Idle:
@@ -40,6 +40,8 @@ func _physics_process(delta):
 	super._physics_process(delta)
 
 func perform_attack():
+	print("=== PERFORMING ATTACK ===")
+	
 	var projectile_instance : Projectile = projectile.instantiate()
 	
 	projectile_instance.look_at(player.global_position)
@@ -73,8 +75,13 @@ func takeDamage(damage_amount : int = 25):
 
 func activate_boss():
 	player.is_fighting_boss = true
+	$CollisionShape2d.disabled = false
+	$Hitbox/CollisionShape2d.disabled = false
 	$UseAbilityTimer.start()
 	$WhatNextTimer.start()
+	player.get_node("Music").playing = false
+	player.get_node("BossMusic").playing = true
+
 
 func _on_what_next_timer_timeout():
 	print("WHAT NEXT?")

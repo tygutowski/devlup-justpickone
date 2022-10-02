@@ -1,25 +1,96 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1bcg3wx5a3j3"]
+[gd_scene load_steps=11 format=3 uid="uid://c1bcg3wx5a3j3"]
 
 [ext_resource type="Script" path="res://Scripts/Spawner.gd" id="1_ctpv1"]
 [ext_resource type="Texture2D" uid="uid://v3re0mx6hcak" path="res://Sprites/Icons/exploding_kills.png" id="2_c35n6"]
 [ext_resource type="AudioStream" uid="uid://dnwxi8af410ry" path="res://Sound/SFX/spawning.wav" id="3_ssvkb"]
+[ext_resource type="AudioStream" uid="uid://bgjfrow253212" path="res://Sound/SFX/died.wav" id="4_6rrdi"]
+[ext_resource type="AudioStream" uid="uid://bred01x2lenhb" path="res://Sound/SFX/hurt1.wav" id="5_tmjfx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lpber"]
 
-[node name="Spawner" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3mcci"]
+
+[sub_resource type="Animation" id="Animation_ydsj5"]
+resource_name = "died"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FX/Die")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_lm8ri"]
+resource_name = "hurt"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FX/Hurt")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j148e"]
+_data = {
+"died": SubResource("Animation_ydsj5"),
+"hurt": SubResource("Animation_lm8ri")
+}
+
+[node name="Spawner" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_ctpv1")
+contact_damage = 5
+health = 75
+walk_speed = 0
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="." groups=["enemy"]]
+shape = SubResource("CircleShape2D_lpber")
 
 [node name="Sprite2d" type="Sprite2D" parent="."]
 texture = ExtResource("2_c35n6")
 
-[node name="CollisionShape2d" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_lpber")
-disabled = true
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_3mcci")
 
 [node name="FX" type="Node2D" parent="."]
 
 [node name="SpawningFX" type="AudioStreamPlayer2D" parent="FX"]
 stream = ExtResource("3_ssvkb")
+
+[node name="Die" type="AudioStreamPlayer2D" parent="FX"]
+stream = ExtResource("4_6rrdi")
+
+[node name="Hurt" type="AudioStreamPlayer2D" parent="FX"]
+stream = ExtResource("5_tmjfx")
 
 [node name="SpawningParticles" type="CPUParticles2D" parent="."]
 emitting = false
@@ -41,3 +112,10 @@ scale_amount_max = 1.5
 color = Color(0.415686, 0.360784, 0.964706, 1)
 hue_variation_min = 1.0
 hue_variation_max = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_j148e")
+}
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

@@ -3,6 +3,12 @@ extends Node2D
 @export var pattern1: TileMapPattern
 @onready var tilemap = get_tree().get_first_node_in_group("tilemap")
 
+@onready var boss_scene = load("res://Scenes/Boss.tscn")
+@onready var player_scene = load("res://Scenes/Player.tscn")
+@onready var chaser_scene = load("res://Scenes/ChaserEnemy.tscn")
+@onready var boomer_scene = load("res://Scenes/KamikazeEnemy.tscn")
+@onready var spawner_scene = load("res://Scenes/Spawner.tscn")
+@onready var upgrade_scene = load("res://Scenes/Pickup.tscn")
 var pos = Vector2(3,3)
 var off = Vector2(3,3)
 var size = 25
@@ -12,6 +18,29 @@ func _ready():
 	do_noise(size)
 	stretch()
 	auto_tile()
+	spawn_enemies()
+	spawn_player()
+
+func spawn_boss():
+	print("Boss spawning!")
+
+func spawn_upgrade():
+	pass
+
+func spawn_enemies():
+	pass
+
+func spawn_player():
+	pass
+
+func check_any_enemies(): # ignored last enemy that hasnt freed yet
+	print("Checking if there's any enemies left!")
+	var enemies_left = 1
+	for node in get_children():
+		if node.is_in_group("enemy"):
+			enemies_left += 1
+	if enemies_left >=1:
+		spawn_boss()
 
 func do_noise(s):
 	$TileMap.clear()

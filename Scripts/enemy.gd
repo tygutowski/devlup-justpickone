@@ -30,18 +30,20 @@ func _physics_process(delta):
  
 
 func takeDamage(damage_amount : int = 25):
+	print("hit!")
 	health -= damage_amount
 	if health <= 0:
 		health = 0
+		get_tree().get_first_node_in_group("game").check_any_enemies()
 		$AnimationPlayer.play("died") # Animation takes care of queue_free and what not.
 		return
-	print("AAHAHAHA")
+
 	$AnimationPlayer.play("hurt")
 
 func _on_hitbox_body_entered(body):
 	if body.is_in_group("player") == false or body.has_method("takeDamage") == false:
 		return
-	
+	print("hit")
 	body.takeDamage(contact_damage)
 	
 	# Disabling enemy movement momenetarily, so they don't pile up on player.

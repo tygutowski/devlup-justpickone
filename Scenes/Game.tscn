@@ -1,12 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://on0yrbon6kd5"]
+[gd_scene load_steps=13 format=3 uid="uid://on0yrbon6kd5"]
 
 [ext_resource type="Texture2D" uid="uid://bu570sksm34w1" path="res://Sprites/tilemap.png" id="1_qon0y"]
 [ext_resource type="Script" path="res://Scripts/Game.gd" id="1_xrjd3"]
 [ext_resource type="PackedScene" uid="uid://dld6cm7dvh155" path="res://Scenes/Player.tscn" id="2_gfv0v"]
-[ext_resource type="PackedScene" uid="uid://b7gx0lxdr0ald" path="res://Scenes/ChaserEnemy.tscn" id="4_60gli"]
 [ext_resource type="PackedScene" uid="uid://dyrdcrq6jv6hi" path="res://Scenes/Pickup.tscn" id="4_572cu"]
-[ext_resource type="PackedScene" uid="uid://d15ryebynytue" path="res://Scenes/KamikazeEnemy.tscn" id="5_3xlj5"]
-[ext_resource type="PackedScene" uid="uid://blgsh5bbjikvw" path="res://Scenes/Boss.tscn" id="7_ve2hc"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_asobr"]
 tile_data = PackedInt32Array(0, 262144, 0, 65536, 196608, 1, 131072, 196608, 1, 196608, 262144, 1, 1, 65536, 3, 65537, 393216, 0, 131073, 393216, 0, 196609, 65536, 0, 2, 65536, 3, 65538, 393216, 0, 131074, 393216, 0, 196610, 131072, 0, 3, 327680, 0, 65539, 0, 1, 131075, 0, 1, 196611, 327680, 1)
@@ -144,20 +141,11 @@ z_index = -2
 tile_set = SubResource("TileSet_ifjeh")
 format = 2
 
-[node name="KamizekazeEnemy" parent="." instance=ExtResource("5_3xlj5")]
-position = Vector2(299, 154)
-
-[node name="Enemy" parent="." instance=ExtResource("4_60gli")]
-position = Vector2(291, 227)
-
 [node name="NavigationRegion2d" type="NavigationRegion2D" parent="."]
 navpoly = SubResource("NavigationPolygon_ecr7g")
 
 [node name="Pickup" parent="." instance=ExtResource("4_572cu")]
-position = Vector2(226, 135)
+position = Vector2(162, 340)
 
 [node name="Player" parent="." instance=ExtResource("2_gfv0v")]
 position = Vector2(182, 313)
-
-[node name="Boss" parent="." instance=ExtResource("7_ve2hc")]
-position = Vector2(219, 204)

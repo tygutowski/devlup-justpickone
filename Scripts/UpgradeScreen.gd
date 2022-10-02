@@ -6,7 +6,7 @@ var b2mi = false
 var b3mi = false
 var b4mi = false
 
-@onready var upgrades = get_tree().get_nodes_in_group("player")[0].upgrades
+@onready var upgrades = LevelGenerator.upgrades
 
 var item1
 var item2
@@ -15,7 +15,7 @@ var item3
 var upgr
 
 func generate_new_item():
-	var random_number = randi_range(1,11)
+	var random_number = randi_range(1,9)
 	var dir = load("res://Resources/Upgrade.tres")
 	upgr = dir.duplicate()
 	match random_number:
@@ -24,23 +24,20 @@ func generate_new_item():
 		2:
 			upgr.speed_up = true
 		3:
-			upgr.richochet_twice = true
+			upgr.higher_damage = true
 		4:
 			upgr.double_shot = true
 		5:
 			upgr.explosive_shot = true
 		6:
-			upgr.exploding_kills = true
+			upgr.piercing_once = true
 		7:
 			upgr.reload_halved = true
 		8:
 			upgr.shot_speed_up = true
 		9:
 			upgr.ammo_up_three = true
-		10:
-			upgr.higher_damage = true
-		11:
-			upgr.piercing_once = true
+
 	return upgr
 func _ready():
 	item1 = generate_new_item()
