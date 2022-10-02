@@ -22,6 +22,8 @@ var abilities : Array
 var bullet_bounces : int = 1
 
 func _ready():
+	$CollisionShape2d.disabled = false
+	$Hitbox/CollisionShape2d.disabled = false
 	super._ready()
 	abilities = $Abilities.get_children()
 	#activate_boss()

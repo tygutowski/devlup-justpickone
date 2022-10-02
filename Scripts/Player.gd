@@ -165,9 +165,10 @@ func shoot():
 			$FX/ShootFX.play()
 			
 			var hitNode = raycast.get_collider()
-			if hitNode.is_in_group("enemy") || hitNode is Enemy:
-				hitNode.takeDamage(damage)
-				hit_list.append(hitNode)
+			if hitNode != null:
+				if hitNode.is_in_group("enemy") || hitNode is Enemy:
+					hitNode.takeDamage(damage)
+					hit_list.append(hitNode)
 			
 			for u in LevelGenerator.upgrades:
 				if u.explosive_shot:
@@ -205,8 +206,3 @@ func _on_hurtbox_body_entered(body):
 		return
 	
 	$FX/HurtFX.play()
-
-
-func _on_area_2d_body_entered(body):
-	if body.is_in_group("tilemap") and !game.game_started:
-		game.move_player()

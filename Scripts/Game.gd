@@ -225,7 +225,7 @@ func spawn_player():
 	var rand_x = randi_range(25, 850)
 	var rand_y = randi_range(25, 850)
 	var player_instance = player_scene.instantiate()
-	player_instance.global_position = Vector2(rand_x, rand_y)
+	player_instance.global_position = get_open_map_point()
 	add_child(player_instance)
 
 func check_any_enemies(): # ignored last enemy that hasnt freed yet

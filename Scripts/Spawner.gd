@@ -9,6 +9,8 @@ var timer_between_spawn
 var time_between_spawn = 0
 
 func _ready():
+	$CollisionShape2d.disabled = false
+	$Hitbox/CollisionShape2d.disabled = false
 	health = 10
 	timer_between_spawn = randi_range(0, 600)
 
