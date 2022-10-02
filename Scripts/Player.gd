@@ -11,6 +11,8 @@ func update_health(value: int):
 	health = value
 	($HUD/UI/ProgressBar as ProgressBar).value = health
 
+
+var pierce_count = 3
 @onready var max_health = health
 
 @export var SPEED = 100.0
@@ -135,31 +137,39 @@ func set_animation(animation_name: String, value: int):
 		get_node("AnimationTree").set("parameters/direction_idle/current", value)
 	else:
 		get_node("AnimationTree").set("parameters/" + animation_name + "/current", value)
+
 func shoot():
 	# make a new shot
-	var ray = shot.instantiate()
-	var raycast: RayCast2D = ray.get_node("RayCast2d")
-	game.add_child(ray)
-	# set position to player
-	ray.get_node("RayCast2d").global_position = global_position
-	# set target to mouse
+	var hit_list = []
+	var pos = global_position
+	for i in range(pierce_count):
+		var ray = shot.instantiate()
+		var raycast: RayCast2D = ray.get_node("RayCast2d")
+		for object in hit_list:
+			raycast.add_exception(object)
+		game.add_child(ray)
+		# set position to player
+		ray.get_node("RayCast2d").global_position = global_position
+		# set target to mouse
 
-	raycast.target_position = get_local_mouse_position().normalized() * 100000
-	raycast.enabled = true
-	raycast.force_raycast_update()
-	ray.get_node("Line2d").add_point(raycast.global_position)
-	ray.get_node("Line2d").add_point(raycast.get_collision_point())
-	$FX/ShootFX.play()
-	
-	var hitNode = raycast.get_collider()
-	if hitNode is Enemy:
-		hitNode.takeDamage(damage)
-	
-	for u in upgrades:
-		if u.explosive_shot:
-			var expl = load("res://Scenes/Explosion.tscn").instantiate()
-			expl.global_position = ray.get_node("RayCast2d").get_collision_point()
-			game.add_child(expl)
+		raycast.target_position = get_local_mouse_position().normalized() * 100000
+		raycast.enabled = true
+		raycast.force_raycast_update()
+		ray.get_node("Line2d").add_point(raycast.global_position)
+		pos = raycast.get_collision_point()
+		ray.get_node("Line2d").add_point(pos)
+		$FX/ShootFX.play()
+		
+		var hitNode = raycast.get_collider()
+		if hitNode.is_in_group("enemy"):
+			hitNode.takeDamage(damage)
+			hit_list.append(hitNode)
+		
+		for u in upgrades:
+			if u.explosive_shot:
+				var expl = load("res://Scenes/Explosion.tscn").instantiate()
+				expl.global_position = ray.get_node("RayCast2d").get_collision_point()
+				game.add_child(expl)
 func upgrade():
 	in_menu = true
 	var upgrade_menu = load("res://Scenes/UpgradeScreen.tscn").instantiate()
