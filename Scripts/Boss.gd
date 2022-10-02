@@ -1,3 +1,4 @@
+class_name Boss
 extends Enemy
 
 signal just_died
@@ -58,7 +59,9 @@ func _on_use_ability_timer_timeout():
 		print("NO ABILITIES ASSIGNED TO BOSS")
 		return
 	
-	var i := randf_range(0, abilities.size() - 1)
+	print("USING ABILITY")
+	var numAbilities := abilities.size()
+	var i := randi_range(0, numAbilities if numAbilities == 1 else numAbilities - 1)
 	var abilityToUse : BossAbility = abilities[i]
 	abilityToUse.trigger_ability(self)
 

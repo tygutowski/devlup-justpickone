@@ -6,10 +6,10 @@
 [ext_resource type="AudioStream" uid="uid://cfkw4frr5p040" path="res://Sound/SFX/died2.wav" id="2_x26kr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhelc"]
-size = Vector2(20, 36)
+size = Vector2(15, 35)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_721xa"]
-size = Vector2(20, 36)
+size = Vector2(20, 37)
 
 [sub_resource type="Animation" id="Animation_chwq6"]
 resource_name = "died"
@@ -104,19 +104,19 @@ _data = {
 script = ExtResource("1_grstm")
 health = 400
 
-[node name="CollisionShape2d" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_hhelc")
-disabled = true
-
 [node name="Sprite2d" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("2_18285")
 
+[node name="CollisionShape2d" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_hhelc")
+disabled = true
+
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, 1)
+position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_721xa")
 disabled = true
 
