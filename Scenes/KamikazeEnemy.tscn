@@ -1,9 +1,10 @@
-[gd_scene load_steps=68 format=3 uid="uid://d15ryebynytue"]
+[gd_scene load_steps=69 format=3 uid="uid://d15ryebynytue"]
 
 [ext_resource type="Script" path="res://Scripts/KamikazeEnemy.gd" id="1_57fow"]
 [ext_resource type="AudioStream" uid="uid://bred01x2lenhb" path="res://Sound/SFX/hurt1.wav" id="2_4exn3"]
 [ext_resource type="Texture2D" uid="uid://d170xu6he82wf" path="res://Sprites/bomber.png" id="2_pw7o5"]
 [ext_resource type="AudioStream" uid="uid://cfkw4frr5p040" path="res://Sound/SFX/died2.wav" id="2_x26kr"]
+[ext_resource type="AudioStream" uid="uid://ba7606oqwhmyx" path="res://Sound/SFX/explosion_3.wav" id="4_ed282"]
 [ext_resource type="Texture2D" uid="uid://c25luom2ljdtu" path="res://Sprites/boom_48x48.png" id="4_n2bhq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhelc"]
@@ -382,6 +383,9 @@ libraries = {
 [node name="HurtFX" type="AudioStreamPlayer2D" parent="FX"]
 stream = ExtResource("2_4exn3")
 
+[node name="ExplodedFX" type="AudioStreamPlayer2D" parent="FX"]
+stream = ExtResource("4_ed282")
+
 [node name="DiedFX" type="AudioStreamPlayer2D" parent="FX"]
 stream = ExtResource("2_x26kr")
 
@@ -396,12 +400,14 @@ one_shot = true
 [node name="Explosion" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(2, 2)
+z_index = 1
 frames = SubResource("SpriteFrames_xkcvx")
 animation = &"exploded"
 
 [node name="Explosion2" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(2, 2)
+z_index = 1
 frames = SubResource("SpriteFrames_go8a7")
 animation = &"exploded"
 
