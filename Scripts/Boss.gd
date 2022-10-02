@@ -24,7 +24,6 @@ var bullet_bounces : int = 1
 func _ready():
 	super._ready()
 	abilities = $Abilities.get_children()
-	activate_boss()
 
 func _physics_process(delta):
 	if currentState == States.Idle:
@@ -41,8 +40,6 @@ func _physics_process(delta):
 	super._physics_process(delta)
 
 func perform_attack():
-	print("=== PERFORMING ATTACK ===")
-	
 	var projectile_instance : Projectile = projectile.instantiate()
 	
 	projectile_instance.look_at(player.global_position)

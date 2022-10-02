@@ -2,13 +2,14 @@
 
 [ext_resource type="Script" path="res://Scripts/Boss.gd" id="1_grstm"]
 [ext_resource type="AudioStream" uid="uid://bred01x2lenhb" path="res://Sound/SFX/hurt1.wav" id="2_4exn3"]
-[ext_resource type="Texture2D" uid="uid://ckov5n1h740v3" path="res://Sprites/boss.png" id="2_18285"]
+[ext_resource type="Texture2D" uid="uid://dw0x0jayw5v47" path="res://Sprites/boss.png" id="2_18285"]
 [ext_resource type="AudioStream" uid="uid://cfkw4frr5p040" path="res://Sound/SFX/died2.wav" id="2_x26kr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhelc"]
-size = Vector2(18, 18)
+size = Vector2(20, 36)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_721xa"]
+size = Vector2(20, 36)
 
 [sub_resource type="Animation" id="Animation_chwq6"]
 resource_name = "died"
@@ -99,11 +100,12 @@ _data = {
 "hurt": SubResource("Animation_e4d8t")
 }
 
-[node name="Boss" type="CharacterBody2D"]
+[node name="Boss" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_grstm")
 health = 400
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_hhelc")
 disabled = true
 
@@ -114,6 +116,7 @@ texture = ExtResource("2_18285")
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_721xa")
 disabled = true
 
