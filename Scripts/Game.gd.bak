@@ -27,7 +27,6 @@ func _ready():
 	spawn_enemies(0)
 	spawn_upgrade()
 	spawn_player()
-	
 func get_open_map_point():
 	var s = find_random_n(M, 2)
 	var x = s[1]*2 + off.y

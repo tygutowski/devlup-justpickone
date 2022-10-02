@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Boss.gd" id="1_grstm"]
 [ext_resource type="AudioStream" uid="uid://bred01x2lenhb" path="res://Sound/SFX/hurt1.wav" id="2_4exn3"]
-[ext_resource type="Texture2D" uid="uid://dw0x0jayw5v47" path="res://Sprites/boss.png" id="2_18285"]
+[ext_resource type="Texture2D" uid="uid://ckov5n1h740v3" path="res://Sprites/boss.png" id="2_18285"]
 [ext_resource type="AudioStream" uid="uid://cfkw4frr5p040" path="res://Sound/SFX/died2.wav" id="2_x26kr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhelc"]
