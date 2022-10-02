@@ -114,10 +114,9 @@ func stretch():
 	stretch_rows(off)
 	stretch_cols(off)
 
-func stretch_rows(off):
+func stretch_rows(p_off):
 	var r = $TileMap.get_used_rect( )
 	var right = r.position.x + r.size.x
-	var bottom = r.position.y + r.size.y
 	for j in range(r.size.y):
 		var arr = []
 		for i in range(r.position.x , right):
@@ -125,12 +124,11 @@ func stretch_rows(off):
 
 		for i in len(arr):
 			var t = arr[i]
-			set_cell(2*i  , j, off, t)
-			set_cell(2*i+1, j, off, t)
+			set_cell(2*i  , j, p_off, t)
+			set_cell(2*i+1, j, p_off, t)
 
-func stretch_cols(off):
+func stretch_cols(p_off):
 	var r = $TileMap.get_used_rect( )
-	var right = r.position.x + r.size.x
 	var bottom = r.position.y + r.size.y
 	for i in range(r.size.x):
 		var arr = []
@@ -139,8 +137,8 @@ func stretch_cols(off):
 
 		for j in len(arr):
 			var t = arr[j]
-			set_cell(i,   2*j, off, t)
-			set_cell(i, 2*j+1, off, t)
+			set_cell(i,   2*j, p_off, t)
+			set_cell(i, 2*j+1, p_off, t)
 
 func extend_base_x():
 	var r = $TileMap.get_used_rect ( )
@@ -160,19 +158,18 @@ func extend_base_y():
 			var tile = $TileMap.get_cell_atlas_coords(0, Vector2(i,j))
 			set_cell(i, j+1, Vector2(0,0), tile)
 
-func setpit(i,j):
+func setpit(_i,_j):
 	var locs = $TileMap.get_surrounding_tiles ( Vector2(3,3) )
 	var a = $TileMap.get_cell_atlas_coords(0,locs[0])
 	var b = $TileMap.get_cell_atlas_coords(0,locs[1])
 	var c = $TileMap.get_cell_atlas_coords(0,locs[2])
 	var d = $TileMap.get_cell_atlas_coords(0,locs[3])
 #	surr = $TileMap.get_surrounding_tiles ( Vector2(i+1,j+1) )
-	print(a,b,c,d)
 
 func generate_base(s, o):
 	for i in s.x:
 		for j in s.y:
 			set_cell(i, j, o)
 
-func set_cell(i, j, off, tile=Vector2(i,j) ):
-	$TileMap.set_cell(0, Vector2(i+off.x,j+off.y), 0, tile )
+func set_cell(p_i, p_j, p_off, tile=Vector2(p_i,p_j)):
+	$TileMap.set_cell(0, Vector2(p_i+p_off.x,p_j+p_off.y), 0, tile )
