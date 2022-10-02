@@ -39,12 +39,12 @@ func _new_shake():
 	)
 	
 	print(offset)
-	create_tween().tween_property(self, "offset", rand, $Frequency.wait_time)
+	var tw = create_tween().tween_property(self, "offset", rand, $Frequency.wait_time)
 	print(offset)
 
 func _reset():
 	print("RESET")
-	create_tween().tween_property(self, "offset", Vector2.ZERO, $Frequency.wait_time)
+	var tw = create_tween().tween_property(self, "offset", Vector2.ZERO, $Frequency.wait_time)
 
 
 func _on_duration_timeout():

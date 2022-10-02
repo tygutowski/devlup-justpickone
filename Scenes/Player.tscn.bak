@@ -6,8 +6,8 @@
 [ext_resource type="AudioStream" uid="uid://bred01x2lenhb" path="res://Sound/SFX/hurt1.wav" id="2_xxgyr"]
 [ext_resource type="AudioStream" uid="uid://d134cx6wfy845" path="res://Sound/SFX/power_up_2.wav" id="3_76sf3"]
 [ext_resource type="AudioStream" uid="uid://d0p1f1e5cm4ex" path="res://Sound/SFX/gun_jammed.wav" id="3_wisgf"]
-[ext_resource type="PackedScene" uid="uid://88hotf8qfmj1" path="res://ui/PauseMenu.tscn" id="5_x4it2"]
-[ext_resource type="PackedScene" path="res://ui/hud.tscn" id="6_rv4p1"]
+[ext_resource type="PackedScene" path="res://ui/PauseMenu.tscn" id="5_x4it2"]
+[ext_resource type="PackedScene" uid="uid://dh2h1prdhxbco" path="res://ui/hud.tscn" id="6_rv4p1"]
 [ext_resource type="PackedScene" uid="uid://ch4sodhjvtqn7" path="res://Scenes/ShakeCamera2D.tscn" id="8_mcbuy"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_t1mgi"]
@@ -344,4 +344,3 @@ stream = ExtResource("2_i4twg")
 [node name="HUD" parent="." instance=ExtResource("6_rv4p1")]
 
 [node name="ShakeCamera2D" parent="." instance=ExtResource("8_mcbuy")]
-current = true

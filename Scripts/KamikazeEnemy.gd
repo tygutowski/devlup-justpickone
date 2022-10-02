@@ -42,12 +42,9 @@ func _on_body_entered_explosion_radius(body):
 	$Explosion2.play("exploded")
 	await $Explosion2.animation_finished
 	queue_free()
-	
-	
-	
-	
+
 
 func _on_explosion_area_body_exited(body):
-	print("EXITED")
+	# player leave bomba area
 	if body is Player and body.is_in_group("player"):
 		is_target_in_range = false
