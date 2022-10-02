@@ -1,7 +1,6 @@
 class_name Player
 extends CharacterBody2D
 
-
 @export var damage := 10
 var speed = 100.0
 var is_fighting_boss = false
@@ -206,3 +205,9 @@ func _on_hurtbox_body_entered(body):
 		return
 	
 	$FX/HurtFX.play()
+
+
+func _on_area_2d_body_entered(body):
+	if body.is_in_group("tilemap") and game.game_started == false:
+		game.move_player()
+		game.game_started == true

@@ -12,13 +12,14 @@ extends Node2D
 var pos = Vector2(3,3)
 var off = Vector2(3,3)
 var size = 25
+var game_started = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	do_noise(size)
 	stretch()
 	auto_tile()
-	spawn_enemies()
+	spawn_enemies(0)
 	spawn_upgrade()
 	spawn_player()
 
@@ -29,6 +30,11 @@ func spawn_boss():
 	boss_instance.global_position = Vector2(rand_x, rand_y)
 	add_child(boss_instance)
 
+func move_player():
+	var rand_x = randi_range(25, 850)
+	var rand_y = randi_range(25, 850)
+	get_node("Player").global_position = Vector2(rand_x, rand_y)
+
 func spawn_upgrade():
 	for i in range(1):
 		var rand_x = randi_range(25, 850)
@@ -36,8 +42,10 @@ func spawn_upgrade():
 		var upgrade_instance = upgrade_scene.instantiate()
 		upgrade_instance.global_position = Vector2(rand_x, rand_y)
 		add_child(upgrade_instance)
-func spawn_enemies():
-	for i in range(3 * randi_range(1, 2 * LevelGenerator.level)):
+func spawn_enemies(num):
+	if num == 0:
+		num = 3 * randi_range(1, 2 * LevelGenerator.level)
+	for i in range(num):
 		var enemy_spawn = randi_range(0,2)
 		var rand_x = randi_range(25, 850)
 		var rand_y = randi_range(25, 850)
@@ -57,10 +65,9 @@ func spawn_enemies():
 func spawn_player():
 	var rand_x = randi_range(25, 850)
 	var rand_y = randi_range(25, 850)
-	var upgrade_instance = upgrade_scene.instantiate()
-
-	upgrade_instance.global_position = Vector2(rand_x, rand_y)
-	add_child(upgrade_instance)
+	var player_instance = player_scene.instantiate()
+	player_instance.global_position = Vector2(rand_x, rand_y)
+	add_child(player_instance)
 
 func check_any_enemies(): # ignored last enemy that hasnt freed yet
 	print("Checking if there's any enemies left!")

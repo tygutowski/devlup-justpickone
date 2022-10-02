@@ -41,6 +41,10 @@ func takeDamage(damage_amount : int = 25):
 	$AnimationPlayer.play("hurt")
 
 func _on_hitbox_body_entered(body):
+	if body.is_in_group("tilemap"):
+		get_tree().get_first_node_in_group("game").spawn_enemies(1)
+		queue_free()
+		
 	if body.is_in_group("player") == false or body.has_method("takeDamage") == false:
 		return
 	print("hit")

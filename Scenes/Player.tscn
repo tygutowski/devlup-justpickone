@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dld6cm7dvh155"]
+[gd_scene load_steps=38 format=3 uid="uid://dld6cm7dvh155"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_6icgm"]
 [ext_resource type="AudioStream" uid="uid://cod4d23rv0sa8" path="res://Sound/SFX/gunshot.wav" id="2_d4q86"]
@@ -298,6 +298,8 @@ nodes/walking_up/node = SubResource("AnimationNodeAnimation_f4tpm")
 nodes/walking_up/position = Vector2(-200, 220)
 node_connections = [&"output", 0, &"idle_or_walking", &"direction_idle", 0, &"idle_up", &"direction_idle", 1, &"idle_down", &"direction_idle", 2, &"idle_left", &"direction_idle", 3, &"idle_right", &"direction_walking", 0, &"walking_up", &"direction_walking", 1, &"walking_down", &"direction_walking", 2, &"walking_left", &"direction_walking", 3, &"walking_right", &"idle_or_walking", 0, &"direction_idle", &"idle_or_walking", 1, &"direction_walking"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bmq7r"]
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 script = ExtResource("1_6icgm")
@@ -357,3 +359,10 @@ autoplay = true
 stream = ExtResource("11_w6eel")
 volume_db = -10.0
 autoplay = true
+
+[node name="Area2d" type="Area2D" parent="."]
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="Area2d"]
+shape = SubResource("RectangleShape2D_bmq7r")
+
+[connection signal="body_entered" from="Area2d" to="." method="_on_area_2d_body_entered"]
