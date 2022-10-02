@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://boqnqb00nd2bn" path="res://Sprites/enemy.png" id="2_xmss7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhelc"]
-size = Vector2(18, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_721xa"]
+size = Vector2(18, 18)
 
 [sub_resource type="Animation" id="Animation_chwq6"]
 resource_name = "died"
@@ -104,7 +104,6 @@ script = ExtResource("1_ot23h")
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="." groups=["enemy"]]
 shape = SubResource("RectangleShape2D_hhelc")
-disabled = true
 
 [node name="Sprite2d" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -114,7 +113,6 @@ texture = ExtResource("2_xmss7")
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_721xa")
-disabled = true
 
 [node name="NavigationAgent2d" type="NavigationAgent2D" parent="."]
 

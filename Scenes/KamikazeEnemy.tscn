@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://d0ibayku8682m" path="res://Sound/SFX/explosion.wav" id="5_77ekl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhelc"]
+size = Vector2(24, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_721xa"]
 
@@ -354,7 +355,6 @@ walk_speed = 0
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="." groups=["enemy"]]
 shape = SubResource("RectangleShape2D_hhelc")
-disabled = true
 
 [node name="Sprite2d" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -365,7 +365,6 @@ hframes = 2
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_721xa")
-disabled = true
 
 [node name="NavigationAgent2d" type="NavigationAgent2D" parent="."]
 
@@ -409,7 +408,6 @@ scale = Vector2(2, 2)
 frames = SubResource("SpriteFrames_go8a7")
 animation = &"exploded"
 
-[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="FindPlayerTimer" to="." method="_update_pathfinding"]
 [connection signal="body_entered" from="ExplosionArea" to="." method="_on_body_entered_explosion_radius"]
 [connection signal="body_exited" from="ExplosionArea" to="." method="_on_explosion_area_body_exited"]
