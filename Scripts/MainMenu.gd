@@ -1,11 +1,11 @@
 extends Control
 
-@export var nextScene: PackedScene
+@export var path_to_next_scene : String
 
 func _on_play_pressed():
 	($FX/ClickedFX as AudioStreamPlayer).play()
 	await $FX/ClickedFX.finished
-	get_tree().change_scene_to_packed(nextScene)
+	get_tree().change_scene_to_file("res://Scenes/Game.tscn")
 
 func _on_quit_pressed():
 	get_tree().quit()
