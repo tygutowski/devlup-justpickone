@@ -2,30 +2,19 @@ extends Node2D
 
 var pos = Vector2(3,3)
 var off = Vector2(3,3)
+var size = 25
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-#	generate_base(Vector2(4,4), Vector2(3,3))
-	do_noise(5)
-
-func _physics_process(delta):
-	if Input.is_action_just_pressed("shoot"):
-		for i in range(1):
-			extend_base_x()
-			extend_base_y()
-	if Input.is_action_just_pressed("reload"):
-		setpit(5,5)
-	if Input.is_action_just_pressed("right"):
-		do_noise(6)
-	if Input.is_action_just_pressed("down"):
-		stretch()
-	if Input.is_action_just_pressed("left"):
-		auto_tile()
+	do_noise(size)
+	stretch()
+	auto_tile()
 
 func do_noise(s):
 	$TileMap.clear()
 	randomize()
 	var noise = FastNoiseLite.new()
+	noise.noise_type = 0 # perlin
 	noise.seed = randi()
 	noise.frequency = 0.4
 	for i in s:
