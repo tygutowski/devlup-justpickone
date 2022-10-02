@@ -31,6 +31,7 @@ func _on_body_entered_explosion_radius(body):
 	$Sprite2d.hide()
 	print(is_target_in_range)
 	if is_target_in_range:
+		(body as Player).get_node("ShakeCamera2D").medium_shake()
 		(body as Player).takeDamage(explosion_damage)
 	$ExplosionArea.monitoring = false # So player doesn't retrigger the explosion
 	$CollisionShape2d.disabled = true # So player doesn't walk into it after the explosion.

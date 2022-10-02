@@ -12,7 +12,6 @@ func update_health(value: int):
 	($HUD/UI/ProgressBar as ProgressBar).value = health
 
 @onready var max_health = health
-
 @export var SPEED = 100.0
 
 var shot = preload("res://Scenes/Shot.tscn")
@@ -42,6 +41,7 @@ var shot_time = shot_timer
 var in_menu = false
 
 @export var upgrades:Array = []
+
 
 func generate_upgrades():
 	for i in range(4):
@@ -76,52 +76,61 @@ func generate_upgrades():
 		upgr.pickup()
 
 func _ready():
+	$HUD/UI/MagSize.text = "%s/%s" % [ammo, ammo_max]
+	$HUD/UI/ProgressBar.value = health
+	
 	#generate_upgrades()
 	set_animation("idle_or_walking", 0)
 	set_animation("direction", 1)
-	$HUD/UI/MagSize.text = "%s/%s" % [ammo, ammo_max]
-	$HUD/UI/ProgressBar.value = health
+
 
 func _physics_process(_delta):
-	if !in_menu:
-		if currently_reloading:
-			if(reload_time > reload_timer):
-				currently_reloading = false
-				reload_time = 0
-				ammo = ammo_max
-			reload_time += 1
+	if in_menu:
+		return
+
+	if currently_reloading:
+		if(reload_time > reload_timer):
+			currently_reloading = false
+			reload_time = 0
+			ammo = ammo_max
+		reload_time += 1
+	else:
+		walking_direction = Vector2.ZERO
+		walking_direction.x = Input.get_axis("left", "right")
+		walking_direction.y = Input.get_axis("up", "down")
+		walking_direction = walking_direction.normalized()
+		velocity = walking_direction * speed
+		move_and_slide()
+		if walking_direction != Vector2.ZERO:
+			facing_direction = walking_direction
+		if walking_direction == Vector2.ZERO:
+			set_animation("idle_or_walking", 0)
 		else:
-			walking_direction = Vector2.ZERO
-			walking_direction.x = Input.get_axis("left", "right")
-			walking_direction.y = Input.get_axis("up", "down")
-			walking_direction = walking_direction.normalized()
-			velocity = walking_direction * speed
-			move_and_slide()
-			if walking_direction != Vector2.ZERO:
-				facing_direction = walking_direction
-			if walking_direction == Vector2.ZERO:
-				set_animation("idle_or_walking", 0)
-			else:
-				set_animation("idle_or_walking", 1)
-				if facing_direction.x < 0: # Left
-					set_animation("direction", 2)
-				elif facing_direction.x > 0: # Right
-					set_animation("direction", 3)
-				elif facing_direction.y > 0: # Down
-					set_animation("direction", 1)
-				elif facing_direction.y < 0: # Up
-					set_animation("direction", 0)
-			
-			
-			if Input.is_action_just_pressed("shoot") && ammo > 0 && shot_time >= shot_timer:
+			set_animation("idle_or_walking", 1)
+			if facing_direction.x < 0: # Left
+				set_animation("direction", 2)
+			elif facing_direction.x > 0: # Right
+				set_animation("direction", 3)
+			elif facing_direction.y > 0: # Down
+				set_animation("direction", 1)
+			elif facing_direction.y < 0: # Up
+				set_animation("direction", 0)
+		
+		
+		if Input.is_action_just_pressed("shoot") && shot_time >= shot_timer:
+			if ammo > 0:
 				shoot()
 				shot_time = 0
 				ammo -= 1
-			
-			if Input.is_action_just_pressed("reload") && ammo != ammo_max:
-				currently_reloading = true
-			
-			shot_time += 1
+			else:
+				$HUD.show_reload_tooltip()
+				$FX/GunJammedFX.play()
+				
+		if Input.is_action_just_pressed("reload") && ammo != ammo_max:
+			$FX/ReloadFX.play()
+			currently_reloading = true
+		
+		shot_time += 1
 
 func set_animation(animation_name: String, value: int):
 	if animation_name == "direction":

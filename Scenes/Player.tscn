@@ -1,11 +1,14 @@
-[gd_scene load_steps=32 format=3 uid="uid://dld6cm7dvh155"]
+[gd_scene load_steps=35 format=3 uid="uid://dld6cm7dvh155"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_6icgm"]
 [ext_resource type="AudioStream" uid="uid://dbdhq1sl8nf7p" path="res://Sound/SFX/laser.wav" id="2_enfm4"]
 [ext_resource type="AudioStream" uid="uid://bgjfrow253212" path="res://Sound/SFX/died.wav" id="2_i4twg"]
 [ext_resource type="AudioStream" uid="uid://bred01x2lenhb" path="res://Sound/SFX/hurt1.wav" id="2_xxgyr"]
-[ext_resource type="PackedScene" uid="uid://88hotf8qfmj1" path="res://ui/PauseMenu.tscn" id="5_x4it2"]
+[ext_resource type="AudioStream" uid="uid://d134cx6wfy845" path="res://Sound/SFX/power_up_2.wav" id="3_76sf3"]
+[ext_resource type="AudioStream" uid="uid://d0p1f1e5cm4ex" path="res://Sound/SFX/gun_jammed.wav" id="3_wisgf"]
+[ext_resource type="PackedScene" path="res://ui/PauseMenu.tscn" id="5_x4it2"]
 [ext_resource type="PackedScene" uid="uid://dh2h1prdhxbco" path="res://ui/hud.tscn" id="6_rv4p1"]
+[ext_resource type="PackedScene" uid="uid://ch4sodhjvtqn7" path="res://Scenes/ShakeCamera2D.tscn" id="8_mcbuy"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_t1mgi"]
 load_path = "res://.godot/imported/character.png-ee4932e4e8db66cf4fc01fdf2d78d81e.ctex"
@@ -55,6 +58,20 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShakeCamera2D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"small_shake"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_3vhl5"]
@@ -310,6 +327,12 @@ parameters/idle_or_walking/current = 0
 [node name="ShootFX" type="AudioStreamPlayer2D" parent="FX"]
 stream = ExtResource("2_enfm4")
 
+[node name="ReloadFX" type="AudioStreamPlayer2D" parent="FX"]
+stream = ExtResource("3_76sf3")
+
+[node name="GunJammedFX" type="AudioStreamPlayer2D" parent="FX"]
+stream = ExtResource("3_wisgf")
+
 [node name="HurtFX" type="AudioStreamPlayer2D" parent="FX"]
 stream = ExtResource("2_xxgyr")
 
@@ -319,3 +342,6 @@ stream = ExtResource("2_i4twg")
 [node name="PauseMenu" parent="." instance=ExtResource("5_x4it2")]
 
 [node name="HUD" parent="." instance=ExtResource("6_rv4p1")]
+
+[node name="ShakeCamera2D" parent="." instance=ExtResource("8_mcbuy")]
+current = true

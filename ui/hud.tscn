@@ -34,3 +34,21 @@ offset_left = -40.0
 offset_bottom = 23.0
 grow_horizontal = 0
 text = "12/12"
+
+[node name="PressRtoReload" type="Label" parent="UI"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.653
+anchor_right = 0.5
+anchor_bottom = 0.653
+offset_left = -65.0
+offset_top = -11.8
+offset_right = 65.0
+offset_bottom = 14.2
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press R to reload"
+
+[node name="ShowTooltipTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true

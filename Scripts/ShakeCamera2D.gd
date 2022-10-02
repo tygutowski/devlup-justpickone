@@ -1,4 +1,3 @@
-class_name ShakeCamera2D
 extends Camera2D
 
 const TRANS := Tween.TRANS_SINE
@@ -11,10 +10,10 @@ var amplitude := 0
 
 
 func small_shake() -> void:
-	_start(0.1, 15, 4)
+	_start(0.1, 12, 2)
 
 func medium_shake() -> void:
-	_start(0.1, 20, 5)
+	_start(0.1, 20, 12)
 
 func _start(duration := 0.2, frequency := 15, amplitude := 16):
 	if is_shaking:

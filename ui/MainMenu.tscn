@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://cg4l27nslohl0"]
 
-[ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_70jyx"]
-[ext_resource type="AudioStream" uid="uid://50qxmla8lk6c" path="res://Sound/music/main_menu.wav" id="3_tgp82"]
-[ext_resource type="AudioStream" uid="uid://xq4b2ogv23jv" path="res://Sound/SFX/hover_button_in_menu.wav" id="4_1olkx"]
-[ext_resource type="AudioStream" uid="uid://c1j50sfogrwgf" path="res://Sound/SFX/on_select_in_menu.wav" id="5_eritw"]
+[ext_resource type="Script" path="res://Scripts/MainMenu.gd" id="1_0niv2"]
+[ext_resource type="AudioStream" uid="uid://50qxmla8lk6c" path="res://Sound/music/main_menu.wav" id="2_xp8ft"]
+[ext_resource type="AudioStream" uid="uid://xq4b2ogv23jv" path="res://Sound/SFX/hover_button_in_menu.wav" id="3_wjv50"]
+[ext_resource type="AudioStream" uid="uid://c1j50sfogrwgf" path="res://Sound/SFX/on_select_in_menu.wav" id="4_hn5ak"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -12,7 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_70jyx")
+script = ExtResource("1_0niv2")
 
 [node name="Buttons" type="VBoxContainer" parent="."]
 anchors_preset = 8
@@ -49,16 +49,16 @@ grow_horizontal = 2
 text = "DevLUP Jam"
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_tgp82")
+stream = ExtResource("2_xp8ft")
 autoplay = true
 
 [node name="FX" type="Node" parent="."]
 
 [node name="HoverOverButtonFX" type="AudioStreamPlayer" parent="FX"]
-stream = ExtResource("4_1olkx")
+stream = ExtResource("3_wjv50")
 
 [node name="ClickedFX" type="AudioStreamPlayer" parent="FX"]
-stream = ExtResource("5_eritw")
+stream = ExtResource("4_hn5ak")
 
 [connection signal="mouse_entered" from="Buttons/Play" to="." method="_on_play_mouse_entered"]
 [connection signal="pressed" from="Buttons/Play" to="." method="_on_play_pressed"]
