@@ -1,7 +1,7 @@
 [gd_scene load_steps=37 format=3 uid="uid://dld6cm7dvh155"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_6icgm"]
-[ext_resource type="AudioStream" uid="uid://dbdhq1sl8nf7p" path="res://Sound/SFX/laser.wav" id="2_enfm4"]
+[ext_resource type="AudioStream" uid="uid://cod4d23rv0sa8" path="res://Sound/SFX/gunshot.wav" id="2_d4q86"]
 [ext_resource type="AudioStream" uid="uid://bgjfrow253212" path="res://Sound/SFX/died.wav" id="2_i4twg"]
 [ext_resource type="AudioStream" uid="uid://bred01x2lenhb" path="res://Sound/SFX/hurt1.wav" id="2_xxgyr"]
 [ext_resource type="AudioStream" uid="uid://d134cx6wfy845" path="res://Sound/SFX/power_up_2.wav" id="3_76sf3"]
@@ -327,7 +327,7 @@ parameters/idle_or_walking/current = 0
 [node name="FX" type="Node2D" parent="."]
 
 [node name="ShootFX" type="AudioStreamPlayer2D" parent="FX"]
-stream = ExtResource("2_enfm4")
+stream = ExtResource("2_d4q86")
 
 [node name="ReloadFX" type="AudioStreamPlayer2D" parent="FX"]
 stream = ExtResource("3_76sf3")

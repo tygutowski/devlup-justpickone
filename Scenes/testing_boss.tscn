@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bof1bppc80a8g"]
 
 [ext_resource type="PackedScene" uid="uid://dld6cm7dvh155" path="res://Scenes/Player.tscn" id="1_mhqrv"]
-[ext_resource type="PackedScene" uid="uid://bug575311qm5v" path="res://Scenes/Boss.tscn" id="2_r3exj"]
+[ext_resource type="PackedScene" uid="uid://blgsh5bbjikvw" path="res://Scenes/Boss.tscn" id="2_r3exj"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ca3bm"]
 vertices = PackedVector2Array(-114, -1, -47, -64, 194, -54, 200, 62, 165, 226, -88, 80)
