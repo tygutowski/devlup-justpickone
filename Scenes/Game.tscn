@@ -147,11 +147,15 @@ layer_0/tile_data = PackedInt32Array(262169, 131072, 0, 327705, 131072, 1, 39324
 [node name="KamizekazeEnemy" parent="." instance=ExtResource("5_3xlj5")]
 position = Vector2(299, 154)
 
+[node name="NavigationObstacle2d2" type="NavigationObstacle2D" parent="KamizekazeEnemy"]
+
 [node name="NavigationRegion2d" type="NavigationRegion2D" parent="."]
 navpoly = SubResource("NavigationPolygon_ecr7g")
 
 [node name="Enemy" parent="NavigationRegion2d" instance=ExtResource("4_60gli")]
 position = Vector2(291, 227)
+
+[node name="NavigationObstacle2d" type="NavigationObstacle2D" parent="NavigationRegion2d/Enemy"]
 
 [node name="Pickup" parent="." instance=ExtResource("4_572cu")]
 position = Vector2(226, 135)

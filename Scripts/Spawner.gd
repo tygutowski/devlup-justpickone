@@ -5,14 +5,22 @@ extends CharacterBody2D
 @onready var kamikazeenemy = preload("res://Scenes/KamikazeEnemy.tscn")
 
 var spawn_count: int = 5
+var timer_between_spawn
+var time_between_spawn = 0
+
+func _ready():
+	timer_between_spawn = randi_range(0, 600)
 
 func _physics_process(_delta: float) -> void:
-	if Input.is_action_just_pressed("shoot"):
-		spawn(2)
+	time_between_spawn += 1
+	if time_between_spawn >= timer_between_spawn:
+		spawn(randi_range(1,2))
+		timer_between_spawn = randi_range(0, 600)
+		time_between_spawn = 0
 
 func spawn(selector: int) -> void:
 	match selector:
-		0: shoot(projectile, 50, 500)
+		#0: shoot(projectile, 50, 500)
 		1: create_enemy(chaserenemy)
 		2: create_enemy(kamikazeenemy)
 
@@ -20,7 +28,8 @@ func create_enemy(enemy):
 	if spawn_count > 0:
 		spawn_count -= 1
 		var inst: Enemy = enemy.instantiate()
-		owner.add_child(inst)
+		inst.global_position = global_position
+		add_child(inst)
 		
 		#set to spawner location
 		inst.position = self.position
