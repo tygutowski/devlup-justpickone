@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://ejeqtw7lpx28"]
+
+[ext_resource type="Texture2D" uid="uid://bl7iug3wiws1a" path="res://Sprites/stairs.png" id="1_xuls0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8oibs"]
+size = Vector2(24, 23)
+
+[node name="Node2d" type="Node2D"]
+position = Vector2(-90, -17)
+
+[node name="Area2d" type="Area2D" parent="."]
+position = Vector2(90, 17)
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="Area2d"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_8oibs")
+
+[node name="Sprite2d" type="Sprite2D" parent="."]
+position = Vector2(90, 17)
+texture = ExtResource("1_xuls0")

@@ -348,7 +348,7 @@ animations = [{
 "speed": 60.0
 }]
 
-[node name="KamizekazeEnemy" type="CharacterBody2D"]
+[node name="KamizekazeEnemy" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_57fow")
 walk_speed = 0
 
@@ -357,7 +357,7 @@ texture_filter = 1
 texture = ExtResource("2_pw7o5")
 hframes = 2
 
-[node name="CollisionShape2d" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2d" type="CollisionShape2D" parent="." groups=["enemy"]]
 shape = SubResource("RectangleShape2D_hhelc")
 disabled = true
 

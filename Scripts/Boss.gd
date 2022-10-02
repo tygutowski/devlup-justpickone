@@ -24,12 +24,13 @@ var bullet_bounces : int = 1
 func _ready():
 	super._ready()
 	abilities = $Abilities.get_children()
+	activate_boss()
 
 func _physics_process(delta):
 	if currentState == States.Idle:
 		return
 	
-	print("Current state: ", currentState)
+	#print("Current state: ", currentState)
 	if currentState == States.Attacking:
 		is_chasing_player = false
 		perform_attack() # Shoot bullet at player
@@ -69,8 +70,8 @@ func takeDamage(damage_amount : int = 25):
 	if currentState == States.Idle:
 		currentState = States.Walking
 		activate_boss()
-	
-	emit_signal("just_died")
+	$AnimationPlayer.play("died")
+	#emit_signal("just_died") ### ??? wtf is this
 	super.takeDamage()
 
 func activate_boss():
@@ -82,3 +83,8 @@ func _on_what_next_timer_timeout():
 	print("WHAT NEXT?")
 	# Whether to shoot or keep chasing the player
 	currentState = States.Attacking if randi_range(0, 1) == 1 else States.Walking
+
+func spawn_stairs():
+	var stairs = load("res://Scenes/Stairs.tscn").instantiate()
+	stairs.global_position = global_position
+	get_tree().get_first_node_in_group("game").add_child(stairs)

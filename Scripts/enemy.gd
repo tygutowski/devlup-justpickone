@@ -29,13 +29,13 @@ func _physics_process(delta):
 	move_and_slide()
  
 
-func takeDamage(damage_amount := 25):
+func takeDamage(damage_amount : int = 25):
 	health -= damage_amount
 	if health <= 0:
 		health = 0
 		$AnimationPlayer.play("died") # Animation takes care of queue_free and what not.
 		return
-	
+	print("AAHAHAHA")
 	$AnimationPlayer.play("hurt")
 
 func _on_hitbox_body_entered(body):

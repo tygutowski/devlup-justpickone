@@ -108,7 +108,6 @@ shape = SubResource("RectangleShape2D_hhelc")
 disabled = true
 
 [node name="Sprite2d" type="Sprite2D" parent="."]
-self_modulate = Color(0, 0.780392, 0.486275, 1)
 texture_filter = 1
 texture = ExtResource("2_18285")
 
