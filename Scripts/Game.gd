@@ -5,8 +5,8 @@ extends Node2D
 
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 var pos = Vector2(3,3)
-var off = Vector2(0,0)
-var size = 30
+var off = Vector2(3,3)
+var size = 25
 var M = []
 @onready var boss_scene = load("res://Scenes/Boss.tscn")
 @onready var player_scene = load("res://Scenes/Player.tscn")

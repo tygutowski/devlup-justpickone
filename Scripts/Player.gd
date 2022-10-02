@@ -208,6 +208,5 @@ func _on_hurtbox_body_entered(body):
 
 
 func _on_area_2d_body_entered(body):
-	if body.is_in_group("tilemap") and game.game_started == false:
+	if body.is_in_group("tilemap") and !game.game_started:
 		game.move_player()
-		game.game_started == true
