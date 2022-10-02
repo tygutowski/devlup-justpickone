@@ -55,7 +55,9 @@ func patch(A):
 	for i in range(len(A)):
 		for j in range(len(A[0])):
 			if A[i][j] == 2:
-				set_cell(j,i,off,Vector2(2,2))
+				set_cell(j,i,off,Vector2i(2,2))
+			if A[i][j] == 0:
+				set_cell(j,i,off,Vector2i(6,0))
 
 func fix_hole(A, h):
 	if A[h[0]][h[1]] != 2:
@@ -170,7 +172,7 @@ func copy_M(Z):
 func construct_matrix():
 	var r = $TileMap.get_used_rect( )
 	var M = []
-	var e = Vector2i(-1,-1)
+	var e = Vector2i(6,0)
 	#flipped i and j to align matrix with result, rows first
 	for j in range( r.position.y, r.position.y + r.size.y ):
 		var arr = []
@@ -245,7 +247,9 @@ func do_noise(s):
 	for i in s:
 		for j in s:
 			if noise.get_noise_2d(i,j) < 0.1:
-				set_cell(i,j,off,Vector2(2,2))
+				set_cell(i,j,off,Vector2i(2,2))
+			else:
+				set_cell(i,j,off,Vector2i(6,0))
 
 func auto_tile():
 	var r = $TileMap.get_used_rect( )
@@ -256,28 +260,28 @@ func auto_tile():
 		for j in range(r.position.y - 1, bottom+1):
 			changes += selector(i, j, get_3x3(i,j))
 	for c in changes:
-		set_cell(c[0], c[1], Vector2(0,0), c[2])
+		set_cell(c[0], c[1], Vector2i(0,0), c[2])
 
 func get_3x3(x,y):
 	var tiles = []
 	for i in range(x-1,x+2):
 		for j in range(y-1,y+2):
-			tiles += [ $TileMap.get_cell_atlas_coords(0, Vector2(i,j) ) ]
+			tiles += [ $TileMap.get_cell_atlas_coords(0, Vector2i(i,j) ) ]
 	return tiles
 
 func selector(i, j, t):
 	var changes = []
-	var e = Vector2i(-1,-1)
+	var e = Vector2i(6,0)
 	# lt, lm, lb, mt, mm, mb, rt, rm, rb
 	# corners
 	if t[0]==e and t[1]==e and t[2]==e and t[3]==e and t[4]==e and t[5]==e and t[6]==e and t[7]==e and t[8]!=e:
-		changes += [[i, j, Vector2(0,0)]]
+		changes += [[i, j, Vector2i(0,0)]]
 	if t[0]!=e and t[1]==e and t[2]==e and t[3]==e and t[4]==e and t[5]==e and t[6]==e and t[7]==e and t[8]==e:
-		changes += [[i, j, Vector2(3,3)]]
+		changes += [[i, j, Vector2i(3,3)]]
 	if t[0]==e and t[1]==e and t[2]!=e and t[3]==e and t[4]==e and t[5]==e and t[6]==e and t[7]==e and t[8]==e:
-		changes += [[i, j, Vector2(3,0)]]
+		changes += [[i, j, Vector2i(3,0)]]
 	if t[0]==e and t[1]==e and t[2]==e and t[3]==e and t[4]==e and t[5]==e and t[6]!=e and t[7]==e and t[8]==e:
-		changes += [[i, j, Vector2(0,3)]]
+		changes += [[i, j, Vector2i(0,3)]]
 #		set_cell(i, j, Vector2(0,0), Vector2(0,3) )
 
 	# lt0, lm, lb2, mt, mm4, mb, rt6, rm, rb8
@@ -286,49 +290,49 @@ func selector(i, j, t):
 	var b = (t[0]==e and t[1]!=e and t[2]!=e and t[3]==e and t[4]==e and t[5]==e and t[6]==e and t[7]==e and t[8]==e)
 	var c = (t[0]!=e and t[1]!=e and t[2]==e and t[3]==e and t[4]==e and t[5]==e and t[6]==e and t[7]==e and t[8]==e)
 	if a or b or c:
-		changes += [[i, j, Vector2(3,1)]]
+		changes += [[i, j, Vector2i(3,1)]]
 	a = (t[0]!=e and t[1]==e and t[2]==e and t[3]!=e and t[4]==e and t[5]==e and t[6]!=e and t[7]==e and t[8]==e)
 	b = (t[0]==e and t[1]==e and t[2]==e and t[3]!=e and t[4]==e and t[5]==e and t[6]!=e and t[7]==e and t[8]==e)
 	c = (t[0]!=e and t[1]==e and t[2]==e and t[3]!=e and t[4]==e and t[5]==e and t[6]==e and t[7]==e and t[8]==e)
 	if a or b or c:
-		changes += [[i, j, Vector2(1,3)]]
+		changes += [[i, j, Vector2i(1,3)]]
 	a = t[0]==e and t[1]==e and t[2]!=e and t[3]==e and t[4]==e and t[5]!=e and t[6]==e and t[7]==e and t[8]!=e
 	b = t[0]==e and t[1]==e and t[2]==e and t[3]==e and t[4]==e and t[5]!=e and t[6]==e and t[7]==e and t[8]!=e
 	c = t[0]==e and t[1]==e and t[2]!=e and t[3]==e and t[4]==e and t[5]!=e and t[6]==e and t[7]==e and t[8]==e
 	if a or b or c:
-		changes += [[i, j, Vector2(1,0)]]
+		changes += [[i, j, Vector2i(1,0)]]
 	a = t[0]==e and t[1]==e and t[2]==e and t[3]==e and t[4]==e and t[5]==e and t[6]!=e and t[7]!=e and t[8]!=e
 	b = t[0]==e and t[1]==e and t[2]==e and t[3]==e and t[4]==e and t[5]==e and t[6]==e and t[7]!=e and t[8]!=e
 	c = t[0]==e and t[1]==e and t[2]==e and t[3]==e and t[4]==e and t[5]==e and t[6]!=e and t[7]!=e and t[8]==e
 	if a or b or c:
-		changes += [[i, j, Vector2(0,1)]]
+		changes += [[i, j, Vector2i(0,1)]]
 
 	# lt0, lm, lb2, mt, mm4, mb, rt6, rm, rb8
 	# inside corners
 	a = t[1]!=e and t[3]!=e and t[4]==e
 	if a: #top left
-		changes += [[i, j, Vector2(4,0)]]
+		changes += [[i, j, Vector2i(4,0)]]
 	a = t[3]!=e and t[4]==e and t[7]!=e
 	if a: #top right
-		changes += [[i, j, Vector2(5,0)]]
+		changes += [[i, j, Vector2i(5,0)]]
 	a = t[5]!=e and t[4]==e and t[7]!=e
 	if a: #bottom right
-		changes += [[i, j, Vector2(5,1)]]
+		changes += [[i, j, Vector2i(5,1)]]
 	a = t[1]!=e and t[5]!=e and t[4]==e
 	if a: #bottom left
-		changes += [[i, j, Vector2(4,1)]]
+		changes += [[i, j, Vector2i(4,1)]]
 
 	# lt0, lm, lb2, mt, mm4, mb, rt6, rm, rb8
 	# shadowed walls
 	a = t[1]==e and t[3]!=e and t[4]!=e
 	if a: #left shadow
-		changes += [[i, j, Vector2(1,2)]]
+		changes += [[i, j, Vector2i(1,2)]]
 	a = t[1]==e and t[3]==e and t[4]!=e
 	if a: #corner shadow
-		changes += [[i, j, Vector2(1,1)]]
+		changes += [[i, j, Vector2i(1,1)]]
 	a = t[1]!=e and t[3]==e and t[4]!=e
 	if a: #top shadow
-		changes += [[i, j, Vector2(2,1)]]
+		changes += [[i, j, Vector2i(2,1)]]
 
 	return changes
 
@@ -342,7 +346,7 @@ func stretch_rows(p_off):
 	for j in range(r.size.y):
 		var arr = []
 		for i in range(r.position.x , right):
-			arr += [ $TileMap.get_cell_atlas_coords(0, Vector2(i,j+r.position.y)) ]
+			arr += [ $TileMap.get_cell_atlas_coords(0, Vector2i(i,j+r.position.y)) ]
 
 		for i in len(arr):
 			var t = arr[i]
@@ -355,7 +359,7 @@ func stretch_cols(p_off):
 	for i in range(r.size.x):
 		var arr = []
 		for j in range(r.position.y , bottom):
-			arr += [ $TileMap.get_cell_atlas_coords(0, Vector2(i+r.position.x,j)) ]
+			arr += [ $TileMap.get_cell_atlas_coords(0, Vector2i(i+r.position.x,j)) ]
 
 		for j in len(arr):
 			var t = arr[j]
@@ -368,8 +372,8 @@ func extend_base_x():
 	var bottom = r.position.y + r.size.y
 	for i in range(right-1, right-3, -1):
 		for j in range(r.position.y, bottom):
-			var tile = $TileMap.get_cell_atlas_coords(0, Vector2(i,j))
-			set_cell(i+1, j, Vector2(0,0), tile)
+			var tile = $TileMap.get_cell_atlas_coords(0, Vector2i(i,j))
+			set_cell(i+1, j, Vector2i(0,0), tile)
 
 func extend_base_y():
 	var r = $TileMap.get_used_rect ( )
@@ -377,8 +381,8 @@ func extend_base_y():
 	var bottom = r.position.y + r.size.y
 	for j in range(bottom, bottom-3, -1):
 		for i in range(r.position.x, right):
-			var tile = $TileMap.get_cell_atlas_coords(0, Vector2(i,j))
-			set_cell(i, j+1, Vector2(0,0), tile)
+			var tile = $TileMap.get_cell_atlas_coords(0, Vector2i(i,j))
+			set_cell(i, j+1, Vector2i(0,0), tile)
 
 #func setpit(_i,_j):
 #	var locs = $TileMap.get_surrounding_tiles ( Vector2(3,3) )
@@ -393,5 +397,5 @@ func generate_base(s, o):
 		for j in s.y:
 			set_cell(i, j, o)
 
-func set_cell(p_i, p_j, p_off, tile=Vector2(p_i,p_j)):
-	$TileMap.set_cell(0, Vector2(p_i+p_off.x,p_j+p_off.y), 0, tile )
+func set_cell(p_i, p_j, p_off, tile=Vector2i(p_i,p_j)):
+	$TileMap.set_cell(0, Vector2i(p_i+p_off.x,p_j+p_off.y), 0, tile )
