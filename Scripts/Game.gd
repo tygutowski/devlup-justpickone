@@ -271,66 +271,66 @@ func get_3x3(x,y):
 
 func selector(i, j, t):
 	var changes = []
-	var e = Vector2i(6,0)
+	var e = [Vector2i(-1,-1), Vector2i(6,0)]
 	# lt, lm, lb, mt, mm, mb, rt, rm, rb
 	# corners
-	if t[0]==e and t[1]==e and t[2]==e and t[3]==e and t[4]==e and t[5]==e and t[6]==e and t[7]==e and t[8]!=e:
+	if t[0] in e and t[1] in e and t[2] in e and t[3] in e and t[4] in e and t[5] in e and t[6] in e and t[7] in e and t[8] not in e:
 		changes += [[i, j, Vector2i(0,0)]]
-	if t[0]!=e and t[1]==e and t[2]==e and t[3]==e and t[4]==e and t[5]==e and t[6]==e and t[7]==e and t[8]==e:
+	if t[0] not in e and t[1] in e and t[2] in e and t[3] in e and t[4] in e and t[5] in e and t[6] in e and t[7] in e and t[8] in e:
 		changes += [[i, j, Vector2i(3,3)]]
-	if t[0]==e and t[1]==e and t[2]!=e and t[3]==e and t[4]==e and t[5]==e and t[6]==e and t[7]==e and t[8]==e:
+	if t[0] in e and t[1] in e and t[2] not in e and t[3] in e and t[4] in e and t[5] in e and t[6] in e and t[7] in e and t[8] in e:
 		changes += [[i, j, Vector2i(3,0)]]
-	if t[0]==e and t[1]==e and t[2]==e and t[3]==e and t[4]==e and t[5]==e and t[6]!=e and t[7]==e and t[8]==e:
+	if t[0] in e and t[1] in e and t[2] in e and t[3] in e and t[4] in e and t[5] in e and t[6] not in e and t[7] in e and t[8] in e:
 		changes += [[i, j, Vector2i(0,3)]]
 #		set_cell(i, j, Vector2(0,0), Vector2(0,3) )
 
 	# lt0, lm, lb2, mt, mm4, mb, rt6, rm, rb8
 	# flat wall
-	var a = (t[0]!=e and t[1]!=e and t[2]!=e and t[3]==e and t[4]==e and t[5]==e and t[6]==e and t[7]==e and t[8]==e)
-	var b = (t[0]==e and t[1]!=e and t[2]!=e and t[3]==e and t[4]==e and t[5]==e and t[6]==e and t[7]==e and t[8]==e)
-	var c = (t[0]!=e and t[1]!=e and t[2]==e and t[3]==e and t[4]==e and t[5]==e and t[6]==e and t[7]==e and t[8]==e)
+	var a = (t[0] not in e and t[1] not in e and t[2] not in e and t[3] in e and t[4] in e and t[5] in e and t[6] in e and t[7] in e and t[8] in e)
+	var b = (t[0] in e and t[1] not in e and t[2] not in e and t[3] in e and t[4] in e and t[5] in e and t[6] in e and t[7] in e and t[8] in e)
+	var c = (t[0] not in e and t[1] not in e and t[2] in e and t[3] in e and t[4] in e and t[5] in e and t[6] in e and t[7] in e and t[8] in e)
 	if a or b or c:
 		changes += [[i, j, Vector2i(3,1)]]
-	a = (t[0]!=e and t[1]==e and t[2]==e and t[3]!=e and t[4]==e and t[5]==e and t[6]!=e and t[7]==e and t[8]==e)
-	b = (t[0]==e and t[1]==e and t[2]==e and t[3]!=e and t[4]==e and t[5]==e and t[6]!=e and t[7]==e and t[8]==e)
-	c = (t[0]!=e and t[1]==e and t[2]==e and t[3]!=e and t[4]==e and t[5]==e and t[6]==e and t[7]==e and t[8]==e)
+	a = (t[0] not in e and t[1] in e and t[2] in e and t[3] not in e and t[4] in e and t[5] in e and t[6] not in e and t[7] in e and t[8] in e)
+	b = (t[0] in e and t[1] in e and t[2] in e and t[3] not in e and t[4] in e and t[5] in e and t[6] not in e and t[7] in e and t[8] in e)
+	c = (t[0] not in e and t[1] in e and t[2] in e and t[3] not in e and t[4] in e and t[5] in e and t[6] in e and t[7] in e and t[8] in e)
 	if a or b or c:
 		changes += [[i, j, Vector2i(1,3)]]
-	a = t[0]==e and t[1]==e and t[2]!=e and t[3]==e and t[4]==e and t[5]!=e and t[6]==e and t[7]==e and t[8]!=e
-	b = t[0]==e and t[1]==e and t[2]==e and t[3]==e and t[4]==e and t[5]!=e and t[6]==e and t[7]==e and t[8]!=e
-	c = t[0]==e and t[1]==e and t[2]!=e and t[3]==e and t[4]==e and t[5]!=e and t[6]==e and t[7]==e and t[8]==e
+	a = t[0] in e and t[1] in e and t[2] not in e and t[3] in e and t[4] in e and t[5] not in e and t[6] in e and t[7] in e and t[8] not in e
+	b = t[0] in e and t[1] in e and t[2] in e and t[3] in e and t[4] in e and t[5] not in e and t[6] in e and t[7] in e and t[8] not in e
+	c = t[0] in e and t[1] in e and t[2] not in e and t[3] in e and t[4] in e and t[5] not in e and t[6] in e and t[7] in e and t[8] in e
 	if a or b or c:
 		changes += [[i, j, Vector2i(1,0)]]
-	a = t[0]==e and t[1]==e and t[2]==e and t[3]==e and t[4]==e and t[5]==e and t[6]!=e and t[7]!=e and t[8]!=e
-	b = t[0]==e and t[1]==e and t[2]==e and t[3]==e and t[4]==e and t[5]==e and t[6]==e and t[7]!=e and t[8]!=e
-	c = t[0]==e and t[1]==e and t[2]==e and t[3]==e and t[4]==e and t[5]==e and t[6]!=e and t[7]!=e and t[8]==e
+	a = t[0] in e and t[1] in e and t[2] in e and t[3] in e and t[4] in e and t[5] in e and t[6] not in e and t[7] not in e and t[8] not in e
+	b = t[0] in e and t[1] in e and t[2] in e and t[3] in e and t[4] in e and t[5] in e and t[6] in e and t[7] not in e and t[8] not in e
+	c = t[0] in e and t[1] in e and t[2] in e and t[3] in e and t[4] in e and t[5] in e and t[6] not in e and t[7] not in e and t[8] in e
 	if a or b or c:
 		changes += [[i, j, Vector2i(0,1)]]
 
 	# lt0, lm, lb2, mt, mm4, mb, rt6, rm, rb8
 	# inside corners
-	a = t[1]!=e and t[3]!=e and t[4]==e
+	a = t[1] not in e and t[3] not in e and t[4] in e
 	if a: #top left
 		changes += [[i, j, Vector2i(4,0)]]
-	a = t[3]!=e and t[4]==e and t[7]!=e
+	a = t[3] not in e and t[4] in e and t[7] not in e
 	if a: #top right
 		changes += [[i, j, Vector2i(5,0)]]
-	a = t[5]!=e and t[4]==e and t[7]!=e
+	a = t[5] not in e and t[4] in e and t[7] not in e
 	if a: #bottom right
 		changes += [[i, j, Vector2i(5,1)]]
-	a = t[1]!=e and t[5]!=e and t[4]==e
+	a = t[1] not in e and t[5] not in e and t[4] in e
 	if a: #bottom left
 		changes += [[i, j, Vector2i(4,1)]]
 
 	# lt0, lm, lb2, mt, mm4, mb, rt6, rm, rb8
 	# shadowed walls
-	a = t[1]==e and t[3]!=e and t[4]!=e
+	a = t[1] in e and t[3] not in e and t[4] not in e
 	if a: #left shadow
 		changes += [[i, j, Vector2i(1,2)]]
-	a = t[1]==e and t[3]==e and t[4]!=e
+	a = t[1] in e and t[3] in e and t[4] not in e
 	if a: #corner shadow
 		changes += [[i, j, Vector2i(1,1)]]
-	a = t[1]!=e and t[3]==e and t[4]!=e
+	a = t[1] not in e and t[3] in e and t[4] not in e
 	if a: #top shadow
 		changes += [[i, j, Vector2i(2,1)]]
 
