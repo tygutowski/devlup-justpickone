@@ -30,7 +30,6 @@ func _on_body_entered_explosion_radius(body):
 	$Explosion.play("exploded")
 	$FX/ExplodedFX.play()
 	$Sprite2d.hide()
-	print(is_target_in_range)
 	if is_target_in_range:
 		(body as Player).get_node("ShakeCamera2D").medium_shake()
 		(body as Player).takeDamage(explosion_damage)

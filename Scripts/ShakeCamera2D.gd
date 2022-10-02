@@ -15,16 +15,16 @@ func small_shake() -> void:
 func medium_shake() -> void:
 	_start(0.1, 20, 12)
 
-func _start(duration := 0.2, frequency := 15, amplitude := 16):
+func _start(p_duration := 0.2, p_frequency := 15, p_amplitude := 16):
 	if is_shaking:
 		_on_duration_timeout()
 	
 	is_shaking = true
 	
-	self.amplitude = amplitude
+	amplitude = p_amplitude
 
-	$Duration.wait_time = duration
-	$Frequency.wait_time = duration / float(frequency)
+	$Duration.wait_time = p_duration
+	$Frequency.wait_time = p_duration / float(p_frequency)
 	$Duration.start()
 	$Frequency.start()
 
@@ -36,10 +36,12 @@ func _new_shake():
 		randf_range(-amplitude, amplitude)
 	)
 	
-	var tw = create_tween().tween_property(self, "offset", rand, $Frequency.wait_time)
+
+	var _tw = create_tween().tween_property(self, "offset", rand, $Frequency.wait_time)
 
 func _reset():
-	var tw = create_tween().tween_property(self, "offset", Vector2.ZERO, $Frequency.wait_time)
+	var _tw = create_tween().tween_property(self, "offset", Vector2.ZERO, $Frequency.wait_time)
+
 
 
 func _on_duration_timeout():
