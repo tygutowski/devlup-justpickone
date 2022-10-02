@@ -9,6 +9,11 @@
 config_version=5
 
 _global_script_classes=[{
+"base": "Node2D",
+"class": &"BossAbility",
+"language": &"GDScript",
+"path": "res://Scripts/boss_ability.gd"
+}, {
 "base": "CharacterBody2D",
 "class": &"Enemy",
 "language": &"GDScript",
@@ -25,6 +30,7 @@ _global_script_classes=[{
 "path": "res://Scripts/Projectile.gd"
 }]
 _global_script_class_icons={
+"BossAbility": "",
 "Enemy": "",
 "Player": "",
 "Projectile": ""

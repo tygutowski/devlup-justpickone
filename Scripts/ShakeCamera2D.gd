@@ -19,7 +19,6 @@ func _start(duration := 0.2, frequency := 15, amplitude := 16):
 	if is_shaking:
 		_on_duration_timeout()
 	
-	print("SHAKING CAMERA")
 	is_shaking = true
 	
 	self.amplitude = amplitude
@@ -32,18 +31,14 @@ func _start(duration := 0.2, frequency := 15, amplitude := 16):
 	_new_shake()
 
 func _new_shake():
-	print("NEW SHAKE")
 	var rand := Vector2(
 		randf_range(-amplitude, amplitude),
 		randf_range(-amplitude, amplitude)
 	)
 	
-	print(offset)
 	var tw = create_tween().tween_property(self, "offset", rand, $Frequency.wait_time)
-	print(offset)
 
 func _reset():
-	print("RESET")
 	var tw = create_tween().tween_property(self, "offset", Vector2.ZERO, $Frequency.wait_time)
 
 

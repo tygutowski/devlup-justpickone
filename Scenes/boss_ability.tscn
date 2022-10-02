@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmr7qeuiqlrde"]
+
+[ext_resource type="Script" path="res://Scripts/boss_ability.gd" id="1_kusef"]
+
+[node name="BossAbility" type="Node2D"]
+script = ExtResource("1_kusef")
+
+[node name="DurationTimer" type="Timer" parent="."]

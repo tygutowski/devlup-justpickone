@@ -24,6 +24,12 @@ var reload_timer = 60
 var reload_time = 0
 
 var vulnerable := true # Whether Player cana take damage or not.
+var is_fighting_boss := false : set = toggle_battle_music
+
+func toggle_battle_music(fighting_boss : bool):
+	is_fighting_boss = fighting_boss
+	($Music as AudioStreamPlayer).playing = !fighting_boss
+	($BossMusic as AudioStreamPlayer).playing = fighting_boss
 
 @onready var game = get_tree().get_first_node_in_group("game")
 
@@ -81,6 +87,8 @@ func _ready():
 	set_animation("direction", 1)
 	$HUD/UI/MagSize.text = "%s/%s" % [ammo, ammo_max]
 	$HUD/UI/ProgressBar.value = health
+	$Music.playing = true
+	$BossMusic.playing = false
 
 func _physics_process(_delta):
 	if !in_menu:
