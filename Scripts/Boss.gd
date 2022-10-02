@@ -61,7 +61,7 @@ func _on_use_ability_timer_timeout():
 	
 	print("USING ABILITY")
 	var numAbilities := abilities.size()
-	var i := randi_range(0, numAbilities if numAbilities == 1 else numAbilities - 1)
+	var i := randi_range(0, numAbilities - 1)
 	var abilityToUse : BossAbility = abilities[i]
 	abilityToUse.trigger_ability(self)
 
@@ -80,7 +80,6 @@ func activate_boss():
 	$WhatNextTimer.start()
 
 func _on_what_next_timer_timeout():
-	print("WHAT NEXT?")
 	# Whether to shoot or keep chasing the player
 	currentState = States.Attacking if randi_range(0, 1) == 1 else States.Walking
 
