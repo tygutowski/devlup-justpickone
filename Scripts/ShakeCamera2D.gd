@@ -36,10 +36,12 @@ func _new_shake():
 		randf_range(-amplitude, amplitude)
 	)
 	
+
 	var _tw = create_tween().tween_property(self, "offset", rand, $Frequency.wait_time)
 
 func _reset():
 	var _tw = create_tween().tween_property(self, "offset", Vector2.ZERO, $Frequency.wait_time)
+
 
 
 func _on_duration_timeout():
