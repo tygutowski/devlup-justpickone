@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bug575311qm5v"]
+[gd_scene load_steps=10 format=3 uid="uid://blgsh5bbjikvw"]
 
 [ext_resource type="Script" path="res://Scripts/Boss.gd" id="1_grstm"]
 [ext_resource type="AudioStream" uid="uid://bred01x2lenhb" path="res://Sound/SFX/hurt1.wav" id="2_4exn3"]
+[ext_resource type="Texture2D" uid="uid://ckov5n1h740v3" path="res://Sprites/boss.png" id="2_18285"]
 [ext_resource type="AudioStream" uid="uid://cfkw4frr5p040" path="res://Sound/SFX/died2.wav" id="2_x26kr"]
-[ext_resource type="Texture2D" uid="uid://boqnqb00nd2bn" path="res://Sprites/enemy.png" id="2_xmss7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhelc"]
 size = Vector2(18, 18)
@@ -100,7 +100,6 @@ _data = {
 }
 
 [node name="Boss" type="CharacterBody2D"]
-scale = Vector2(2, 2)
 script = ExtResource("1_grstm")
 health = 400
 
@@ -111,7 +110,7 @@ disabled = true
 [node name="Sprite2d" type="Sprite2D" parent="."]
 self_modulate = Color(0, 0.780392, 0.486275, 1)
 texture_filter = 1
-texture = ExtResource("2_xmss7")
+texture = ExtResource("2_18285")
 
 [node name="Hitbox" type="Area2D" parent="."]
 
