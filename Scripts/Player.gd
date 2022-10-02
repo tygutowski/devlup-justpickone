@@ -113,12 +113,16 @@ func _physics_process(_delta):
 					set_animation("direction", 0)
 			
 			
-			if Input.is_action_just_pressed("shoot") && ammo > 0 && shot_time >= shot_timer:
-				shoot()
-				shot_time = 0
-				ammo -= 1
-			
+			if Input.is_action_just_pressed("shoot") && shot_time >= shot_timer:
+				if ammo > 0:
+					shoot()
+					shot_time = 0
+					ammo -= 1
+				else:
+					$HUD.show_reload_tooltip()
+					$FX/GunJammedFX.play()
 			if Input.is_action_just_pressed("reload") && ammo != ammo_max:
+				$FX/ReloadFX.play()
 				currently_reloading = true
 			
 			if Input.is_action_just_pressed("new_map"):
