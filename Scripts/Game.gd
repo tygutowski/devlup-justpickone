@@ -56,6 +56,8 @@ func patch(A):
 		for j in range(len(A[0])):
 			if A[i][j] == 2:
 				set_cell(j,i,off,Vector2(2,2))
+			else:
+				set_cell(j,i,off,Vector2(6,0))
 
 func fix_hole(A, h):
 	if A[h[0]][h[1]] != 2:
