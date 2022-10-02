@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://bgjfrow253212" path="res://Sound/SFX/died.wav" id="2_i4twg"]
 [ext_resource type="AudioStream" uid="uid://bred01x2lenhb" path="res://Sound/SFX/hurt1.wav" id="2_xxgyr"]
 [ext_resource type="PackedScene" uid="uid://88hotf8qfmj1" path="res://ui/PauseMenu.tscn" id="5_x4it2"]
-[ext_resource type="PackedScene" path="res://ui/hud.tscn" id="6_a4tqb"]
+[ext_resource type="PackedScene" uid="uid://dh2h1prdhxbco" path="res://ui/hud.tscn" id="6_rv4p1"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_t1mgi"]
 load_path = "res://.godot/imported/character.png-ee4932e4e8db66cf4fc01fdf2d78d81e.ctex"
@@ -318,4 +318,4 @@ stream = ExtResource("2_i4twg")
 
 [node name="PauseMenu" parent="." instance=ExtResource("5_x4it2")]
 
-[node name="HUD" parent="." instance=ExtResource("6_a4tqb")]
+[node name="HUD" parent="." instance=ExtResource("6_rv4p1")]
