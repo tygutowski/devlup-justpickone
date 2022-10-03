@@ -13,16 +13,11 @@ var piercing_once: bool = false
 var player
 func pickup():
 	if speed_up:
-		print("picking up: speed up")
 		player.speed *= 1.25
 	elif reload_up:
-		print("picking up: reload up")
 		player.reload_timer -= 20
 	elif double_shot:
 		player.shot_count += 1
-		pass
-	elif explosive_shot:
-		pass
 	elif reload_halved:
 		player.reload_timer = round(player.reload_timer/2)
 	elif shot_speed_up:
@@ -34,36 +29,6 @@ func pickup():
 		player.damage += 5
 	elif piercing_once:
 		player.pierce_count += 1
-		pass
-
-func drop():
-	if speed_up:
-		print("dropping: speed up")
-		player.speed /= 1.25
-	elif reload_up:
-		print("dropping: reload up")
-		player.reload_timer += 20
-	elif double_shot:
-		print("dropping: double shot")
-		pass
-	elif explosive_shot:
-		print("dropping: exploding shot")
-		pass
-	elif reload_halved:
-		print("dropping: reload half")
-		player.reload_timer = player.reload_timer*2
-	elif shot_speed_up:
-		print("dropping: shot speed up")
-		player.shot_timer += 2
-	elif ammo_up_three:
-		print("dropping: ammo up")
-		player.ammo_max -= 3
-	elif higher_damage:
-		print("dropping: damage up")
-		player.damage -= 5
-	elif piercing_once:
-		print("dropping: piercing")
-		pass
 
 func get_sprite():
 	if speed_up:
@@ -91,7 +56,7 @@ func get_name():
 	elif reload_up:
 		return "Shorter reload speed"
 	elif double_shot:
-		return "Shoot two projectiles at once"
+		return "Shoot an additional projectile"
 	elif explosive_shot:
 		return "Bullets explode upon impact"
 	elif reload_halved:

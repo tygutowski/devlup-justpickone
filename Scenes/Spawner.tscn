@@ -65,6 +65,8 @@ _data = {
 }
 
 [node name="Spawner" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_ctpv1")
 contact_damage = 5
 health = 75
@@ -117,5 +119,7 @@ hue_variation_max = 1.0
 libraries = {
 "": SubResource("AnimationLibrary_j148e")
 }
+
+[node name="NavigationAgent2d" type="NavigationAgent2D" parent="."]
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

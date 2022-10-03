@@ -5,14 +5,12 @@ extends Enemy
 @onready var kamikazeenemy = preload("res://Scenes/KamikazeEnemy.tscn")
 
 var spawn_count: int = 5
-var timer_between_spawn
+var timer_between_spawn = randi_range(0, 600)
 var time_between_spawn = 0
 
 func _ready():
-	$CollisionShape2d.disabled = false
-	$Hitbox/CollisionShape2d.disabled = false
-	health = 10
-	timer_between_spawn = randi_range(0, 600)
+	super._ready()
+	health = 20
 
 func _physics_process(_delta: float) -> void:
 	time_between_spawn += 1

@@ -8,12 +8,12 @@ var pos = Vector2(3,3)
 var off = Vector2(0,0)
 var size = 30
 var M = []
-@onready var boss_scene = load("res://Scenes/Boss.tscn")
-@onready var player_scene = load("res://Scenes/Player.tscn")
-@onready var chaser_scene = load("res://Scenes/ChaserEnemy.tscn")
-@onready var boomer_scene = load("res://Scenes/KamikazeEnemy.tscn")
-@onready var spawner_scene = load("res://Scenes/Spawner.tscn")
-@onready var upgrade_scene = load("res://Scenes/Pickup.tscn")
+@onready var boss_scene = preload("res://Scenes/Boss.tscn")
+@onready var player_scene = preload("res://Scenes/Player.tscn")
+@onready var chaser_scene = preload("res://Scenes/ChaserEnemy.tscn")
+@onready var boomer_scene = preload("res://Scenes/KamikazeEnemy.tscn")
+@onready var spawner_scene = preload("res://Scenes/Spawner.tscn")
+@onready var upgrade_scene = preload("res://Scenes/Pickup.tscn")
 var game_started = false
 
 # Called when the node enters the scene tree for the first time.
@@ -24,9 +24,11 @@ func _ready():
 	stretch()
 	auto_tile()
 #	print(sum(M))
-	spawn_enemies(0)
-	spawn_upgrade()
 	spawn_player()
+	spawn_enemies(1 + 2 * LevelGenerator.level)
+	spawn_upgrade(2 * LevelGenerator.level)
+	spawn_boss()
+	spawn_stairs()
 	
 func get_open_map_point():
 	var s = find_random_n(M, 2)
@@ -190,8 +192,10 @@ func spawn_boss():
 	add_child(boss_instance)
 
 func spawn_stairs():
+	var rand_x = randi_range(25, 850)
+	var rand_y = randi_range(25, 850)
 	var stair_instance = load("res://Scenes/Stairs.tscn").instantiate()
-	stair_instance.global_position = Vector2(870, 870)
+	stair_instance.global_position = Vector2(rand_x, rand_y)
 	add_child(stair_instance)
 
 func move_player():
@@ -199,16 +203,15 @@ func move_player():
 	var rand_y = randi_range(25, 850)
 	get_node("Player").global_position = Vector2(rand_x, rand_y)
 
-func spawn_upgrade():
-	var upgrade_instance = upgrade_scene.instantiate()
-	upgrade_instance.global_position = Vector2(0, 20)
-	add_child(upgrade_instance)
-	var upgrade_instance2 = upgrade_scene.instantiate()
-	upgrade_instance2.global_position = Vector2(20, 0)
-	add_child(upgrade_instance2)
+func spawn_upgrade(num):
+	for i in range(num):
+		var rand_x = randi_range(25, 850)
+		var rand_y = randi_range(25, 850)
+		var upgrade_instance = upgrade_scene.instantiate()
+		upgrade_instance.global_position = Vector2(rand_x, rand_y)
+		add_child(upgrade_instance)
+	
 func spawn_enemies(num):
-	if num == 0:
-		num = 3 * randi_range(1, 2 * LevelGenerator.level)
 	for i in range(num):
 		var enemy_spawn = randi_range(0,2)
 		var rand_x = randi_range(25, 850)
@@ -228,18 +231,11 @@ func spawn_enemies(num):
 
 func spawn_player():
 	var player_instance = player_scene.instantiate()
-	player_instance.global_position = Vector2(0, 0)
+	player_instance.global_position = Vector2(5, 5)
 	add_child(player_instance)
 
 func check_any_enemies(): # ignored last enemy that hasnt freed yet
-	print("Checking if there's any enemies left!")
-	var enemies_left = 1
-	for node in get_children():
-		if node.is_in_group("enemy"):
-			enemies_left += 1
-	if enemies_left >=1:
-		spawn_boss()
-
+	pass
 
 func do_noise(s):
 	$TileMap.clear()

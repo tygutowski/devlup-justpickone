@@ -6,14 +6,17 @@ extends Enemy
 @export var delay_before_explosion := 0.6
 var is_target_in_range := false # Using this to track whether player has escaped the AoE
 
-
-func _ready() -> void:
-	walk_speed = 40
+func _ready():
 	$CollisionShape2d.disabled = false
 	$Hitbox/CollisionShape2d.disabled = false
+	walk_speed = 40
+	_update_pathfinding()
+	
 	$ExplosionTimer.wait_time = delay_before_explosion
 	$Explosion.visible = false
 	$Explosion2.visible = false
+	#super._ready()
+	health = 35
 
 func _on_body_entered_explosion_radius(body):
 	if body is Player == false:

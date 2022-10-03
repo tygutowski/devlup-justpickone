@@ -8,7 +8,6 @@ var amplitude := 0
 
 @onready var tween := create_tween()
 
-
 func small_shake() -> void:
 	_start(0.1, 12, 2)
 
@@ -18,9 +17,7 @@ func medium_shake() -> void:
 func _start(p_duration := 0.2, p_frequency := 15, p_amplitude := 16):
 	if is_shaking:
 		_on_duration_timeout()
-	
 	is_shaking = true
-	
 	amplitude = p_amplitude
 
 	$Duration.wait_time = p_duration

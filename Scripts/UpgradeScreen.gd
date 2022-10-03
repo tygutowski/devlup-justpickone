@@ -39,17 +39,17 @@ func generate_new_item():
 			upgr.ammo_up_three = true
 
 	return upgr
+
 func _ready():
 	item1 = generate_new_item()
 	item2 = generate_new_item()
 	item3 = generate_new_item()
-	$PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3/Label.text = item1.get_name()
-	$PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer4/Label.text = item2.get_name()
-	$PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer5/Label.text = item3.get_name()
-	
-	$PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3/MarginContainer/TextureRect.texture = load(item1.get_sprite())
-	$PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer4/MarginContainer2/TextureRect.texture = load(item2.get_sprite())
-	$PanelContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer5/MarginContainer2/TextureRect.texture = load(item3.get_sprite())
+	$CenterContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3/Label.text = item1.get_name()
+	$CenterContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer4/Label.text = item2.get_name()
+	$CenterContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer5/Label.text = item3.get_name()
+	$CenterContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3/PanelContainer/TextureRect.texture = load(item1.get_sprite())
+	$CenterContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer4/PanelContainer/TextureRect.texture = load(item2.get_sprite())
+	$CenterContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer5/PanelContainer/TextureRect.texture = load(item3.get_sprite())
 
 	
 func pick_item(item_slot):

@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://d134cx6wfy845" path="res://Sound/SFX/power_up_2.wav" id="3_76sf3"]
 [ext_resource type="AudioStream" uid="uid://d0p1f1e5cm4ex" path="res://Sound/SFX/gun_jammed.wav" id="3_wisgf"]
 [ext_resource type="PackedScene" uid="uid://88hotf8qfmj1" path="res://ui/PauseMenu.tscn" id="5_x4it2"]
-[ext_resource type="PackedScene" path="res://ui/hud.tscn" id="6_rv4p1"]
+[ext_resource type="PackedScene" uid="uid://hsd353l533o7" path="res://ui/hud.tscn" id="6_rv4p1"]
 [ext_resource type="PackedScene" uid="uid://ch4sodhjvtqn7" path="res://Scenes/ShakeCamera2D.tscn" id="8_mcbuy"]
 [ext_resource type="AudioStream" uid="uid://cpe5t4osip453" path="res://Sound/music/level_theme.wav" id="10_82uko"]
 [ext_resource type="AudioStream" uid="uid://btsb32v5ap8ms" path="res://Sound/music/boss_theme.wav" id="11_w6eel"]
@@ -302,6 +302,8 @@ node_connections = [&"output", 0, &"idle_or_walking", &"direction_idle", 0, &"id
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_6icgm")
 
 [node name="Sprite2d" type="Sprite2D" parent="."]
@@ -349,6 +351,7 @@ stream = ExtResource("2_i4twg")
 
 [node name="ShakeCamera2D" parent="." instance=ExtResource("8_mcbuy")]
 current = true
+zoom = Vector2(2, 2)
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_82uko")

@@ -2,7 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 @export var damage := 10
-var speed = 100.0
+var speed = 125.0
 var is_fighting_boss = false
 @export var health := 100 : set = update_health
 func update_health(value: int):
@@ -127,9 +127,10 @@ func _physics_process(_delta):
 				currently_reloading = true
 			
 			if Input.is_action_just_pressed("new_map"):
-				LevelGenerator.generate_level()
-
+				LevelGenerator.level += 2
+				get_tree().change_scene_to_file("res://Scenes/Game.tscn")
 			shot_time += 1
+
 func set_animation(animation_name: String, value: int):
 	if animation_name == "direction":
 		get_node("AnimationTree").set("parameters/direction_walking/current", value)
@@ -139,7 +140,6 @@ func set_animation(animation_name: String, value: int):
 
 func shoot():
 	# make a new shot
-
 	var pos = global_position
 	for x in range(shot_count):
 		var hit_list = []
@@ -161,6 +161,8 @@ func shoot():
 			raycast.force_raycast_update()
 			ray.get_node("Line2d").add_point(raycast.global_position)
 			pos = raycast.get_collision_point()
+			if pos == Vector2.ZERO:
+				pos = raycast.target_position
 			ray.get_node("Line2d").add_point(pos)
 			$FX/ShootFX.play()
 			

@@ -24,7 +24,9 @@ var bullet_bounces : int = 1
 func _ready():
 	$CollisionShape2d.disabled = false
 	$Hitbox/CollisionShape2d.disabled = false
-	super._ready()
+	walk_speed = 40
+	_update_pathfinding()
+	
 	abilities = $Abilities.get_children()
 	#activate_boss()
 
@@ -92,7 +94,7 @@ func _on_what_next_timer_timeout():
 	# Whether to shoot or keep chasing the player
 	currentState = States.Attacking if randi_range(0, 1) == 1 else States.Walking
 
-func spawn_stairs():
-	var stairs = load("res://Scenes/Stairs.tscn").instantiate()
-	stairs.global_position = global_position
-	get_tree().get_first_node_in_group("game").add_child(stairs)
+func spawn_upgrade():
+	var upgrade = load("res://Scenes/Pickup.tscn").instantiate()
+	upgrade.global_position = global_position
+	get_tree().get_first_node_in_group("game").add_child(upgrade)

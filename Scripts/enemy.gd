@@ -9,14 +9,15 @@ extends CharacterBody2D
 @onready var default_speed : int = walk_speed # DO NOT MODIFY THIS VARIABLE. This in case something movies walk_speed. 
 
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
-@onready var nav_agent: NavigationAgent2D = $NavigationAgent2d
+@onready var nav_agent: NavigationAgent2D = get_node("NavigationAgent2d")
 
 var is_chasing_player := true
 
 func _ready():
-	walk_speed = 40
 	$CollisionShape2d.disabled = false
 	$Hitbox/CollisionShape2d.disabled = false
+	walk_speed = 40
+	
 	_update_pathfinding()
 
 func _physics_process(delta):
@@ -43,13 +44,11 @@ func takeDamage(damage_amount : int = 25):
 
 func _on_hitbox_body_entered(body):
 	if body.is_in_group("tilemap"):
-		print("IN WALL")
 		get_tree().get_first_node_in_group("game").spawn_enemies(1)
 		queue_free()
 		
 	if body.is_in_group("player") == false or body.has_method("takeDamage") == false:
 		return
-	print("hit")
 	body.takeDamage(contact_damage)
 	
 	# Disabling enemy movement momenetarily, so they don't pile up on player.
