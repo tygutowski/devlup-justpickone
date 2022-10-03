@@ -5,8 +5,8 @@ extends Node2D
 
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 var pos = Vector2(3,3)
-var off = Vector2(3,3)
-var size = 25
+var off = Vector2(0,0)
+var size = 30
 var M = []
 @onready var boss_scene = load("res://Scenes/Boss.tscn")
 @onready var player_scene = load("res://Scenes/Player.tscn")
@@ -189,18 +189,23 @@ func spawn_boss():
 	boss_instance.global_position = Vector2(rand_x, rand_y)
 	add_child(boss_instance)
 
+func spawn_stairs():
+	var stair_instance = load("res://Scenes/Stairs.tscn").instantiate()
+	stair_instance.global_position = Vector2(870, 870)
+	add_child(stair_instance)
+
 func move_player():
 	var rand_x = randi_range(25, 850)
 	var rand_y = randi_range(25, 850)
 	get_node("Player").global_position = Vector2(rand_x, rand_y)
 
 func spawn_upgrade():
-	for i in range(1):
-		var rand_x = randi_range(25, 850)
-		var rand_y = randi_range(25, 850)
-		var upgrade_instance = upgrade_scene.instantiate()
-		upgrade_instance.global_position = Vector2(rand_x, rand_y)
-		add_child(upgrade_instance)
+	var upgrade_instance = upgrade_scene.instantiate()
+	upgrade_instance.global_position = Vector2(0, 20)
+	add_child(upgrade_instance)
+	var upgrade_instance2 = upgrade_scene.instantiate()
+	upgrade_instance2.global_position = Vector2(20, 0)
+	add_child(upgrade_instance2)
 func spawn_enemies(num):
 	if num == 0:
 		num = 3 * randi_range(1, 2 * LevelGenerator.level)
@@ -222,10 +227,8 @@ func spawn_enemies(num):
 			add_child(spawner_instance)
 
 func spawn_player():
-	var rand_x = randi_range(25, 850)
-	var rand_y = randi_range(25, 850)
 	var player_instance = player_scene.instantiate()
-	player_instance.global_position = get_open_map_point()
+	player_instance.global_position = Vector2(0, 0)
 	add_child(player_instance)
 
 func check_any_enemies(): # ignored last enemy that hasnt freed yet
@@ -271,66 +274,66 @@ func get_3x3(x,y):
 
 func selector(i, j, t):
 	var changes = []
-	var e = [Vector2i(-1,-1), Vector2i(6,0)]
+	var e = Vector2i(6,0)
 	# lt, lm, lb, mt, mm, mb, rt, rm, rb
 	# corners
-	if t[0] in e and t[1] in e and t[2] in e and t[3] in e and t[4] in e and t[5] in e and t[6] in e and t[7] in e and t[8] not in e:
+	if t[0]==e and t[1]==e and t[2]==e and t[3]==e and t[4]==e and t[5]==e and t[6]==e and t[7]==e and t[8]!=e:
 		changes += [[i, j, Vector2i(0,0)]]
-	if t[0] not in e and t[1] in e and t[2] in e and t[3] in e and t[4] in e and t[5] in e and t[6] in e and t[7] in e and t[8] in e:
+	if t[0]!=e and t[1]==e and t[2]==e and t[3]==e and t[4]==e and t[5]==e and t[6]==e and t[7]==e and t[8]==e:
 		changes += [[i, j, Vector2i(3,3)]]
-	if t[0] in e and t[1] in e and t[2] not in e and t[3] in e and t[4] in e and t[5] in e and t[6] in e and t[7] in e and t[8] in e:
+	if t[0]==e and t[1]==e and t[2]!=e and t[3]==e and t[4]==e and t[5]==e and t[6]==e and t[7]==e and t[8]==e:
 		changes += [[i, j, Vector2i(3,0)]]
-	if t[0] in e and t[1] in e and t[2] in e and t[3] in e and t[4] in e and t[5] in e and t[6] not in e and t[7] in e and t[8] in e:
+	if t[0]==e and t[1]==e and t[2]==e and t[3]==e and t[4]==e and t[5]==e and t[6]!=e and t[7]==e and t[8]==e:
 		changes += [[i, j, Vector2i(0,3)]]
 #		set_cell(i, j, Vector2(0,0), Vector2(0,3) )
 
 	# lt0, lm, lb2, mt, mm4, mb, rt6, rm, rb8
 	# flat wall
-	var a = (t[0] not in e and t[1] not in e and t[2] not in e and t[3] in e and t[4] in e and t[5] in e and t[6] in e and t[7] in e and t[8] in e)
-	var b = (t[0] in e and t[1] not in e and t[2] not in e and t[3] in e and t[4] in e and t[5] in e and t[6] in e and t[7] in e and t[8] in e)
-	var c = (t[0] not in e and t[1] not in e and t[2] in e and t[3] in e and t[4] in e and t[5] in e and t[6] in e and t[7] in e and t[8] in e)
+	var a = (t[0]!=e and t[1]!=e and t[2]!=e and t[3]==e and t[4]==e and t[5]==e and t[6]==e and t[7]==e and t[8]==e)
+	var b = (t[0]==e and t[1]!=e and t[2]!=e and t[3]==e and t[4]==e and t[5]==e and t[6]==e and t[7]==e and t[8]==e)
+	var c = (t[0]!=e and t[1]!=e and t[2]==e and t[3]==e and t[4]==e and t[5]==e and t[6]==e and t[7]==e and t[8]==e)
 	if a or b or c:
 		changes += [[i, j, Vector2i(3,1)]]
-	a = (t[0] not in e and t[1] in e and t[2] in e and t[3] not in e and t[4] in e and t[5] in e and t[6] not in e and t[7] in e and t[8] in e)
-	b = (t[0] in e and t[1] in e and t[2] in e and t[3] not in e and t[4] in e and t[5] in e and t[6] not in e and t[7] in e and t[8] in e)
-	c = (t[0] not in e and t[1] in e and t[2] in e and t[3] not in e and t[4] in e and t[5] in e and t[6] in e and t[7] in e and t[8] in e)
+	a = (t[0]!=e and t[1]==e and t[2]==e and t[3]!=e and t[4]==e and t[5]==e and t[6]!=e and t[7]==e and t[8]==e)
+	b = (t[0]==e and t[1]==e and t[2]==e and t[3]!=e and t[4]==e and t[5]==e and t[6]!=e and t[7]==e and t[8]==e)
+	c = (t[0]!=e and t[1]==e and t[2]==e and t[3]!=e and t[4]==e and t[5]==e and t[6]==e and t[7]==e and t[8]==e)
 	if a or b or c:
 		changes += [[i, j, Vector2i(1,3)]]
-	a = t[0] in e and t[1] in e and t[2] not in e and t[3] in e and t[4] in e and t[5] not in e and t[6] in e and t[7] in e and t[8] not in e
-	b = t[0] in e and t[1] in e and t[2] in e and t[3] in e and t[4] in e and t[5] not in e and t[6] in e and t[7] in e and t[8] not in e
-	c = t[0] in e and t[1] in e and t[2] not in e and t[3] in e and t[4] in e and t[5] not in e and t[6] in e and t[7] in e and t[8] in e
+	a = t[0]==e and t[1]==e and t[2]!=e and t[3]==e and t[4]==e and t[5]!=e and t[6]==e and t[7]==e and t[8]!=e
+	b = t[0]==e and t[1]==e and t[2]==e and t[3]==e and t[4]==e and t[5]!=e and t[6]==e and t[7]==e and t[8]!=e
+	c = t[0]==e and t[1]==e and t[2]!=e and t[3]==e and t[4]==e and t[5]!=e and t[6]==e and t[7]==e and t[8]==e
 	if a or b or c:
 		changes += [[i, j, Vector2i(1,0)]]
-	a = t[0] in e and t[1] in e and t[2] in e and t[3] in e and t[4] in e and t[5] in e and t[6] not in e and t[7] not in e and t[8] not in e
-	b = t[0] in e and t[1] in e and t[2] in e and t[3] in e and t[4] in e and t[5] in e and t[6] in e and t[7] not in e and t[8] not in e
-	c = t[0] in e and t[1] in e and t[2] in e and t[3] in e and t[4] in e and t[5] in e and t[6] not in e and t[7] not in e and t[8] in e
+	a = t[0]==e and t[1]==e and t[2]==e and t[3]==e and t[4]==e and t[5]==e and t[6]!=e and t[7]!=e and t[8]!=e
+	b = t[0]==e and t[1]==e and t[2]==e and t[3]==e and t[4]==e and t[5]==e and t[6]==e and t[7]!=e and t[8]!=e
+	c = t[0]==e and t[1]==e and t[2]==e and t[3]==e and t[4]==e and t[5]==e and t[6]!=e and t[7]!=e and t[8]==e
 	if a or b or c:
 		changes += [[i, j, Vector2i(0,1)]]
 
 	# lt0, lm, lb2, mt, mm4, mb, rt6, rm, rb8
 	# inside corners
-	a = t[1] not in e and t[3] not in e and t[4] in e
+	a = t[1]!=e and t[3]!=e and t[4]==e
 	if a: #top left
 		changes += [[i, j, Vector2i(4,0)]]
-	a = t[3] not in e and t[4] in e and t[7] not in e
+	a = t[3]!=e and t[4]==e and t[7]!=e
 	if a: #top right
 		changes += [[i, j, Vector2i(5,0)]]
-	a = t[5] not in e and t[4] in e and t[7] not in e
+	a = t[5]!=e and t[4]==e and t[7]!=e
 	if a: #bottom right
 		changes += [[i, j, Vector2i(5,1)]]
-	a = t[1] not in e and t[5] not in e and t[4] in e
+	a = t[1]!=e and t[5]!=e and t[4]==e
 	if a: #bottom left
 		changes += [[i, j, Vector2i(4,1)]]
 
 	# lt0, lm, lb2, mt, mm4, mb, rt6, rm, rb8
 	# shadowed walls
-	a = t[1] in e and t[3] not in e and t[4] not in e
+	a = t[1]==e and t[3]!=e and t[4]!=e
 	if a: #left shadow
 		changes += [[i, j, Vector2i(1,2)]]
-	a = t[1] in e and t[3] in e and t[4] not in e
+	a = t[1]==e and t[3]==e and t[4]!=e
 	if a: #corner shadow
 		changes += [[i, j, Vector2i(1,1)]]
-	a = t[1] not in e and t[3] in e and t[4] not in e
+	a = t[1]!=e and t[3]==e and t[4]!=e
 	if a: #top shadow
 		changes += [[i, j, Vector2i(2,1)]]
 

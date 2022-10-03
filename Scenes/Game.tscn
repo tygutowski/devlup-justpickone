@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://on0yrbon6kd5"]
+[gd_scene load_steps=12 format=3 uid="uid://on0yrbon6kd5"]
 
 [ext_resource type="Texture2D" uid="uid://bu570sksm34w1" path="res://Sprites/tilemap.png" id="1_qon0y"]
 [ext_resource type="Script" path="res://Scripts/Game.gd" id="1_xrjd3"]
@@ -116,6 +116,7 @@ texture = ExtResource("1_qon0y")
 6:0/0 = 0
 6:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 6:0/0/physics_layer_0/angular_velocity = 0.0
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSet" id="TileSet_ifjeh"]
 physics_layer_0/collision_layer = 1
@@ -127,12 +128,9 @@ pattern_3 = SubResource("TileMapPattern_iox1c")
 pattern_4 = SubResource("TileMapPattern_iekp1")
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_581tb"]
-vertices = PackedVector2Array(859, 30, 860, 860, 30, 859, 31, 28)
+vertices = PackedVector2Array(843, 56, 841, 835, 53, 830, 48, 53)
 polygons = [PackedInt32Array(0, 1, 2, 3)]
-outlines = [PackedVector2Array(31, 28, 30, 859, 860, 860, 859, 30)]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jf2un"]
-size = Vector2(832, 827)
+outlines = [PackedVector2Array(48, 53, 53, 830, 841, 835, 843, 56)]
 
 [node name="Game" type="Node2D" groups=["game"]]
 script = ExtResource("1_xrjd3")
@@ -148,9 +146,3 @@ navpoly = SubResource("NavigationPolygon_581tb")
 
 [node name="Pickup" parent="." instance=ExtResource("4_572cu")]
 position = Vector2(162, 340)
-
-[node name="GenerationArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2d" type="CollisionShape2D" parent="GenerationArea"]
-position = Vector2(445, 444.5)
-shape = SubResource("RectangleShape2D_jf2un")
