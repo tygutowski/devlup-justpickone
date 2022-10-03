@@ -1,4 +1,4 @@
-**Trigger Fingers
+## Trigger Fingers
 
 This game was made in 48 hours for the DevLUp gamejam!
 
@@ -6,7 +6,8 @@ tygutowski - Developer and artist
 randompast - Developer (technical side 🥴)
 Joph - Developer and audio design
 
-*Controls:
+
+# Controls:
 
 WASD : Movement
 
