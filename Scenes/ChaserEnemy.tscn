@@ -6,9 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://boqnqb00nd2bn" path="res://Sprites/enemy.png" id="2_xmss7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhelc"]
+size = Vector2(12, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_721xa"]
-size = Vector2(18, 18)
+size = Vector2(14, 20)
 
 [sub_resource type="Animation" id="Animation_chwq6"]
 resource_name = "died"
@@ -75,6 +76,30 @@ tracks/4/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2d:self_modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Sprite2d:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.25, 1.25)]
+}
 
 [sub_resource type="Animation" id="Animation_e4d8t"]
 resource_name = "hurt"
@@ -107,6 +132,7 @@ walk_speed = 0
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="." groups=["enemy"]]
 shape = SubResource("RectangleShape2D_hhelc")
+disabled = true
 
 [node name="Sprite2d" type="Sprite2D" parent="."]
 texture_filter = 1

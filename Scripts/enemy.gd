@@ -32,7 +32,6 @@ func _physics_process(delta):
  
 
 func takeDamage(damage_amount : int = 25) -> void:
-
 	health -= damage_amount
 	if health <= 0:
 		health = 0
@@ -43,12 +42,17 @@ func takeDamage(damage_amount : int = 25) -> void:
 	$AnimationPlayer.play("hurt")
 
 func _on_hitbox_body_entered(body):
+	# If spawned inside a tilemap and is thus stuck.
 	if body.is_in_group("tilemap"):
-		get_tree().get_first_node_in_group("game").spawn_enemies(1)
-		queue_free()
-		
-	if body.is_in_group("player") == false or body.has_method("takeDamage") == false:
+		var new_position := Vector2i(
+			randi_range(25, 850),
+			randi_range(25, 850),
+		)
+		global_position = new_position
+	
+	if body.has_method("takeDamage") == false:
 		return
+	
 	body.takeDamage(contact_damage)
 	
 	# Disabling enemy movement momenetarily, so they don't pile up on player.
