@@ -6,7 +6,7 @@ tygutowski - Developer and artist
 
 randompast - Developer (technical side 🥴)
 
-Joph - Developer and audio design
+JooJASL - Developer and audio design
 
 
 ## Controls:
