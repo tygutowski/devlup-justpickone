@@ -100,7 +100,7 @@ _data = {
 }
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
-collision_layer = 3
+collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_ot23h")
 walk_speed = 0
@@ -113,6 +113,9 @@ texture_filter = 1
 texture = ExtResource("2_xmss7")
 
 [node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_721xa")
@@ -136,6 +139,8 @@ stream = ExtResource("2_4exn3")
 
 [node name="DiedFX" type="AudioStreamPlayer2D" parent="FX"]
 stream = ExtResource("2_x26kr")
+
+[node name="VisibleOnScreenEnabler2d" type="VisibleOnScreenEnabler2D" parent="."]
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="FindPlayerTimer" to="." method="_update_pathfinding"]

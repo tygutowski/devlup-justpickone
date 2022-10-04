@@ -2,49 +2,49 @@ class_name Player
 extends CharacterBody2D
 
 @export var damage := 10
-var speed = 125.0
-var is_fighting_boss = false
+var speed := 125.0
+var is_fighting_boss := false
 @export var health := 100 : set = update_health
 func update_health(value: int):
 	health = value
 	($HUD/UI/ProgressBar as ProgressBar).value = health
 
-var shot_count = 1
-var pierce_count = 1
-@onready var max_health = health
+var shot_count := 1
+var pierce_count := 1
+@onready var max_health := health
 
 @export var SPEED = 100.0
 
-var shot = preload("res://Scenes/Shot.tscn")
-var walking_direction = Vector2.ZERO
-var facing_direction = Vector2.ZERO
+@onready var shot := preload("res://Scenes/Shot.tscn")
+var walking_direction := Vector2.ZERO
+var facing_direction := Vector2.ZERO
 
-var reload_timer = 60
-var reload_time = 0
+var reload_timer := 60
+var reload_time := 0
 
 var vulnerable := true # Whether Player cana take damage or not.
 
-@onready var game = get_tree().get_first_node_in_group("game")
+@onready var game := get_tree().get_first_node_in_group("game")
 
 
-var ammo_max = 6
-var ammo = ammo_max : set = update_ammo
+var ammo_max := 6
+var ammo := ammo_max : set = update_ammo
 func update_ammo(value : int):
 	ammo = value
 	$HUD/UI/MagSize.text = "%s/%s" % [ammo, ammo_max]
 
-var currently_reloading = false
+var currently_reloading := false
 
-var shot_timer = 6
-var shot_time = shot_timer
+var shot_timer := 6
+var shot_time := shot_timer
 
-var in_menu = false
+var in_menu := false
 
 
 
 func generate_upgrades():
 	for i in range(4):
-		var random_number = randi_range(1,9)
+		var random_number := randi_range(1,9)
 		var dir = load("res://Resources/Upgrade.tres")
 		var upgr = dir.duplicate()
 		match random_number:
@@ -140,15 +140,15 @@ func set_animation(animation_name: String, value: int):
 
 func shoot():
 	# make a new shot
-	var pos = global_position
+	var pos := global_position
 	for x in range(shot_count):
-		var hit_list = []
-		var discrepancy = Vector2.ZERO
+		var hit_list := []
+		var discrepancy := Vector2.ZERO
 		if x != 0:
 			discrepancy = Vector2(randi_range(0,25), randi_range(0,25))
 		for i in range(pierce_count):
-			var ray = shot.instantiate()
-			var raycast: RayCast2D = ray.get_node("RayCast2d")
+			var ray : Node2D = shot.instantiate()
+			var raycast : RayCast2D = ray.get_node("RayCast2d")
 			for object in hit_list:
 				raycast.add_exception(object)
 			game.add_child(ray)
@@ -166,7 +166,7 @@ func shoot():
 			ray.get_node("Line2d").add_point(pos)
 			$FX/ShootFX.play()
 			
-			var hitNode = raycast.get_collider()
+			var hitNode := raycast.get_collider()
 			if hitNode != null:
 				if hitNode.is_in_group("enemy") || hitNode is Enemy:
 					hitNode.takeDamage(damage)
@@ -174,24 +174,24 @@ func shoot():
 			
 			for u in LevelGenerator.upgrades:
 				if u.explosive_shot:
-					var expl = load("res://Scenes/Explosion.tscn").instantiate()
+					var expl : Node2D = load("res://Scenes/Explosion.tscn").instantiate()
 					expl.global_position = ray.get_node("RayCast2d").get_collision_point()
 					game.add_child(expl)
 func upgrade():
 	in_menu = true
-	var upgrade_menu = load("res://Scenes/UpgradeScreen.tscn").instantiate()
+	var upgrade_menu : CanvasLayer = load("res://Scenes/UpgradeScreen.tscn").instantiate()
 	add_child(upgrade_menu)
 
 func exit_menu():
 	in_menu = false
 	shot_time = 0
 
-func takeDamage(damage_amount : int):
+func takeDamage(damage_amount : int) -> void:
 	if vulnerable == false:
 		return
 	
 	health -= damage_amount
-	print("Player health: ", health)
+	#print("Player health: ", health)
 	if health <= 0:
 		health = 0
 		$AnimationPlayer.play("died")

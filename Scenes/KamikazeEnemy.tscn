@@ -350,7 +350,7 @@ animations = [{
 }]
 
 [node name="KamizekazeEnemy" type="CharacterBody2D" groups=["enemy"]]
-collision_layer = 3
+collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_57fow")
 
@@ -363,6 +363,9 @@ texture = ExtResource("2_pw7o5")
 hframes = 2
 
 [node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_721xa")
@@ -391,6 +394,9 @@ stream = ExtResource("2_x26kr")
 stream = ExtResource("5_77ekl")
 
 [node name="ExplosionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 6
+monitorable = false
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="ExplosionArea"]
 shape = SubResource("CircleShape2D_p7grp")
@@ -409,6 +415,8 @@ texture_filter = 1
 scale = Vector2(2, 2)
 frames = SubResource("SpriteFrames_go8a7")
 animation = &"exploded"
+
+[node name="VisibleOnScreenEnabler2d" type="VisibleOnScreenEnabler2D" parent="."]
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="FindPlayerTimer" to="." method="_update_pathfinding"]

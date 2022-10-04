@@ -302,8 +302,8 @@ node_connections = [&"output", 0, &"idle_or_walking", &"direction_idle", 0, &"id
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
-collision_layer = 3
-collision_mask = 3
+collision_layer = 2
+collision_mask = 13
 script = ExtResource("1_6icgm")
 
 [node name="Sprite2d" type="Sprite2D" parent="."]

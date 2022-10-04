@@ -15,7 +15,7 @@ enum Actions {
 	SpawnEnemies,
 }
 
-@onready var projectile = preload("res://Scenes/Projectile.tscn")
+@onready var projectile := preload("res://Scenes/Projectile.tscn")
 var currentState := States.Idle
 
 var abilities : Array
@@ -34,7 +34,7 @@ func _physics_process(delta):
 	if currentState == States.Idle:
 		return
 	
-	#print("Current state: ", currentState)
+	##print("Current state: ", currentState)
 	if currentState == States.Attacking:
 		is_chasing_player = false
 		perform_attack() # Shoot bullet at player
@@ -45,7 +45,7 @@ func _physics_process(delta):
 	super._physics_process(delta)
 
 func perform_attack():
-	print("=== PERFORMING ATTACK ===")
+	#print("=== PERFORMING ATTACK ===")
 	
 	var projectile_instance : Projectile = projectile.instantiate()
 	
@@ -62,14 +62,14 @@ func perform_attack():
 
 func _on_use_ability_timer_timeout():
 	if abilities.size() == 0:
-		print("NO ABILITIES ASSIGNED TO BOSS")
+		#print("NO ABILITIES ASSIGNED TO BOSS")
 		return
 	
-	print("USING ABILITY")
+	#print("USING ABILITY")
 	var numAbilities := abilities.size()
 	var i := randi_range(0, numAbilities - 1)
-	var abilityToUse : BossAbility = abilities[i]
-	abilityToUse.trigger_ability(self)
+	var abilityToUse = abilities[i]
+	(abilityToUse as BossAbility).trigger_ability(self)
 
 
 func takeDamage(damage_amount : int = 25):
@@ -95,6 +95,6 @@ func _on_what_next_timer_timeout():
 	currentState = States.Attacking if randi_range(0, 1) == 1 else States.Walking
 
 func spawn_upgrade():
-	var upgrade = load("res://Scenes/Pickup.tscn").instantiate()
+	var upgrade : Area2D = load("res://Scenes/Pickup.tscn").instantiate()
 	upgrade.global_position = global_position
 	get_tree().get_first_node_in_group("game").add_child(upgrade)

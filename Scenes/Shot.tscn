@@ -2,11 +2,12 @@
 
 [ext_resource type="Script" path="res://Scripts/Shot.gd" id="1_7ttlv"]
 
-[node name="Node2d" type="Node2D"]
+[node name="Shot" type="Node2D"]
 z_index = -1
 script = ExtResource("1_7ttlv")
 
 [node name="RayCast2d" type="RayCast2D" parent="."]
+collision_mask = 5
 
 [node name="Line2d" type="Line2D" parent="."]
 width = 3.0

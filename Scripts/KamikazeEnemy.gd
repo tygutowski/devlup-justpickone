@@ -18,7 +18,7 @@ func _ready():
 	#super._ready()
 	health = 35
 
-func _on_body_entered_explosion_radius(body):
+func _on_body_entered_explosion_radius(body) -> void:
 	if body is Player == false:
 		return
 	

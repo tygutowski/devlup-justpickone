@@ -50,7 +50,7 @@ func get_sprite():
 	elif piercing_once:
 		return ("res://Sprites/Icons/piercing_once.png")
 
-func get_name():
+func get_name() -> String:
 	if speed_up:
 		return "Speed up"
 	elif reload_up:
@@ -69,3 +69,4 @@ func get_name():
 		return "Increase damage"
 	elif piercing_once:
 		return "Bullets pierce one additional enemy"
+	return ""

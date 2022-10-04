@@ -16,9 +16,9 @@ func _physics_process(_delta: float) -> void:
 	time_between_spawn += 1
 	if time_between_spawn >= timer_between_spawn:
 		$FX/SpawningFX.play()
-		($SpawningParticles as CPUParticles2D).emitting = true
+		($SpawningParticles as GPUParticles2D).emitting = true
 		spawn(randi_range(1,2))
-		print("spawning")
+		#print("spawning")
 		timer_between_spawn = randi_range(0, 600)
 		time_between_spawn = 0
 

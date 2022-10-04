@@ -1,14 +1,41 @@
-[gd_scene load_steps=11 format=3 uid="uid://c1bcg3wx5a3j3"]
+[gd_scene load_steps=15 format=3 uid="uid://c1bcg3wx5a3j3"]
 
 [ext_resource type="Script" path="res://Scripts/Spawner.gd" id="1_ctpv1"]
 [ext_resource type="Texture2D" uid="uid://v3re0mx6hcak" path="res://Sprites/Icons/exploding_kills.png" id="2_c35n6"]
 [ext_resource type="AudioStream" uid="uid://dnwxi8af410ry" path="res://Sound/SFX/spawning.wav" id="3_ssvkb"]
 [ext_resource type="AudioStream" uid="uid://bgjfrow253212" path="res://Sound/SFX/died.wav" id="4_6rrdi"]
 [ext_resource type="AudioStream" uid="uid://bred01x2lenhb" path="res://Sound/SFX/hurt1.wav" id="5_tmjfx"]
+[ext_resource type="Texture2D" uid="uid://cfx325qynwmu4" path="res://Sprites/Icons/explosive_shot.png" id="6_1jgxj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lpber"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3mcci"]
+
+[sub_resource type="Curve" id="Curve_1gp45"]
+min_value = -1.0
+_data = [Vector2(0, 0.877301), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_e41bx"]
+curve = SubResource("Curve_1gp45")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_reaw7"]
+emission_shape = 1
+emission_sphere_radius = 12.0
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 3.0
+orbit_velocity_min = 0.5
+orbit_velocity_max = 0.7
+radial_accel_max = 20.0
+scale_min = 0.1
+scale_max = 0.15
+color = Color(0.54902, 0.00392157, 0.831373, 1)
+hue_variation_min = 1.0
+hue_variation_max = 1.0
+hue_variation_curve = SubResource("CurveTexture_e41bx")
 
 [sub_resource type="Animation" id="Animation_ydsj5"]
 resource_name = "died"
@@ -65,8 +92,8 @@ _data = {
 }
 
 [node name="Spawner" type="CharacterBody2D" groups=["enemy"]]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 4
+collision_mask = 6
 script = ExtResource("1_ctpv1")
 contact_damage = 5
 health = 75
@@ -79,6 +106,9 @@ shape = SubResource("CircleShape2D_lpber")
 texture = ExtResource("2_c35n6")
 
 [node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_3mcci")
@@ -94,26 +124,15 @@ stream = ExtResource("4_6rrdi")
 [node name="Hurt" type="AudioStreamPlayer2D" parent="FX"]
 stream = ExtResource("5_tmjfx")
 
-[node name="SpawningParticles" type="CPUParticles2D" parent="."]
+[node name="SpawningParticles" type="GPUParticles2D" parent="."]
 emitting = false
-amount = 9
+amount = 12
 lifetime = 2.0
 one_shot = true
 explosiveness = 1.0
-emission_shape = 1
-emission_sphere_radius = 20.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 10.0
-initial_velocity_max = 20.0
-angular_velocity_max = 160.0
-orbit_velocity_max = 1.5
-damping_min = 5.55
-damping_max = 5.55
-scale_amount_min = 1.25
-scale_amount_max = 1.5
-color = Color(0.415686, 0.360784, 0.964706, 1)
-hue_variation_min = 1.0
-hue_variation_max = 1.0
+randomness = 0.4
+process_material = SubResource("ParticleProcessMaterial_reaw7")
+texture = ExtResource("6_1jgxj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

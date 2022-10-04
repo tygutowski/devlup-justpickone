@@ -17,6 +17,7 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
 offset_left = 451.0
 offset_top = 321.0
 offset_right = 1469.0
@@ -27,22 +28,26 @@ theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
 offset_left = 5.0
 offset_top = 5.0
 offset_right = 1013.0
 offset_bottom = 432.0
 
 [node name="PanelContainer3" type="PanelContainer" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
 offset_right = 1008.0
 offset_bottom = 166.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_48kwd")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer/PanelContainer3"]
+layout_mode = 2
 offset_right = 1008.0
 offset_bottom = 166.0
 alignment = 1
 
 [node name="Label" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer/PanelContainer3/HBoxContainer"]
+layout_mode = 2
 offset_right = 1008.0
 offset_bottom = 166.0
 theme_override_colors/font_color = Color(0.647059, 0.8, 0.937255, 1)
@@ -53,33 +58,39 @@ Just pick one!"
 horizontal_alignment = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
 offset_top = 170.0
 offset_right = 1008.0
 offset_bottom = 427.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_48kwd")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
 offset_right = 1008.0
 offset_bottom = 257.0
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
 offset_right = 1008.0
 offset_bottom = 83.0
 theme_override_constants/separation = 10
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3"]
 custom_minimum_size = Vector2i(80, 0)
+layout_mode = 2
 offset_right = 80.0
 offset_bottom = 83.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_yf768")
 
 [node name="TextureRect" type="TextureRect" parent="CenterContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3/PanelContainer"]
 texture_filter = 1
+layout_mode = 2
 offset_right = 80.0
 offset_bottom = 83.0
 texture = ExtResource("3_qhmug")
 
 [node name="Label" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
 offset_left = 90.0
 offset_right = 414.0
 offset_bottom = 83.0
@@ -89,6 +100,7 @@ theme_override_font_sizes/font_size = 60
 text = "upgrade_1"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
 offset_top = 87.0
 offset_right = 1008.0
 offset_bottom = 170.0
@@ -96,17 +108,20 @@ theme_override_constants/separation = 10
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer4"]
 custom_minimum_size = Vector2i(80, 0)
+layout_mode = 2
 offset_right = 80.0
 offset_bottom = 83.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_yf768")
 
 [node name="TextureRect" type="TextureRect" parent="CenterContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer4/PanelContainer"]
 texture_filter = 1
+layout_mode = 2
 offset_right = 80.0
 offset_bottom = 83.0
 texture = ExtResource("3_qhmug")
 
 [node name="Label" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
 offset_left = 90.0
 offset_right = 414.0
 offset_bottom = 83.0
@@ -116,6 +131,7 @@ theme_override_font_sizes/font_size = 60
 text = "upgrade_2"
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
 offset_top = 174.0
 offset_right = 1008.0
 offset_bottom = 257.0
@@ -123,17 +139,20 @@ theme_override_constants/separation = 10
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer5"]
 custom_minimum_size = Vector2i(80, 0)
+layout_mode = 2
 offset_right = 80.0
 offset_bottom = 83.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_yf768")
 
 [node name="TextureRect" type="TextureRect" parent="CenterContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer5/PanelContainer"]
 texture_filter = 1
+layout_mode = 2
 offset_right = 80.0
 offset_bottom = 83.0
 texture = ExtResource("3_qhmug")
 
 [node name="Label" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
 offset_left = 90.0
 offset_right = 414.0
 offset_bottom = 83.0

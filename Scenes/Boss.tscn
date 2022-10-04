@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Boss.gd" id="1_grstm"]
 [ext_resource type="AudioStream" uid="uid://bred01x2lenhb" path="res://Sound/SFX/hurt1.wav" id="2_4exn3"]
-[ext_resource type="Texture2D" uid="uid://ckov5n1h740v3" path="res://Sprites/boss.png" id="2_18285"]
+[ext_resource type="Texture2D" uid="uid://dw0x0jayw5v47" path="res://Sprites/boss.png" id="2_18285"]
 [ext_resource type="AudioStream" uid="uid://cfkw4frr5p040" path="res://Sound/SFX/died2.wav" id="2_x26kr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhelc"]
@@ -143,7 +143,10 @@ _data = {
 }
 
 [node name="Boss" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 7
 script = ExtResource("1_grstm")
+contact_damage = null
 health = 400
 walk_speed = 0
 
@@ -157,6 +160,9 @@ shape = SubResource("RectangleShape2D_hhelc")
 disabled = true
 
 [node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(-1, 1)
@@ -189,6 +195,8 @@ wait_time = 4.0
 
 [node name="WhatNextTimer" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="VisibleOnScreenEnabler2d" type="VisibleOnScreenEnabler2D" parent="."]
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="FindPlayerTimer" to="." method="_update_pathfinding"]

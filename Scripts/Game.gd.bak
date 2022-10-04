@@ -23,7 +23,7 @@ func _ready():
 	fix_holes()
 	stretch()
 	auto_tile()
-#	print(sum(M))
+#	#print(sum(M))
 	spawn_enemies(0)
 	spawn_upgrade()
 	spawn_player()
@@ -36,18 +36,18 @@ func get_open_map_point():
 func fix_holes():
 	M = construct_matrix()
 	var s = sum(M)
-#	print_M(M)
-#	print(s)
-#	print_M(copy_M(M))
-#	print(find_random_n(M, 1))
+#	#print_M(M)
+#	#print(s)
+#	#print_M(copy_M(M))
+#	#print(find_random_n(M, 1))
 	var A = traverse(M)
 	var holes = find_n(A, 1)
 	for hole in holes:
 		fix_hole(A, hole)
-#	print_M(A)
+#	#print_M(A)
 	patch(A)
 	M = copy_M(A)
-#	print(sum(A)/2)
+#	#print(sum(A)/2)
 
 func patch(A):
 	$TileMap.clear()
@@ -64,8 +64,8 @@ func fix_hole(A, h):
 		var Mx = max(data[0][0], h[0])
 		var my = min(data[0][1], h[1])
 		var My = max(data[0][1], h[1])
-#		print( mx, Mx, my, My)
-#		print(data, h)
+#		#print( mx, Mx, my, My)
+#		#print(data, h)
 		for i in range(mx, Mx):
 			A[i][h[1]] = 2
 
@@ -97,7 +97,7 @@ func traverse(M):
 	var A = copy_M(M)
 	var v = find_random_n(A, 1)
 	traverse_from(A, v[0], v[1])
-#	print_M(A)
+#	#print_M(A)
 	return A
 
 func find_n(A, n):
@@ -146,9 +146,9 @@ func find_random_n(A, n):
 		if A[i][j] == n:
 			return [i,j]
 
-func print_M(A):
+func #print_M(A):
 	for i in len(A):
-		print(A[i])
+		#print(A[i])
 
 func sum(A):
 	var s = 0
@@ -226,7 +226,7 @@ func spawn_player():
 	add_child(player_instance)
 
 func check_any_enemies(): # ignored last enemy that hasnt freed yet
-	print("Checking if there's any enemies left!")
+	#print("Checking if there's any enemies left!")
 	var enemies_left = 1
 	for node in get_children():
 		if node.is_in_group("enemy"):
