@@ -1,4 +1,4 @@
-Wextends BossAbility
+extends BossAbility
 
 @export var speed_multiplier := 1.25
 

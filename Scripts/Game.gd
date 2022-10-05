@@ -1,7 +1,7 @@
 class_name Game
 extends Node2D
 
-@export var pattern1: TileMapPattern
+@export var pattern1 : TileMapPattern
 @onready var tilemap : TileMap = get_tree().get_first_node_in_group("tilemap")
 
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()

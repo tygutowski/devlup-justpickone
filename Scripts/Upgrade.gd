@@ -30,7 +30,7 @@ func pickup():
 	elif piercing_once:
 		player.pierce_count += 1
 
-func get_sprite():
+func get_sprite() -> String:
 	if speed_up:
 		return ("res://Sprites/Icons/speed_up.png")
 	elif reload_up:
@@ -49,6 +49,7 @@ func get_sprite():
 		return ("res://Sprites/Icons/higher_damage.png")
 	elif piercing_once:
 		return ("res://Sprites/Icons/piercing_once.png")
+	return ""
 
 func get_name() -> String:
 	if speed_up:

@@ -19,6 +19,12 @@ func _ready():
 	walk_speed = 40
 	
 	_update_pathfinding()
+	
+	# Enemy scaling as player progresses through levels.
+	var multiplier := 1.0 + (LevelGenerator.level / 20.0)
+	health *= multiplier 
+	walk_speed *= multiplier
+	contact_damage *= multiplier
 
 func _physics_process(delta):
 	if nav_agent.is_navigation_finished() or is_chasing_player == false:
@@ -38,7 +44,7 @@ func takeDamage(damage_amount : int = 25) -> void:
 		get_tree().get_first_node_in_group("game").check_any_enemies()
 		$AnimationPlayer.play("died") # Animation takes care of queue_free and what not.
 		return
-
+	
 	$AnimationPlayer.play("hurt")
 
 func _on_hitbox_body_entered(body):
@@ -63,4 +69,5 @@ func _on_hitbox_body_entered(body):
 func _update_pathfinding() -> void:
 	if player == null:
 		return
+	
 	nav_agent.set_target_location(player.global_position)

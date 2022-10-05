@@ -177,11 +177,14 @@ func shoot() -> void:
 					hitNode.takeDamage(damage)
 					hit_list.append(hitNode)
 			
+			var expl : Node2D = null
 			for u in LevelGenerator.upgrades:
 				if u.explosive_shot:
-					var expl : Node2D = load("res://Scenes/Explosion.tscn").instantiate()
-					expl.global_position = raycast.get_collision_point()
-					game.add_child(expl)
+					if expl == null:
+						expl = load("res://Scenes/Explosion.tscn").instantiate()
+						expl.global_position = raycast.get_collision_point()
+						game.add_child(expl)
+					expl.explosion_damage += 5
 
 func upgrade() -> void:
 	in_menu = true

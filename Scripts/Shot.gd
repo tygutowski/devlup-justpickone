@@ -7,4 +7,3 @@ func _physics_process(_delta):
 	if lifetime >= lifespan:
 		queue_free()
 	lifetime += 1
-	

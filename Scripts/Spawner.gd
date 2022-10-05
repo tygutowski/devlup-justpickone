@@ -1,12 +1,12 @@
 extends Enemy
 
-@onready var projectile = preload("res://Scenes/Projectile.tscn")
-@onready var chaserenemy = preload("res://Scenes/ChaserEnemy.tscn")
-@onready var kamikazeenemy = preload("res://Scenes/KamikazeEnemy.tscn")
+@onready var projectile := preload("res://Scenes/Projectile.tscn")
+@onready var chaserenemy := preload("res://Scenes/ChaserEnemy.tscn")
+@onready var kamikazeenemy := preload("res://Scenes/KamikazeEnemy.tscn")
 
-var spawn_count: int = 5
-var timer_between_spawn = randi_range(0, 600)
-var time_between_spawn = 0
+var spawn_count := 5
+var timer_between_spawn := randi_range(0, 600)
+var time_between_spawn := 0
 
 func _ready():
 	super._ready()

@@ -4,9 +4,9 @@ class_name Projectile
 
 @export var damage := 10
 
-var speed: float = 50.0
-var direction: Vector2 = Vector2(0,0);
-var bounces: int = 2
+var speed := 50.0
+var direction := Vector2(0,0);
+var bounces := 2
 
 func _physics_process(_delta: float) -> void:
 	var coll = move_and_collide(direction * speed * _delta)

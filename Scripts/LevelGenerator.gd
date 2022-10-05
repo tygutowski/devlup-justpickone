@@ -2,4 +2,4 @@ extends Node
 
 var level := 1
 
-@export var upgrades:Array = []
+@export var upgrades : Array = []
