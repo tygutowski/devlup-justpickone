@@ -1,15 +1,19 @@
-[gd_scene load_steps=11 format=3 uid="uid://blgsh5bbjikvw"]
+[gd_scene load_steps=15 format=3 uid="uid://blgsh5bbjikvw"]
 
 [ext_resource type="Script" path="res://Scripts/Boss.gd" id="1_grstm"]
 [ext_resource type="AudioStream" uid="uid://bred01x2lenhb" path="res://Sound/SFX/hurt1.wav" id="2_4exn3"]
 [ext_resource type="Texture2D" uid="uid://dw0x0jayw5v47" path="res://Sprites/boss.png" id="2_18285"]
 [ext_resource type="AudioStream" uid="uid://cfkw4frr5p040" path="res://Sound/SFX/died2.wav" id="2_x26kr"]
+[ext_resource type="PackedScene" uid="uid://1m85cct87d88" path="res://Scenes/BossAbilities/ExplosiveAbility.tscn" id="5_0qrrv"]
+[ext_resource type="PackedScene" uid="uid://cu5nntmw7orq8" path="res://Scenes/BossAbilities/firerate_ability.tscn" id="6_204gv"]
+[ext_resource type="PackedScene" uid="uid://bfi0p1d6poc07" path="res://Scenes/BossAbilities/damage_ability.tscn" id="7_n03jd"]
+[ext_resource type="PackedScene" uid="uid://c1dy2u87akeav" path="res://Scenes/BossAbilities/speed_ability.tscn" id="8_pmcks"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hhelc"]
-size = Vector2(16, 36)
+size = Vector2(20, 38)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_721xa"]
-size = Vector2(19, 38)
+size = Vector2(14, 36)
 
 [sub_resource type="Animation" id="Animation_dp7sa"]
 resource_name = "about_to_explode"
@@ -143,10 +147,7 @@ _data = {
 }
 
 [node name="Boss" type="CharacterBody2D" groups=["enemy"]]
-collision_layer = 4
-collision_mask = 7
 script = ExtResource("1_grstm")
-contact_damage = null
 health = 400
 walk_speed = 0
 
@@ -155,18 +156,14 @@ texture_filter = 1
 texture = ExtResource("2_18285")
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="."]
-self_modulate = Color(0.909804, 0.180392, 0.533333, 1)
-position = Vector2(-1, 0)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_hhelc")
 disabled = true
 
 [node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-monitorable = false
 
 [node name="CollisionShape2d" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(-0.5, 0)
+position = Vector2(-1, 1)
 shape = SubResource("RectangleShape2D_721xa")
 disabled = true
 
@@ -191,13 +188,19 @@ stream = ExtResource("2_x26kr")
 
 [node name="Abilities" type="Node2D" parent="."]
 
+[node name="ExplosiveAbility" parent="Abilities" instance=ExtResource("5_0qrrv")]
+
+[node name="FirerateAbility" parent="Abilities" instance=ExtResource("6_204gv")]
+
+[node name="DamageAbility" parent="Abilities" instance=ExtResource("7_n03jd")]
+
+[node name="SpeedAbility" parent="Abilities" instance=ExtResource("8_pmcks")]
+
 [node name="UseAbilityTimer" type="Timer" parent="."]
 wait_time = 4.0
 
 [node name="WhatNextTimer" type="Timer" parent="."]
 wait_time = 2.0
-
-[node name="VisibleOnScreenEnabler2d" type="VisibleOnScreenEnabler2D" parent="."]
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="FindPlayerTimer" to="." method="_update_pathfinding"]
