@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://blgsh5bbjikvw"]
+[gd_scene load_steps=16 format=3 uid="uid://blgsh5bbjikvw"]
 
 [ext_resource type="Script" path="res://Scripts/Boss.gd" id="1_grstm"]
 [ext_resource type="AudioStream" uid="uid://bred01x2lenhb" path="res://Sound/SFX/hurt1.wav" id="2_4exn3"]
@@ -146,6 +146,9 @@ _data = {
 "hurt": SubResource("Animation_e4d8t")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_omp60"]
+radius = 93.2631
+
 [node name="Boss" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_grstm")
 health = 400
@@ -202,7 +205,16 @@ wait_time = 4.0
 [node name="WhatNextTimer" type="Timer" parent="."]
 wait_time = 2.0
 
+[node name="PlayerDetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="PlayerDetector"]
+shape = SubResource("CircleShape2D_omp60")
+
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="FindPlayerTimer" to="." method="_update_pathfinding"]
 [connection signal="timeout" from="UseAbilityTimer" to="." method="_on_use_ability_timer_timeout"]
 [connection signal="timeout" from="WhatNextTimer" to="." method="_on_what_next_timer_timeout"]
+[connection signal="area_entered" from="PlayerDetector" to="." method="_on_player_detector_area_entered"]

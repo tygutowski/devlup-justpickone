@@ -74,20 +74,24 @@ func _on_use_ability_timer_timeout():
 
 func takeDamage(damage_amount : int = 25):
 	if currentState == States.Idle:
-		currentState = States.Walking
 		activate_boss()
 	$AnimationPlayer.play("died")
-	#emit_signal("just_died") ### ??? wtf is this
 	super.takeDamage()
 
 func activate_boss():
+	currentState = States.Walking
 	player.is_fighting_boss = true
 	$CollisionShape2d.disabled = false
 	$Hitbox/CollisionShape2d.disabled = false
 	$UseAbilityTimer.start()
 	$WhatNextTimer.start()
-	player.get_node("Music").playing = false
-	player.get_node("BossMusic").playing = true
+	var normalMusic : AudioStreamPlayer = player.get_node("Music")
+	normalMusic.playing = false
+	var bossMusic : AudioStreamPlayer = player.get_node("BossMusic")
+	bossMusic.playing = true
+	await bossMusic.finished
+	bossMusic.playing = false
+	normalMusic.playing = true
 
 
 func _on_what_next_timer_timeout():
@@ -98,3 +102,8 @@ func spawn_upgrade():
 	var upgrade : Area2D = load("res://Scenes/Pickup.tscn").instantiate()
 	upgrade.global_position = global_position
 	get_tree().get_first_node_in_group("game").add_child(upgrade)
+
+# So the boss can be triggered from a distance by shooting it,
+# or by getting too close to it.
+func _on_player_detector_area_entered(area):
+	activate_boss()
